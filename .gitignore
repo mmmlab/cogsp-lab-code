@@ -3,6 +3,6 @@
 
 *.pyc
 *.py~
-*.mat
-*.pyd
-*.exe
+*.log
+*.psydat
+data/
