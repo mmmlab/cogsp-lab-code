@@ -1,0 +1,255 @@
+<PsychoPy2experiment version="1.82.01" encoding="utf-8">
+  <Settings>
+    <Param name="Show mouse" val="False" valType="bool" updates="None"/>
+    <Param name="Data filename" val="u'data' + os.sep + '%s_%s' %(expInfo['participant'], expInfo['date'])" valType="code" updates="None"/>
+    <Param name="Monitor" val="testMonitor" valType="str" updates="None"/>
+    <Param name="Enable Escape" val="True" valType="bool" updates="None"/>
+    <Param name="color" val="$[0,0,0]" valType="str" updates="None"/>
+    <Param name="Window size (pixels)" val="[1280, 800]" valType="code" updates="None"/>
+    <Param name="Full-screen window" val="True" valType="bool" updates="None"/>
+    <Param name="colorSpace" val="rgb" valType="str" updates="None"/>
+    <Param name="Experiment info" val="{u'session': u'001', u'participant': u''}" valType="code" updates="None"/>
+    <Param name="Save csv file" val="False" valType="bool" updates="None"/>
+    <Param name="Show info dlg" val="True" valType="bool" updates="None"/>
+    <Param name="Save wide csv file" val="True" valType="bool" updates="None"/>
+    <Param name="Save psydat file" val="True" valType="bool" updates="None"/>
+    <Param name="expName" val="MoralCognition" valType="str" updates="None"/>
+    <Param name="logging level" val="exp" valType="code" updates="None"/>
+    <Param name="blendMode" val="avg" valType="str" updates="None"/>
+    <Param name="Save excel file" val="False" valType="bool" updates="None"/>
+    <Param name="Units" val="use prefs" valType="str" updates="None"/>
+    <Param name="Save log file" val="False" valType="bool" updates="None"/>
+    <Param name="Screen" val="1" valType="num" updates="None"/>
+  </Settings>
+  <Routines>
+    <Routine name="Likert_Scale">
+      <TextComponent name="LikertScaleText">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="LikertScaleText" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="To what extent is this action morally acceptable?&#13;&#10;1 being completely acceptable to 7 being completely unacceptable.&#13;&#10;&#13;&#10;Click the number to rate acceptability, then click the number below to confirm your response.&#13;&#10;" valType="str" updates="set every repeat"/>
+        <Param name="stopVal" val="10" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.05" valType="code" updates="constant"/>
+      </TextComponent>
+      <RatingScaleComponent name="rating">
+        <Param name="labels" val="" valType="str" updates="constant"/>
+        <Param name="pos" val="0, -0.4" valType="str" updates="constant"/>
+        <Param name="high" val="7" valType="code" updates="constant"/>
+        <Param name="storeRating" val="True" valType="bool" updates="constant"/>
+        <Param name="marker" val="triangle" valType="str" updates="constant"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="markerStart" val="" valType="str" updates="constant"/>
+        <Param name="disappear" val="False" valType="bool" updates="constant"/>
+        <Param name="size" val="1.0" valType="code" updates="constant"/>
+        <Param name="tickHeight" val="" valType="str" updates="constant"/>
+        <Param name="showAccept" val="True" valType="bool" updates="constant"/>
+        <Param name="storeRatingTime" val="True" valType="bool" updates="constant"/>
+        <Param name="forceEndRoutine" val="True" valType="bool" updates="constant"/>
+        <Param name="low" val="1" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="stopVal" val="10" valType="code" updates="constant"/>
+        <Param name="visualAnalogScale" val="False" valType="bool" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="scaleDescription" val="" valType="str" updates="constant"/>
+        <Param name="storeHistory" val="False" valType="bool" updates="constant"/>
+        <Param name="categoryChoices" val="" valType="str" updates="constant"/>
+        <Param name="customize_everything" val="" valType="str" updates="constant"/>
+        <Param name="name" val="rating" valType="code" updates="None"/>
+        <Param name="singleClick" val="False" valType="bool" updates="constant"/>
+      </RatingScaleComponent>
+    </Routine>
+    <Routine name="trial">
+      <StaticComponent name="ISI">
+        <Param name="code" val="" valType="code" updates="None"/>
+        <Param name="name" val="ISI" valType="code" updates="None"/>
+        <Param name="stopVal" val="1" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+      </StaticComponent>
+      <TextComponent name="fixation">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="fixation" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="+" valType="str" updates="constant"/>
+        <Param name="stopVal" val="1.0" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="1.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
+      </TextComponent>
+      <TextComponent name="storytime">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="storytime" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="$intentstory" valType="str" updates="set every repeat"/>
+        <Param name="stopVal" val="120.0" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="2.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.05" valType="code" updates="constant"/>
+      </TextComponent>
+      <KeyboardComponent name="forceend_storytime">
+        <Param name="correctAns" val="" valType="str" updates="constant"/>
+        <Param name="storeCorrect" val="False" valType="bool" updates="constant"/>
+        <Param name="name" val="forceend_storytime" valType="code" updates="None"/>
+        <Param name="stopVal" val="120.0" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="forceEndRoutine" val="True" valType="bool" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="discard previous" val="True" valType="bool" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="allowedKeys" val="'space'" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="2.0" valType="code" updates="None"/>
+        <Param name="store" val="nothing" valType="str" updates="constant"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="intentq">
+      <TextComponent name="deonticjudgment">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="deonticjudgment" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="$djquestion" valType="str" updates="set every repeat"/>
+        <Param name="stopVal" val="10.0" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
+      </TextComponent>
+      <TextComponent name="YESORNO">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="YESORNO" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="YES (Y)&#9;&#9;&#9;NO (N)" valType="str" updates="set every repeat"/>
+        <Param name="stopVal" val="10.0" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, -.3]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
+      </TextComponent>
+      <KeyboardComponent name="djresp">
+        <Param name="correctAns" val="" valType="str" updates="constant"/>
+        <Param name="storeCorrect" val="False" valType="bool" updates="constant"/>
+        <Param name="name" val="djresp" valType="code" updates="None"/>
+        <Param name="stopVal" val="10.0" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="forceEndRoutine" val="True" valType="bool" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="discard previous" val="True" valType="bool" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="allowedKeys" val="'y','n'" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="store" val="last key" valType="str" updates="constant"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="Instructions">
+      <TextComponent name="Instruct">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="Instruct" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="You will be presented with a series of narratives about random bystanders. &#10;&#10;For each narrative, once you are finished reading the story, press spacebar to bring up the response pages. &#10;&#10;You will first be asked to rate whether one of the bystander's possible actions is morally acceptable or not. Click &quot;Y&quot; for Yes or &quot;N&quot; for No. &#10;&#10;In addition, you will be asked to rate how morally acceptable the bystander's action is from 1 to 7: 1 being completely acceptable to 7 completely unacceptable. Type in the number, and then click on the box with your number in it. &#10;&#10;The next trial will start automatically after you click on the box.&#10;&#10;Press space once you finish reading these instructions." valType="str" updates="constant"/>
+        <Param name="stopVal" val="60.0" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.07" valType="code" updates="constant"/>
+      </TextComponent>
+      <KeyboardComponent name="forceend_instruct">
+        <Param name="correctAns" val="" valType="str" updates="constant"/>
+        <Param name="storeCorrect" val="False" valType="bool" updates="constant"/>
+        <Param name="name" val="forceend_instruct" valType="code" updates="None"/>
+        <Param name="stopVal" val="60.0" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="forceEndRoutine" val="True" valType="bool" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="discard previous" val="True" valType="bool" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="allowedKeys" val="'space'" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="store" val="nothing" valType="str" updates="constant"/>
+      </KeyboardComponent>
+    </Routine>
+  </Routines>
+  <Flow>
+    <Routine name="Instructions"/>
+    <LoopInitiator loopType="TrialHandler" name="trials">
+      <Param name="conditionsFile" val="mc_conditions.xlsx" valType="str" updates="None"/>
+      <Param name="name" val="trials" valType="code" updates="None"/>
+      <Param name="isTrials" val="True" valType="bool" updates="None"/>
+      <Param name="random seed" val="" valType="code" updates="None"/>
+      <Param name="loopType" val="random" valType="str" updates="None"/>
+      <Param name="nReps" val="1" valType="code" updates="None"/>
+      <Param name="endPoints" val="[0, 1]" valType="num" updates="None"/>
+      <Param name="conditions" val="[{u'intentstory': u'Ian receives a communication that a cargo ship has an insect with a highly contagious disease. The captain himself is immune to the disease, but anybody who comes into contact with the insect will die. No passengers are on the ship. The ship is headed for a remote island where the captain will deliver the cargo to the five islanders. The captain does not know that there is a disease-carrying insect in the cargo and has no radio on board to receive a warning. Ian takes off in a helicopter to intercept the ship, but from a distance he sees the ship about to dock. Ian can shoot a missile at the ship to stop the insect arriving to the island. If Ian fires the missile, the ship will sink and along with it the captain will die while the five islanders will live. If Mark does not fire the missile, the captain will live and the ship will dock, and the five islanders will die.', u'djquestion': u'Is it morally acceptable for Ian to fire the missile?', u'condition': 1}, {u'intentstory': u'Connor is at a new aquarium exhibit when he sees a visit slip on a wet flower, fall down, and break his neck. The visitor is still alive and can be safely evacuated by medics so long as he is not moved. He has fallen, however, on top of the oxygen supply line servicing five other visitors in an underwater observation pod. Without oxygen, the five visits will soon die. If Connor does nothing the one visitor will be safely evacuated, but the five visitors in the pod will die. If Connor pushes the one visit off the supply line, the one visitor will die, but the five visitors in the pod will have their oxygen restored and will live.', u'djquestion': u'Is it morally acceptable for Connor to push the one visitor?', u'condition': 1}, {u'intentstory': u'Rick is a fireman trying to help five children out of a burning house. There is only one window from which the children can be safely evacuated, and it is jammed shut. Rick must immediately smash open this large, heavy window or else all five children will die. Outside the window, on the sill, is a man safely awaiting evacuation who Rick cannot help hitting with his fists if he breaks the window, causing the man to fall off the sill. Falling off the silly is certain to kill the man. If Rick breaks open the window, he will hit the man with his fist, the man will fall off, and he will die, but the five children will be safely evacuated. If Rick does not break open the window, the man will be safely evacuated, but the children will die.', u'djquestion': u'Is it morally acceptable for Rick to break open the window?', u'condition': 1}, {u'intentstory': u'Fred is working on the top floor of a construction project when he sees a gearbox at the end of a steel beam about to break. Suspended from the gearbox is an elevated platform with five workers on it, and if the gearbox breaks, the five workers will fall to their deaths. Fred can save the five if he rushes across the steel beam immediately to engage the backup mechanism on the gearbox. In between Fred and the gearbox, there is a worker standing on the beam. Fred knows that if he rushes across the narrow beam, he is certain to bump into the other worker, causing this worker to fall to his death. The construction site is too noisy for Fred to warn the other worker. If Fred does nothing, the gearbox will break and the five workers will fall to their deaths, but the one worker will remain safe. If Fred rushes to engage the backup mechanism, the five workers will be saved, but Fred will bump into the one worker, who will fall to his death.', u'djquestion': u'Is it morally acceptable for Fred to rush to engage the backup mechanism?', u'condition': 1}, {u'intentstory': u&quot;Standing on a footbridge spanning the railroad tracks, Frank sees an empty, out-of-control boxcar about to hit five people. Frank's leg is stuck in the railing, but next to Frank is one person who he can push, causing the one person to fall off the footbridge and onto the main track where he will be hit by the boxcar. The boxcar will slow down because of the impact of the one person, therefore preventing the five from being hit. If Frank pushes the one person and be hit by the boxcar, and therefore the boxcar will slow down and not hit the five people. If Frank does not push the one person, the boxcar will continue down the tracks and hit five people, and the one person will remain safe above the main track. &quot;, u'djquestion': u'Is it morally acceptable for Frank to push the person off of the footbridge?', u'condition': 2}, {u'intentstory': u'An empty runaway trolley is speeding down a set of tracks toward five railway workmen. There is a footbridge above the tracks in between the runaway trolley and the five workmen. On this footbridge is a workman wearing a large, heavy backpack. If nothing is done, the trolley will proceed down the main tracks and cause the deaths of the five workmen. It is possible to avoid these five deaths. Walter is a bystander who understands what is going on and who happens to be standing right behind the workman on the footbridge. Walter is near a six-foot long pole. Walter sees that he can avoid the deaths of the five workmen by using the pole to push the workman with a heavy backpack off of the footbridge and onto the tracks below. The trolley will collide with the workman, and the combiend weight of the workman and the backpack will be enough to stop the trolley, avoiding the deaths of the five workmen. But the collision will cause the death of the workman with the backpack. Walter cannot avoid the deaths of the five workmen by jumping himself because he is not heavy enough to stop the trolley. There is also not enough time to remove the backpack from the workman.', u'djquestion': u'Is it morally acceptable for Walter to use the pole to push the workman off of the footbridge?', u'condition': 2}, {u'intentstory': u'Peter is a fireman trying to help five children out of a burning house. There is only one window from which the children can be safely evacuated, and it is jammed shut. Peter must immediately use an object to smash open this large heavy window or else all five children will die. The only sufficiently large object is a man on his way towards safely escaping the buring house. Crashing through the window is certain to kill the man. If Peter pushes the man into the window and breaks it open, the man will fall out and die, but the five children will be safely evacuated. If Peter does not push the man into the window, the man will safely escape, but the five children will die. ', u'djquestion': u'Is it morally acceptable for Peter to push the man into the window??', u'condition': 2}, {u'intentstory': u'John is driving a motorboat when he notices five swimmers drowning in the distance. If John does not drive toward them at top speed, he will not arrive in time, and all five will die. In order to drive at top speed, John must lighten the load on his boat. The only way to lighten the load is to push his passenger with his hands and cause the passenger to tumble off the bank of the boat. This passenger cannot swim and will drown. If John pushes the passenger, the one passenger will drown, but John will save the five drowning swimmers. If John does not push the passenger, the one passenger will not drown, but the five swimmers will drown.', u'djquestion': u'Is it morally acceptable for John to push the passenger off the speedboat?', u'condition': 2}, {u'intentstory': u'Standing by the railroad tracks, Evan sees an empty, out-of-control boxcar about to hit five people. Next to Evan is a lever that can be pulled, lowering the railing on a footbridge that spans the main track, and causing one person to fall off the footbridge and onto the main track, where he will be hit by the boxcar. The boxcar will slow down because of the one person, therefore preventing the five from being hit. If Evans pulls the lever the one person will fall and be hit by the boxcar, and therefore the boxcar will slow down and not hit the five people. If Evan does not pull the lever, the boxcar will continue down the tracks and hit the five people, and the one person will remain safe above the main track. ', u'djquestion': u'Is it morally acceptable for Evan to pull the lever?', u'condition': 3}, {u'intentstory': u'James is hiking through a foreign land when he comes across a remote village. James learns that one of the villagers fell into a cursed pond, but contrary to local superstition, did not die. If the one villager does not die by sunrise, five other innocent and unwilling villagers will be sacrificed to the gods to thank them for sparing the one. James, who has some medical training, realizes that he can prevent the sacrifice of the five villagers if he secretly poisons the one villager. If James poisons the one, the one will be dead by sunrise, and the five will not be sacrificed. If James does not poison the one, the one will not be dead by sunrise, and the five will be sacrificed as planned.', u'djquestion': u'Is it morally acceptable for James to poison the one villager?', u'condition': 3}, {u'intentstory': u'Mark receives a communication that the captain of a cargo ship has contracted a highly infectious disease. The captain himself is only a carrier of the disease and is immune to the symptoms, but anbody who comes into contact with him will die. No passengers are on the ship. The ship is headed for a remote island where the captain will hand-deliver the cargo to the five islanders. The captain does not know that he is carrying the disease and has no radio on board to receive a warning. Mark takes off in a helicopter to intercept the ship, but from a distance he sees the ship about to dock. The only way Mark can stop the captain from transmitting the disease is to use a missile to blow up the ship. If Mark fires the missile, the captain will die and the five islanders will live. If Mark does not fire the missile, the captain will live and the five islanders will die.', u'djquestion': u'Is it morally acceptable for Mark to fire the missile?', u'condition': 3}, {u'intentstory': u'Dave is driving a motorboat when he notices five swimmers drowning in the distance. If Dave does not drive toward them at top speed, he will not arrive in time, and all five will die. In order to drive at top speed, Dave must lighten the load on his boat. The only way to lighten the load is to accelerate quickly and cause a passenger to tumble off the back of the boat. This passenger cannot swim and will drown. If Dave accelerates quickly, the one passenger will drown but Dave will save the five drowning swimmers. If Dave does not accelerate quickly, the one passenger will not drown, but the five swimmers will drown.', u'djquestion': u'Is it morally acceptable for Dave to accelerate quickly?', u'condition': 3}, {u'intentstory': u&quot;Justin is driving his motorboat in the bay when he notices some swimmers in trouble. There are five swimmers drowning at the end of a narrow channel in front of Justin. In between Justin and the drowning swimmers is another swimmer who is safe and not in trouble. If Justin takes the narrow channel to the five drowning swimmers and saves them, the power from Justin's boat will wash over the safe swimmer, drowning him. If Justin does nothing, the five swimmers will drown, and the one swimmer will remain safe.&quot;, u'djquestion': u'Is it morally acceptable for Justin to take the narrow channel?', u'condition': 4}, {u'intentstory': u'Standing by the railroad tracks, Dennis sees an empty, out-of-control boxcar about to hit five people. Next to Dennis is a lever that can be pulled, sending the boxcar down a side track and away from the five people. But pulling the lever will also lower the railing on a footbridge spanning the side track, causing one person to fall off the footbridge and onto the side track, where he will be hit by the boxcar. If Dennis pulls the lever that boxcar will switch tracks and not hit the five people, and the one person to fall and be hit by the boxcar. If Dennis does not pull the lever the boxcar will continue down the tracks and hit five people, and the one person will remain safe above the side track.', u'djquestion': u'Is it morally acceptable for Dennis to pull the lever?', u'condition': 4}, {u'intentstory': u'Hank is taking his daily walk near the train tracks when he noticed that the train that is approaching is out of control. Hank sees what has happened: the driver of the train saw five men walking across the tracks and slammed on the brakes, but the brakes failed and the driver fainted. The train is now rushing toward the five men. It is moving so fast that they will not be able to get off the track in time. Hank is standing next to the switch, which he can throw, that will turn the train onto a side track, thereby preventing it from killing the five men. There is one person standing on the side track with his back turned. Hank can throw the switch, killing one person; or he can refrain from doing this, letting the five die. ', u'djquestion': u'Is it morally acceptable for Hank to throw the switch?', u'condition': 4}, {u'intentstory': u'Ed is driving five sick people to the hospital. They are in critical condition and will die if Ed makes any stops along the way. In his hurry to pack them in the car, Ed slams the door on a few feet of thick cord that is not dangling beside the car. Ed takes the fastest route to the hopsital, which is a narrow unpaved mountain pass. On his way, Ed sees a rock climber hanging onto the side of the mountain beside the road. The rock climber is safe and in control, but if Ed drives by, the thick cord dragging along the side of the car will dislodge the rock climber, causing him to fall to his death. If Ed slows to a stop and waits for the rock climber to reach a stable landing where the cord will not dislodge him, it will be too late to save the five people. If Ed continues to drive, the one person will fall to his death and the five will be saved', u'djquestion': u'It is morally acceptable for Ed to continue to drive?', u'condition': 4}]" valType="str" updates="None"/>
+      <Param name="Selected rows" val="" valType="str" updates="None"/>
+    </LoopInitiator>
+    <Routine name="trial"/>
+    <Routine name="intentq"/>
+    <Routine name="Likert_Scale"/>
+    <LoopTerminator name="trials"/>
+  </Flow>
+</PsychoPy2experiment>

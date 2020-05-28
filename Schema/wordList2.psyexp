@@ -1,0 +1,1680 @@
+<?xml version="1.0" ?>
+<PsychoPy2experiment encoding="utf-8" version="1.83.04">
+  <Settings>
+    <Param name="Show mouse" updates="None" val="False" valType="bool"/>
+    <Param name="Data filename" updates="None" val="'data/%s_%s_%s' %(expInfo['participant'], expName, expInfo['date'])" valType="code"/>
+    <Param name="Monitor" updates="None" val="testMonitor" valType="str"/>
+    <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
+    <Param name="color" updates="None" val="$[0,0,0]" valType="str"/>
+    <Param name="Window size (pixels)" updates="None" val="[1366, 768]" valType="code"/>
+    <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
+    <Param name="colorSpace" updates="None" val="rgb" valType="str"/>
+    <Param name="Experiment info" updates="None" val="{u'session': u'001', u'participant': u''}" valType="code"/>
+    <Param name="Save csv file" updates="None" val="False" valType="bool"/>
+    <Param name="Show info dlg" updates="None" val="True" valType="bool"/>
+    <Param name="Save wide csv file" updates="None" val="True" valType="bool"/>
+    <Param name="Save psydat file" updates="None" val="True" valType="bool"/>
+    <Param name="expName" updates="None" val="wordList" valType="str"/>
+    <Param name="logging level" updates="None" val="exp" valType="code"/>
+    <Param name="blendMode" updates="None" val="avg" valType="str"/>
+    <Param name="Save excel file" updates="None" val="True" valType="bool"/>
+    <Param name="Units" updates="None" val="use prefs" valType="str"/>
+    <Param name="Save log file" updates="None" val="False" valType="bool"/>
+    <Param name="Screen" updates="None" val="1" valType="num"/>
+  </Settings>
+  <Routines>
+    <Routine name="beforeTrial">
+      <TextComponent name="text_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="text_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Press any key to start the next block of words" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, 0]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_3">
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_3" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="nothing" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="checkResp2">
+      <CodeComponent name="accColor_2">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="name" updates="None" val="accColor_2" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="if int(key_resp_4.keys) == int(corrAns):&amp;#10;    respColor = &quot;green&quot;&amp;#10;elif key_resp_4.keys != corrAns:&amp;#10;    respColor = &quot;red&quot;&amp;#10;" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="checkResp3">
+      <CodeComponent name="accColor_3">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="name" updates="None" val="accColor_3" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="if int(key_resp_5.keys) == int(corrAns):&amp;#10;    respColor = &quot;green&quot;&amp;#10;elif key_resp_5.keys != corrAns:&amp;#10;    respColor = &quot;red&quot;&amp;#10;" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="checkResp4">
+      <CodeComponent name="accColor_4">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="name" updates="None" val="accColor_4" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="if int(key_resp_5.keys) == int(corrAns):&amp;#10;    respColor = &quot;green&quot;&amp;#10;elif key_resp_5.keys != corrAns:&amp;#10;    respColor = &quot;red&quot;&amp;#10;" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="thanks">
+      <TextComponent name="goodbye">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="goodbye" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Yay! You're done" valType="str"/>
+        <Param name="stopVal" updates="constant" val="1.0" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, 0]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="resp1">
+      <TextComponent name="instructions_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="instructions_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Solve as many equations as you can.&amp;#10;&amp;#10;Note: Solve from left to right, not according to orders of operations." valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[-.5, .5]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.075" valType="code"/>
+      </TextComponent>
+      <TextComponent name="eqnDisp_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="eqnDisp_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every repeat" val="$respColor" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$equationDisp" valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.1, -0.1]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter1_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter1_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every repeat" val="$color1" valType="str"/>
+        <Param name="text" updates="constant" val="1." valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans1_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans1_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every repeat" val="$color1" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answer1" valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter2_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter2_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every repeat" val="$color2" valType="str"/>
+        <Param name="text" updates="constant" val="2." valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans2_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans2_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every repeat" val="$color2" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ2" valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter3_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter3_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every repeat" val="$color3" valType="str"/>
+        <Param name="text" updates="constant" val="3." valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans3_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans3_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every repeat" val="$color3" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ3" valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter4_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter4_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every repeat" val="$color4" valType="str"/>
+        <Param name="text" updates="constant" val="4." valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans4_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans4_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every repeat" val="$color4" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ4" valType="str"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <CodeComponent name="code_6">
+        <Param name="Begin Experiment" updates="constant" val="countTheTime = 0&amp;#10;" valType="extendedCode"/>
+        <Param name="name" updates="None" val="code_6" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="&amp;#10;tempTheTime = typeIn1Clock.getTime() - countTheTime&amp;#10;countTheTime = typeIn1Clock.getTime()&amp;#10;&amp;#10;&amp;#10;if tempTheTime&gt;0:&amp;#10;    tempTotal = totalTime + tempTheTime&amp;#10;else:&amp;#10;    tempTotal = tempTotal&amp;#10;&amp;#10;totalTime = tempTotal&amp;#10;&amp;#10;&amp;#10;if totalTime&gt;= 9:&amp;#10;    pauseOne.finished = True" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="preThanksPause">
+      <StaticComponent name="ISI">
+        <Param name="code" updates="None" val="" valType="code"/>
+        <Param name="name" updates="None" val="ISI" valType="code"/>
+        <Param name="stopVal" updates="constant" val="0.5" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+      </StaticComponent>
+    </Routine>
+    <Routine name="introduction">
+      <TextComponent name="text">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="text" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Welcome to the experiment!&amp;#10;&amp;#10;In this experiment, you will be shown a set of words, twice. Don't write them down, but do pay attention as they go by! You'll be asked later if they showed up.&amp;#10;&amp;#10;In between each list, you'll have a set of math problems to solve. Do your best, but don't worry if you get one or two wrong. &amp;#10;&amp;#10;After the lists of words, you'll be shown a list of words. Indicate whether the word is one you've seen earlier in the study. (There will be instructions again for this at the time.)&amp;#10;&amp;#10;Enjoy the experiment! &amp;#10;&amp;#10;Press any key when ready to start." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, 0]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="stop_intro">
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="stop_intro" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="nothing" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="instr2">
+      <TextComponent name="instrPart2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="instrPart2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Study session finished.&amp;#10;&amp;#10;Next is the test session. You will be presented with a list of words. If the word is one you saw in the study session, press 'z'. If you did not see the word in the study session, press 'm'.&amp;#10;&amp;#10;Press any key to get started." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="20" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, 0]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="endInstr">
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="endInstr" valType="code"/>
+        <Param name="stopVal" updates="constant" val="20" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="nothing" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="trial2">
+      <TextComponent name="word_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="word_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$textTwo" valType="str"/>
+        <Param name="stopVal" updates="constant" val=".75" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, 0]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="testRoutine">
+      <TextComponent name="testText">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="testText" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$word" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="10" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, 0]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_6">
+        <Param name="correctAns" updates="constant" val="$response" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_6" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="10" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="set every repeat" val="'m','z'" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <TextComponent name="text_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="text_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Press &quot;z&quot; if you saw on an earlier list.&amp;#10;Press &quot;m&quot; if the word is new" valType="str"/>
+        <Param name="stopVal" updates="constant" val="10" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[-.3, .25]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.075" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="btwnTrialResp">
+      <StaticComponent name="ISI_4">
+        <Param name="code" updates="None" val="" valType="code"/>
+        <Param name="name" updates="None" val="ISI_4" valType="code"/>
+        <Param name="stopVal" updates="constant" val="0.5" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+      </StaticComponent>
+    </Routine>
+    <Routine name="trials_4">
+      <TextComponent name="text_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="text_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$textFour" valType="str"/>
+        <Param name="stopVal" updates="constant" val=".75" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, 0]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="setTimer">
+      <CodeComponent name="code_3">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="name" updates="None" val="code_3" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="typeIn1">
+      <TextComponent name="instructions">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="instructions" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Solve as many equations as you can.&amp;#10;&amp;#10;Note: Solve from left to right, not according to orders of operations." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-.5, .5]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.075" valType="code"/>
+      </TextComponent>
+      <TextComponent name="eqnDisp">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="eqnDisp" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$equationDisp" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.1, -0.1]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter1">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter1" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="1." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans1">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans1" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answer1" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="2." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ2" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="3." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ3" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="4." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ4" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_2">
+        <Param name="correctAns" updates="constant" val="$corrAns" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_2" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="'1','2','3','4'" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="first key" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <CodeComponent name="code">
+        <Param name="Begin Experiment" updates="constant" val="countTheTime = 0&amp;#10;" valType="extendedCode"/>
+        <Param name="name" updates="None" val="code" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="&amp;#10;tempTheTime = typeIn1Clock.getTime() - countTheTime&amp;#10;countTheTime = typeIn1Clock.getTime()&amp;#10;&amp;#10;&amp;#10;if tempTheTime&gt;0:&amp;#10;    tempTotal = totalTime + tempTheTime&amp;#10;else:&amp;#10;    tempTotal = tempTotal&amp;#10;&amp;#10;totalTime = tempTotal&amp;#10;&amp;#10;&amp;#10;if totalTime&gt;= 9:&amp;#10;    pauseOne.finished = True" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="typeIn2">
+      <TextComponent name="instructions_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="instructions_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Solve as many equations as you can.&amp;#10;&amp;#10;Note: Solve from left to right, not according to orders of operations." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-.5, .5]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.075" valType="code"/>
+      </TextComponent>
+      <TextComponent name="eqnDisp_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="eqnDisp_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$equationDisp" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.1, -0.1]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter1_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter1_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="1." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans1_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans1_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answer1" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter2_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter2_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="2." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans2_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans2_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ2" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter3_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter3_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="3." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans3_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans3_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ3" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter4_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter4_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="4." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans4_2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans4_2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ4" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_4">
+        <Param name="correctAns" updates="constant" val="$corrAns" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_4" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="'1','2','3','4'" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <CodeComponent name="code_2">
+        <Param name="Begin Experiment" updates="constant" val="countTheTime = 0&amp;#10;" valType="extendedCode"/>
+        <Param name="name" updates="None" val="code_2" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="&amp;#10;tempTheTime = typeIn2Clock.getTime() - countTheTime&amp;#10;countTheTime = typeIn2Clock.getTime()&amp;#10;&amp;#10;&amp;#10;&amp;#10;if tempTheTime&gt;0:&amp;#10;    tempTotal = totalTime + tempTheTime&amp;#10;else:&amp;#10;    tempTotal = tempTotal&amp;#10;&amp;#10;totalTime = tempTotal&amp;#10;&amp;#10;&amp;#10;if totalTime&gt;= 9:&amp;#10;    pause2.finished = True" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="typeIn3">
+      <TextComponent name="instructions_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="instructions_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Solve as many equations as you can.&amp;#10;&amp;#10;Note: Solve from left to right, not according to orders of operations." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-.5, .5]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.075" valType="code"/>
+      </TextComponent>
+      <TextComponent name="eqnDisp_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="eqnDisp_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$equationDisp" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.1, -0.1]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter1_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter1_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="1." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans1_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans1_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answer1" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter2_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter2_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="2." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans2_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans2_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ2" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter3_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter3_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="3." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans3_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans3_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ3" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter4_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter4_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="4." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans4_4">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans4_4" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ4" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_5">
+        <Param name="correctAns" updates="constant" val="$corrAns" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_5" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="'1','2','3','4'" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <CodeComponent name="code_7">
+        <Param name="Begin Experiment" updates="constant" val="countTheTime = 0&amp;#10;" valType="extendedCode"/>
+        <Param name="name" updates="None" val="code_7" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="&amp;#10;tempTheTime = typeIn3Clock.getTime() - countTheTime&amp;#10;countTheTime = typeIn3Clock.getTime()&amp;#10;&amp;#10;&amp;#10;&amp;#10;if tempTheTime&gt;0:&amp;#10;    tempTotal = totalTime + tempTheTime&amp;#10;else:&amp;#10;    tempTotal = tempTotal&amp;#10;&amp;#10;totalTime = tempTotal&amp;#10;&amp;#10;&amp;#10;if totalTime&gt;= 9:&amp;#10;    pause3.finished = True" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="typeIn4">
+      <TextComponent name="instructions_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="instructions_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Solve as many equations as you can.&amp;#10;&amp;#10;Note: Solve from left to right, not according to orders of operations." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-.5, .5]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.075" valType="code"/>
+      </TextComponent>
+      <TextComponent name="eqnDisp_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="eqnDisp_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$equationDisp" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.1, -0.1]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter1_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter1_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="1." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans1_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans1_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answer1" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.4, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter2_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter2_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="2." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans2_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans2_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ2" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[-0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter3_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter3_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="3." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans3_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans3_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ3" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="letter4_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="letter4_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="constant" val="4." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.3]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <TextComponent name="ans4_5">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="ans4_5" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="blue" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$answ4" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="15" valType="code"/>
+        <Param name="pos" updates="constant" val="[0.2, -0.4]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_7">
+        <Param name="correctAns" updates="constant" val="$corrAns" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_7" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="'1','2','3','4'" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <CodeComponent name="code_8">
+        <Param name="Begin Experiment" updates="constant" val="countTheTime = 0&amp;#10;" valType="extendedCode"/>
+        <Param name="name" updates="None" val="code_8" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="&amp;#10;tempTheTime = typeIn4Clock.getTime() - countTheTime&amp;#10;countTheTime = typeIn4Clock.getTime()&amp;#10;&amp;#10;&amp;#10;&amp;#10;if tempTheTime&gt;0:&amp;#10;    tempTotal = totalTime + tempTheTime&amp;#10;else:&amp;#10;    tempTotal = tempTotal&amp;#10;&amp;#10;totalTime = tempTotal&amp;#10;&amp;#10;&amp;#10;if totalTime&gt;= 9:&amp;#10;    pause4.finished = True" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="trials3">
+      <TextComponent name="word_3">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="word_3" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$textThree" valType="str"/>
+        <Param name="stopVal" updates="constant" val=".75" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, 0]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="setTotalTime">
+      <CodeComponent name="code_4">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="name" updates="None" val="code_4" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="totalTime = 0&amp;#10;tempTotal = 0" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="preTrialPause">
+      <StaticComponent name="ISI_2">
+        <Param name="code" updates="None" val="" valType="code"/>
+        <Param name="name" updates="None" val="ISI_2" valType="code"/>
+        <Param name="stopVal" updates="constant" val="0.5" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+      </StaticComponent>
+    </Routine>
+    <Routine name="checkResp">
+      <CodeComponent name="accColor">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="name" updates="None" val="accColor" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="if int(key_resp_2.keys) == int(corrAns):&amp;#10;    respColor = &quot;green&quot;&amp;#10;elif key_resp_2.keys != corrAns:&amp;#10;    respColor = &quot;red&quot;&amp;#10;" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="trial">
+      <TextComponent name="word">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="word" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$textOne" valType="str"/>
+        <Param name="stopVal" updates="constant" val=".75" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="[0, 0]" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="testTExt">
+      <CodeComponent name="code_5">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="name" updates="None" val="code_5" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="print totalTime, &quot;totalTime\n&quot;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
+  </Routines>
+  <Flow>
+    <Routine name="introduction"/>
+    <Routine name="beforeTrial"/>
+    <Routine name="preTrialPause"/>
+    <LoopInitiator loopType="TrialHandler" name="trials">
+      <Param name="conditionsFile" updates="None" val="trialList1.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="trials" valType="code"/>
+      <Param name="isTrials" updates="None" val="False" valType="bool"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="2" valType="code"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="conditions" updates="None" val="[{u'textOne': u'mad'}, {u'textOne': u'fear'}, {u'textOne': u'hate'}, {u'textOne': u'rage'}, {u'textOne': u'temper'}, {u'textOne': u'fury'}, {u'textOne': u'ire'}, {u'textOne': u'wrath'}, {u'textOne': u'happy'}, {u'textOne': u'fight'}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="trial"/>
+    <LoopTerminator name="trials"/>
+    <Routine name="btwnTrialResp"/>
+    <Routine name="setTotalTime"/>
+    <LoopInitiator loopType="TrialHandler" name="pauseOne">
+      <Param name="conditionsFile" updates="None" val="eqnTest.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="pauseOne" valType="code"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="conditions" updates="None" val="[{u'color1': u'yellow', u'answ4': 6, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'9 + 6 \xf7 3', u'answ3': 5, u'answ2': 3, u'answer1': 4, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 2, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'26 - 12 \xf7 7', u'answ3': 5, u'answ2': 4, u'answer1': 1, u'color4': u'green'}, {u'color1': u'green', u'answ4': 80, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'23 - 17 * 10', u'answ3': 70, u'answ2': 50, u'answer1': 60, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 12, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'17 + 19 \xf7 3', u'answ3': 10, u'answ2': 13, u'answer1': 11, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 56, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'16 - 8 * 8', u'answ3': 80, u'answ2': 64, u'answer1': 72, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 70, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'4 + 5 * 7', u'answ3': 54, u'answ2': 63, u'answer1': 49, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 15, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'8 + 14 \xf7 2', u'answ3': 13, u'answ2': 12, u'answer1': 11, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 7, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'14 + 18 \xf7 4', u'answ3': 6, u'answ2': 8, u'answer1': 5, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 28, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'22 - 17 * 4', u'answ3': 16, u'answ2': 24, u'answer1': 20, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'24 - 3 \xf7 7', u'answ3': 5, u'answ2': 3, u'answer1': 7, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 26, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'27 + 15 - 13', u'answ3': 27, u'answ2': 29, u'answer1': 30, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 80, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'3 + 4 * 8', u'answ3': 56, u'answ2': 72, u'answer1': 64, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 48, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'18 - 14 * 12', u'answ3': 24, u'answ2': 60, u'answer1': 36, u'color4': u'green'}, {u'color1': u'green', u'answ4': 1, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'25 - 11 \xf7 7', u'answ3': 4, u'answ2': 3, u'answer1': 2, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 25, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'18 \xf7 9 + 21', u'answ3': 27, u'answ2': 23, u'answer1': 21, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 63, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'23 - 12 * 7', u'answ3': 84, u'answ2': 70, u'answer1': 77, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 3, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'27 - 13 \xf7 7', u'answ3': 2, u'answ2': 4, u'answer1': 1, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 36, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'16 \xf7 2 + 28', u'answ3': 42, u'answ2': 40, u'answer1': 34, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 30, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'15 - 6 * 3', u'answ3': 27, u'answ2': 33, u'answer1': 24, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 19, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'21 + 17 \xf7 2', u'answ3': 18, u'answ2': 17, u'answer1': 20, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 24, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'18 \xf7 3 * 4', u'answ3': 28, u'answ2': 16, u'answer1': 20, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 1, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'5 + 9 \xf7 7', u'answ3': 2, u'answ2': 5, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'27 - 18 \xf7 3', u'answ3': 3, u'answ2': 6, u'answer1': 2, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 54, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'29 - 22 * 6', u'answ3': 42, u'answ2': 48, u'answer1': 36, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 8, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'24 + 32 \xf7 8', u'answ3': 5, u'answ2': 9, u'answer1': 7, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 13, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'7 * 4 - 17', u'answ3': 14, u'answ2': 11, u'answer1': 9, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 6, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'17 + 11 \xf7 4', u'answ3': 7, u'answ2': 8, u'answer1': 5, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 90, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'15 - 4 * 9', u'answ3': 99, u'answ2': 81, u'answer1': 72, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 2, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'15 - 10 \xf7 5', u'answ3': 5, u'answ2': 1, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 26, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'13 + 1 * 2', u'answ3': 28, u'answ2': 30, u'answer1': 32, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 35, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'9 - 6 * 7', u'answ3': 28, u'answ2': 21, u'answer1': 14, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'15 - 6 \xf7 3', u'answ3': 6, u'answ2': 3, u'answer1': 2, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 5, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'24 - 9 \xf7 3', u'answ3': 7, u'answ2': 3, u'answer1': 4, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 54, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'29 - 3 * 2', u'answ3': 52, u'answ2': 48, u'answer1': 50, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 64, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'19 - 12 * 8', u'answ3': 56, u'answ2': 72, u'answer1': 48, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 16, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'13 * 2 - 11', u'answ3': 13, u'answ2': 15, u'answer1': 14, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 19, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'4 * 8 - 14', u'answ3': 17, u'answ2': 18, u'answer1': 20, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 2, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'29 + 7 \xf7 9', u'answ3': 5, u'answ2': 4, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 70, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'6 + 2 * 7', u'answ3': 56, u'answ2': 63, u'answer1': 49, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 18, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'8 - 4 * 3', u'answ3': 12, u'answ2': 15, u'answer1': 9, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 117, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'21 - 11 * 13', u'answ3': 130, u'answ2': 143, u'answer1': 104, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 72, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'13 - 5 * 8', u'answ3': 80, u'answ2': 64, u'answer1': 56, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 16, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'19 - 13 * 4', u'answ3': 28, u'answ2': 24, u'answer1': 20, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 8, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'15 + 6 \xf7 3', u'answ3': 7, u'answ2': 6, u'answer1': 5, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'29 - 14 \xf7 3', u'answ3': 5, u'answ2': 6, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 48, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'22 - 17 * 8', u'answ3': 32, u'answ2': 40, u'answer1': 54, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 34, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'13 + 6 * 2', u'answ3': 40, u'answ2': 38, u'answer1': 36, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 72, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'28 - 21 * 9', u'answ3': 90, u'answ2': 63, u'answer1': 54, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 18, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'8 - 3 * 3', u'answ3': 9, u'answ2': 15, u'answer1': 12, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 38, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'3 * 4 + 25', u'answ3': 39, u'answ2': 37, u'answer1': 36, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 20, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'18 \xf7 9 + 19', u'answ3': 22, u'answ2': 19, u'answer1': 21, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 35, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'24 - 17 * 7', u'answ3': 56, u'answ2': 49, u'answer1': 28, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 4, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'28 + 26 \xf7 9', u'answ3': 7, u'answ2': 5, u'answer1': 6, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 100, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'8 + 3 * 10', u'answ3': 120, u'answ2': 110, u'answer1': 90, u'color4': u'yellow'}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+    </LoopInitiator>
+    <Routine name="typeIn1"/>
+    <Routine name="checkResp"/>
+    <Routine name="resp1"/>
+    <LoopTerminator name="pauseOne"/>
+    <Routine name="btwnTrialResp"/>
+    <Routine name="beforeTrial"/>
+    <Routine name="btwnTrialResp"/>
+    <LoopInitiator loopType="TrialHandler" name="trials_2">
+      <Param name="conditionsFile" updates="None" val="trialList2.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="trials_2" valType="code"/>
+      <Param name="isTrials" updates="None" val="False" valType="bool"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="2" valType="code"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="conditions" updates="None" val="[{u'textTwo': u'butter'}, {u'textTwo': u'food'}, {u'textTwo': u'eat'}, {u'textTwo': u'sandwich'}, {u'textTwo': u'rye'}, {u'textTwo': u'jam'}, {u'textTwo': u'milk'}, {u'textTwo': u'flour'}, {u'textTwo': u'jelly'}, {u'textTwo': u'dough'}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+    </LoopInitiator>
+    <Routine name="trial2"/>
+    <LoopTerminator name="trials_2"/>
+    <Routine name="btwnTrialResp"/>
+    <Routine name="setTotalTime"/>
+    <LoopInitiator loopType="TrialHandler" name="pause2">
+      <Param name="conditionsFile" updates="None" val="eqnTest.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="pause2" valType="code"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="5" valType="code"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="conditions" updates="None" val="[{u'equationDisp': u'9 + 6 \xf7 3', u'answer1': 4, u'answ4': 6, u'corrAns': 3, u'answ2': 3, u'answ3': 5}, {u'equationDisp': u'26 - 12 \xf7 7', u'answer1': 1, u'answ4': 2, u'corrAns': 4, u'answ2': 4, u'answ3': 5}, {u'equationDisp': u'23 - 17 * 10', u'answer1': 60, u'answ4': 80, u'corrAns': 1, u'answ2': 50, u'answ3': 70}, {u'equationDisp': u'17 + 19 \xf7 3', u'answer1': 11, u'answ4': 12, u'corrAns': 4, u'answ2': 13, u'answ3': 10}, {u'equationDisp': u'16 - 8 * 8', u'answer1': 72, u'answ4': 56, u'corrAns': 2, u'answ2': 64, u'answ3': 80}, {u'equationDisp': u'4 + 5 * 7', u'answer1': 49, u'answ4': 70, u'corrAns': 2, u'answ2': 63, u'answ3': 54}, {u'equationDisp': u'8 + 14 \xf7 2', u'answer1': 11, u'answ4': 15, u'corrAns': 1, u'answ2': 12, u'answ3': 13}, {u'equationDisp': u'14 + 18 \xf7 4', u'answer1': 5, u'answ4': 7, u'corrAns': 2, u'answ2': 8, u'answ3': 6}, {u'equationDisp': u'22 - 17 * 4', u'answer1': 20, u'answ4': 28, u'corrAns': 1, u'answ2': 24, u'answ3': 16}, {u'equationDisp': u'24 - 3 \xf7 7', u'answer1': 7, u'answ4': 4, u'corrAns': 2, u'answ2': 3, u'answ3': 5}, {u'equationDisp': u'27 + 15 - 13', u'answer1': 30, u'answ4': 26, u'corrAns': 2, u'answ2': 29, u'answ3': 27}, {u'equationDisp': u'3 + 4 * 8', u'answer1': 64, u'answ4': 80, u'corrAns': 3, u'answ2': 72, u'answ3': 56}, {u'equationDisp': u'18 - 14 * 12', u'answer1': 36, u'answ4': 48, u'corrAns': 4, u'answ2': 60, u'answ3': 24}, {u'equationDisp': u'25 - 11 \xf7 7', u'answer1': 2, u'answ4': 1, u'corrAns': 1, u'answ2': 3, u'answ3': 4}, {u'equationDisp': u'18 \xf7 9 + 21', u'answer1': 21, u'answ4': 25, u'corrAns': 2, u'answ2': 23, u'answ3': 27}, {u'equationDisp': u'23 - 12 * 7', u'answer1': 77, u'answ4': 63, u'corrAns': 1, u'answ2': 70, u'answ3': 84}, {u'equationDisp': u'27 - 13 \xf7 7', u'answer1': 1, u'answ4': 3, u'corrAns': 3, u'answ2': 4, u'answ3': 2}, {u'equationDisp': u'16 \xf7 2 + 28', u'answer1': 34, u'answ4': 36, u'corrAns': 4, u'answ2': 40, u'answ3': 42}, {u'equationDisp': u'15 - 6 * 3', u'answer1': 24, u'answ4': 30, u'corrAns': 3, u'answ2': 33, u'answ3': 27}, {u'equationDisp': u'21 + 17 \xf7 2', u'answer1': 20, u'answ4': 19, u'corrAns': 4, u'answ2': 17, u'answ3': 18}, {u'equationDisp': u'18 \xf7 3 * 4', u'answer1': 20, u'answ4': 24, u'corrAns': 4, u'answ2': 16, u'answ3': 28}, {u'equationDisp': u'5 + 9 \xf7 7', u'answer1': 3, u'answ4': 1, u'corrAns': 3, u'answ2': 5, u'answ3': 2}, {u'equationDisp': u'27 - 18 \xf7 3', u'answer1': 2, u'answ4': 4, u'corrAns': 3, u'answ2': 6, u'answ3': 3}, {u'equationDisp': u'29 - 22 * 6', u'answer1': 36, u'answ4': 54, u'corrAns': 3, u'answ2': 48, u'answ3': 42}, {u'equationDisp': u'24 + 32 \xf7 8', u'answer1': 7, u'answ4': 8, u'corrAns': 1, u'answ2': 9, u'answ3': 5}, {u'equationDisp': u'7 * 4 - 17', u'answer1': 9, u'answ4': 13, u'corrAns': 2, u'answ2': 11, u'answ3': 14}, {u'equationDisp': u'17 + 11 \xf7 4', u'answer1': 5, u'answ4': 6, u'corrAns': 3, u'answ2': 8, u'answ3': 7}, {u'equationDisp': u'15 - 4 * 9', u'answer1': 72, u'answ4': 90, u'corrAns': 3, u'answ2': 81, u'answ3': 99}, {u'equationDisp': u'15 - 10 \xf7 5', u'answer1': 3, u'answ4': 2, u'corrAns': 2, u'answ2': 1, u'answ3': 5}, {u'equationDisp': u'13 + 1 * 2', u'answer1': 32, u'answ4': 26, u'corrAns': 3, u'answ2': 30, u'answ3': 28}, {u'equationDisp': u'9 - 6 * 7', u'answer1': 14, u'answ4': 35, u'corrAns': 2, u'answ2': 21, u'answ3': 28}, {u'equationDisp': u'15 - 6 \xf7 3', u'answer1': 2, u'answ4': 4, u'corrAns': 2, u'answ2': 3, u'answ3': 6}, {u'equationDisp': u'24 - 9 \xf7 3', u'answer1': 4, u'answ4': 5, u'corrAns': 4, u'answ2': 3, u'answ3': 7}, {u'equationDisp': u'29 - 3 * 2', u'answer1': 50, u'answ4': 54, u'corrAns': 3, u'answ2': 48, u'answ3': 52}, {u'equationDisp': u'19 - 12 * 8', u'answer1': 48, u'answ4': 64, u'corrAns': 3, u'answ2': 72, u'answ3': 56}, {u'equationDisp': u'13 * 2 - 11', u'answer1': 14, u'answ4': 16, u'corrAns': 2, u'answ2': 15, u'answ3': 13}, {u'equationDisp': u'4 * 8 - 14', u'answer1': 20, u'answ4': 19, u'corrAns': 2, u'answ2': 18, u'answ3': 17}, {u'equationDisp': u'29 + 7 \xf7 9', u'answer1': 3, u'answ4': 2, u'corrAns': 2, u'answ2': 4, u'answ3': 5}, {u'equationDisp': u'6 + 2 * 7', u'answer1': 49, u'answ4': 70, u'corrAns': 3, u'answ2': 63, u'answ3': 56}, {u'equationDisp': u'8 - 4 * 3', u'answer1': 9, u'answ4': 18, u'corrAns': 3, u'answ2': 15, u'answ3': 12}, {u'equationDisp': u'21 - 11 * 13', u'answer1': 104, u'answ4': 117, u'corrAns': 3, u'answ2': 143, u'answ3': 130}, {u'equationDisp': u'13 - 5 * 8', u'answer1': 56, u'answ4': 72, u'corrAns': 2, u'answ2': 64, u'answ3': 80}, {u'equationDisp': u'19 - 13 * 4', u'answer1': 20, u'answ4': 16, u'corrAns': 2, u'answ2': 24, u'answ3': 28}, {u'equationDisp': u'15 + 6 \xf7 3', u'answer1': 5, u'answ4': 8, u'corrAns': 3, u'answ2': 6, u'answ3': 7}, {u'equationDisp': u'29 - 14 \xf7 3', u'answer1': 3, u'answ4': 4, u'corrAns': 3, u'answ2': 6, u'answ3': 5}, {u'equationDisp': u'22 - 17 * 8', u'answer1': 54, u'answ4': 48, u'corrAns': 2, u'answ2': 40, u'answ3': 32}, {u'equationDisp': u'13 + 6 * 2', u'answer1': 36, u'answ4': 34, u'corrAns': 2, u'answ2': 38, u'answ3': 40}, {u'equationDisp': u'28 - 21 * 9', u'answer1': 54, u'answ4': 72, u'corrAns': 2, u'answ2': 63, u'answ3': 90}, {u'equationDisp': u'8 - 3 * 3', u'answer1': 12, u'answ4': 18, u'corrAns': 2, u'answ2': 15, u'answ3': 9}, {u'equationDisp': u'3 * 4 + 25', u'answer1': 36, u'answ4': 38, u'corrAns': 2, u'answ2': 37, u'answ3': 39}, {u'equationDisp': u'18 \xf7 9 + 19', u'answer1': 21, u'answ4': 20, u'corrAns': 1, u'answ2': 19, u'answ3': 22}, {u'equationDisp': u'24 - 17 * 7', u'answer1': 28, u'answ4': 35, u'corrAns': 2, u'answ2': 49, u'answ3': 56}, {u'equationDisp': u'28 + 26 \xf7 9', u'answer1': 6, u'answ4': 4, u'corrAns': 1, u'answ2': 5, u'answ3': 7}, {u'equationDisp': u'8 + 3 * 10', u'answer1': 90, u'answ4': 100, u'corrAns': 2, u'answ2': 110, u'answ3': 120}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+    </LoopInitiator>
+    <Routine name="typeIn2"/>
+    <Routine name="checkResp2"/>
+    <Routine name="resp1"/>
+    <LoopTerminator name="pause2"/>
+    <Routine name="btwnTrialResp"/>
+    <Routine name="beforeTrial"/>
+    <Routine name="btwnTrialResp"/>
+    <LoopInitiator loopType="TrialHandler" name="trials_3">
+      <Param name="conditionsFile" updates="None" val="trialList3.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="trials_3" valType="code"/>
+      <Param name="isTrials" updates="None" val="False" valType="bool"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="2" valType="code"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="conditions" updates="None" val="[{u'textThree': u'bed'}, {u'textThree': u'rest'}, {u'textThree': u'awake'}, {u'textThree': u'tired'}, {u'textThree': u'dream'}, {u'textThree': u'wake'}, {u'textThree': u'snooze'}, {u'textThree': u'blanket'}, {u'textThree': u'doze'}, {u'textThree': u'slumber'}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+    </LoopInitiator>
+    <Routine name="trials3"/>
+    <LoopTerminator name="trials_3"/>
+    <Routine name="btwnTrialResp"/>
+    <Routine name="setTotalTime"/>
+    <LoopInitiator loopType="TrialHandler" name="pause3">
+      <Param name="conditionsFile" updates="None" val="eqnTest.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="pause3" valType="code"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="5" valType="code"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="conditions" updates="None" val="[{u'color1': u'yellow', u'answ4': 6, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'9 + 6 \xf7 3', u'answ3': 5, u'answ2': 3, u'answer1': 4, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 2, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'26 - 12 \xf7 7', u'answ3': 5, u'answ2': 4, u'answer1': 1, u'color4': u'green'}, {u'color1': u'green', u'answ4': 80, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'23 - 17 * 10', u'answ3': 70, u'answ2': 50, u'answer1': 60, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 12, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'17 + 19 \xf7 3', u'answ3': 10, u'answ2': 13, u'answer1': 11, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 56, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'16 - 8 * 8', u'answ3': 80, u'answ2': 64, u'answer1': 72, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 70, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'4 + 5 * 7', u'answ3': 54, u'answ2': 63, u'answer1': 49, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 15, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'8 + 14 \xf7 2', u'answ3': 13, u'answ2': 12, u'answer1': 11, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 7, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'14 + 18 \xf7 4', u'answ3': 6, u'answ2': 8, u'answer1': 5, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 28, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'22 - 17 * 4', u'answ3': 16, u'answ2': 24, u'answer1': 20, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'24 - 3 \xf7 7', u'answ3': 5, u'answ2': 3, u'answer1': 7, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 26, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'27 + 15 - 13', u'answ3': 27, u'answ2': 29, u'answer1': 30, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 80, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'3 + 4 * 8', u'answ3': 56, u'answ2': 72, u'answer1': 64, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 48, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'18 - 14 * 12', u'answ3': 24, u'answ2': 60, u'answer1': 36, u'color4': u'green'}, {u'color1': u'green', u'answ4': 1, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'25 - 11 \xf7 7', u'answ3': 4, u'answ2': 3, u'answer1': 2, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 25, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'18 \xf7 9 + 21', u'answ3': 27, u'answ2': 23, u'answer1': 21, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 63, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'23 - 12 * 7', u'answ3': 84, u'answ2': 70, u'answer1': 77, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 3, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'27 - 13 \xf7 7', u'answ3': 2, u'answ2': 4, u'answer1': 1, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 36, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'16 \xf7 2 + 28', u'answ3': 42, u'answ2': 40, u'answer1': 34, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 30, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'15 - 6 * 3', u'answ3': 27, u'answ2': 33, u'answer1': 24, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 19, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'21 + 17 \xf7 2', u'answ3': 18, u'answ2': 17, u'answer1': 20, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 24, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'18 \xf7 3 * 4', u'answ3': 28, u'answ2': 16, u'answer1': 20, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 1, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'5 + 9 \xf7 7', u'answ3': 2, u'answ2': 5, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'27 - 18 \xf7 3', u'answ3': 3, u'answ2': 6, u'answer1': 2, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 54, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'29 - 22 * 6', u'answ3': 42, u'answ2': 48, u'answer1': 36, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 8, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'24 + 32 \xf7 8', u'answ3': 5, u'answ2': 9, u'answer1': 7, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 13, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'7 * 4 - 17', u'answ3': 14, u'answ2': 11, u'answer1': 9, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 6, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'17 + 11 \xf7 4', u'answ3': 7, u'answ2': 8, u'answer1': 5, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 90, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'15 - 4 * 9', u'answ3': 99, u'answ2': 81, u'answer1': 72, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 2, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'15 - 10 \xf7 5', u'answ3': 5, u'answ2': 1, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 26, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'13 + 1 * 2', u'answ3': 28, u'answ2': 30, u'answer1': 32, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 35, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'9 - 6 * 7', u'answ3': 28, u'answ2': 21, u'answer1': 14, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'15 - 6 \xf7 3', u'answ3': 6, u'answ2': 3, u'answer1': 2, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 5, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'24 - 9 \xf7 3', u'answ3': 7, u'answ2': 3, u'answer1': 4, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 54, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'29 - 3 * 2', u'answ3': 52, u'answ2': 48, u'answer1': 50, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 64, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'19 - 12 * 8', u'answ3': 56, u'answ2': 72, u'answer1': 48, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 16, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'13 * 2 - 11', u'answ3': 13, u'answ2': 15, u'answer1': 14, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 19, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'4 * 8 - 14', u'answ3': 17, u'answ2': 18, u'answer1': 20, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 2, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'29 + 7 \xf7 9', u'answ3': 5, u'answ2': 4, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 70, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'6 + 2 * 7', u'answ3': 56, u'answ2': 63, u'answer1': 49, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 18, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'8 - 4 * 3', u'answ3': 12, u'answ2': 15, u'answer1': 9, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 117, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'21 - 11 * 13', u'answ3': 130, u'answ2': 143, u'answer1': 104, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 72, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'13 - 5 * 8', u'answ3': 80, u'answ2': 64, u'answer1': 56, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 16, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'19 - 13 * 4', u'answ3': 28, u'answ2': 24, u'answer1': 20, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 8, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'15 + 6 \xf7 3', u'answ3': 7, u'answ2': 6, u'answer1': 5, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'29 - 14 \xf7 3', u'answ3': 5, u'answ2': 6, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 48, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'22 - 17 * 8', u'answ3': 32, u'answ2': 40, u'answer1': 54, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 34, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'13 + 6 * 2', u'answ3': 40, u'answ2': 38, u'answer1': 36, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 72, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'28 - 21 * 9', u'answ3': 90, u'answ2': 63, u'answer1': 54, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 18, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'8 - 3 * 3', u'answ3': 9, u'answ2': 15, u'answer1': 12, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 38, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'3 * 4 + 25', u'answ3': 39, u'answ2': 37, u'answer1': 36, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 20, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'18 \xf7 9 + 19', u'answ3': 22, u'answ2': 19, u'answer1': 21, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 35, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'24 - 17 * 7', u'answ3': 56, u'answ2': 49, u'answer1': 28, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 4, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'28 + 26 \xf7 9', u'answ3': 7, u'answ2': 5, u'answer1': 6, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 100, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'8 + 3 * 10', u'answ3': 120, u'answ2': 110, u'answer1': 90, u'color4': u'yellow'}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+    </LoopInitiator>
+    <Routine name="typeIn3"/>
+    <Routine name="checkResp3"/>
+    <Routine name="resp1"/>
+    <LoopTerminator name="pause3"/>
+    <Routine name="btwnTrialResp"/>
+    <Routine name="beforeTrial"/>
+    <Routine name="btwnTrialResp"/>
+    <LoopInitiator loopType="TrialHandler" name="trials4">
+      <Param name="conditionsFile" updates="None" val="trialList4.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="trials4" valType="code"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="2" valType="code"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="conditions" updates="None" val="[{u'textFour': u'hot'}, {u'textFour': u'snow'}, {u'textFour': u'warm'}, {u'textFour': u'winter'}, {u'textFour': u'ice'}, {u'textFour': u'wet'}, {u'textFour': u'frigid'}, {u'textFour': u'chilly'}, {u'textFour': u'heat'}, {u'textFour': u'weather'}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+    </LoopInitiator>
+    <Routine name="trials_4"/>
+    <LoopTerminator name="trials4"/>
+    <Routine name="btwnTrialResp"/>
+    <Routine name="setTotalTime"/>
+    <LoopInitiator loopType="TrialHandler" name="pause4">
+      <Param name="conditionsFile" updates="None" val="eqnTest.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="pause4" valType="code"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="conditions" updates="None" val="[{u'color1': u'yellow', u'answ4': 6, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'9 + 6 \xf7 3', u'answ3': 5, u'answ2': 3, u'answer1': 4, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 2, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'26 - 12 \xf7 7', u'answ3': 5, u'answ2': 4, u'answer1': 1, u'color4': u'green'}, {u'color1': u'green', u'answ4': 80, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'23 - 17 * 10', u'answ3': 70, u'answ2': 50, u'answer1': 60, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 12, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'17 + 19 \xf7 3', u'answ3': 10, u'answ2': 13, u'answer1': 11, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 56, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'16 - 8 * 8', u'answ3': 80, u'answ2': 64, u'answer1': 72, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 70, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'4 + 5 * 7', u'answ3': 54, u'answ2': 63, u'answer1': 49, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 15, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'8 + 14 \xf7 2', u'answ3': 13, u'answ2': 12, u'answer1': 11, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 7, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'14 + 18 \xf7 4', u'answ3': 6, u'answ2': 8, u'answer1': 5, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 28, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'22 - 17 * 4', u'answ3': 16, u'answ2': 24, u'answer1': 20, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'24 - 3 \xf7 7', u'answ3': 5, u'answ2': 3, u'answer1': 7, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 26, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'27 + 15 - 13', u'answ3': 27, u'answ2': 29, u'answer1': 30, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 80, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'3 + 4 * 8', u'answ3': 56, u'answ2': 72, u'answer1': 64, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 48, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'18 - 14 * 12', u'answ3': 24, u'answ2': 60, u'answer1': 36, u'color4': u'green'}, {u'color1': u'green', u'answ4': 1, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'25 - 11 \xf7 7', u'answ3': 4, u'answ2': 3, u'answer1': 2, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 25, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'18 \xf7 9 + 21', u'answ3': 27, u'answ2': 23, u'answer1': 21, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 63, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'23 - 12 * 7', u'answ3': 84, u'answ2': 70, u'answer1': 77, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 3, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'27 - 13 \xf7 7', u'answ3': 2, u'answ2': 4, u'answer1': 1, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 36, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'16 \xf7 2 + 28', u'answ3': 42, u'answ2': 40, u'answer1': 34, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 30, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'15 - 6 * 3', u'answ3': 27, u'answ2': 33, u'answer1': 24, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 19, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'21 + 17 \xf7 2', u'answ3': 18, u'answ2': 17, u'answer1': 20, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 24, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'18 \xf7 3 * 4', u'answ3': 28, u'answ2': 16, u'answer1': 20, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 1, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'5 + 9 \xf7 7', u'answ3': 2, u'answ2': 5, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'27 - 18 \xf7 3', u'answ3': 3, u'answ2': 6, u'answer1': 2, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 54, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'29 - 22 * 6', u'answ3': 42, u'answ2': 48, u'answer1': 36, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 8, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'24 + 32 \xf7 8', u'answ3': 5, u'answ2': 9, u'answer1': 7, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 13, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'7 * 4 - 17', u'answ3': 14, u'answ2': 11, u'answer1': 9, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 6, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'17 + 11 \xf7 4', u'answ3': 7, u'answ2': 8, u'answer1': 5, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 90, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'15 - 4 * 9', u'answ3': 99, u'answ2': 81, u'answer1': 72, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 2, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'15 - 10 \xf7 5', u'answ3': 5, u'answ2': 1, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 26, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'13 + 1 * 2', u'answ3': 28, u'answ2': 30, u'answer1': 32, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 35, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'9 - 6 * 7', u'answ3': 28, u'answ2': 21, u'answer1': 14, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'15 - 6 \xf7 3', u'answ3': 6, u'answ2': 3, u'answer1': 2, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 5, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 4, u'equationDisp': u'24 - 9 \xf7 3', u'answ3': 7, u'answ2': 3, u'answer1': 4, u'color4': u'green'}, {u'color1': u'yellow', u'answ4': 54, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'29 - 3 * 2', u'answ3': 52, u'answ2': 48, u'answer1': 50, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 64, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'19 - 12 * 8', u'answ3': 56, u'answ2': 72, u'answer1': 48, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 16, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'13 * 2 - 11', u'answ3': 13, u'answ2': 15, u'answer1': 14, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 19, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'4 * 8 - 14', u'answ3': 17, u'answ2': 18, u'answer1': 20, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 2, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'29 + 7 \xf7 9', u'answ3': 5, u'answ2': 4, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 70, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'6 + 2 * 7', u'answ3': 56, u'answ2': 63, u'answer1': 49, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 18, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'8 - 4 * 3', u'answ3': 12, u'answ2': 15, u'answer1': 9, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 117, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'21 - 11 * 13', u'answ3': 130, u'answ2': 143, u'answer1': 104, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 72, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'13 - 5 * 8', u'answ3': 80, u'answ2': 64, u'answer1': 56, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 16, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'19 - 13 * 4', u'answ3': 28, u'answ2': 24, u'answer1': 20, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 8, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'15 + 6 \xf7 3', u'answ3': 7, u'answ2': 6, u'answer1': 5, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 4, u'color3': u'green', u'color2': u'yellow', u'corrAns': 3, u'equationDisp': u'29 - 14 \xf7 3', u'answ3': 5, u'answ2': 6, u'answer1': 3, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 48, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'22 - 17 * 8', u'answ3': 32, u'answ2': 40, u'answer1': 54, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 34, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'13 + 6 * 2', u'answ3': 40, u'answ2': 38, u'answer1': 36, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 72, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'28 - 21 * 9', u'answ3': 90, u'answ2': 63, u'answer1': 54, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 18, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'8 - 3 * 3', u'answ3': 9, u'answ2': 15, u'answer1': 12, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 38, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'3 * 4 + 25', u'answ3': 39, u'answ2': 37, u'answer1': 36, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 20, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'18 \xf7 9 + 19', u'answ3': 22, u'answ2': 19, u'answer1': 21, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 35, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'24 - 17 * 7', u'answ3': 56, u'answ2': 49, u'answer1': 28, u'color4': u'yellow'}, {u'color1': u'green', u'answ4': 4, u'color3': u'yellow', u'color2': u'yellow', u'corrAns': 1, u'equationDisp': u'28 + 26 \xf7 9', u'answ3': 7, u'answ2': 5, u'answer1': 6, u'color4': u'yellow'}, {u'color1': u'yellow', u'answ4': 100, u'color3': u'yellow', u'color2': u'green', u'corrAns': 2, u'equationDisp': u'8 + 3 * 10', u'answ3': 120, u'answ2': 110, u'answer1': 90, u'color4': u'yellow'}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+    </LoopInitiator>
+    <Routine name="typeIn4"/>
+    <Routine name="checkResp4"/>
+    <Routine name="resp1"/>
+    <LoopTerminator name="pause4"/>
+    <Routine name="btwnTrialResp"/>
+    <Routine name="instr2"/>
+    <LoopInitiator loopType="TrialHandler" name="testLoop">
+      <Param name="conditionsFile" updates="None" val="testingList.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="testLoop" valType="code"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="conditions" updates="None" val="[{u'word': u'temper', u'response': u'z'}, {u'word': u'fury', u'response': u'z'}, {u'word': u'ire', u'response': u'z'}, {u'word': u'wrath', u'response': u'z'}, {u'word': u'happy', u'response': u'z'}, {u'word': u'fight', u'response': u'z'}, {u'word': u'rye', u'response': u'z'}, {u'word': u'jam', u'response': u'z'}, {u'word': u'milk', u'response': u'z'}, {u'word': u'flour', u'response': u'z'}, {u'word': u'jelly', u'response': u'z'}, {u'word': u'dough', u'response': u'z'}, {u'word': u'mouse', u'response': u'z'}, {u'word': u'male', u'response': u'z'}, {u'word': u'father', u'response': u'z'}, {u'word': u'strong', u'response': u'z'}, {u'word': u'friend', u'response': u'z'}, {u'word': u'beard', u'response': u'z'}, {u'word': u'anger', u'response': u'm'}, {u'word': u'hatred', u'response': u'm'}, {u'word': u'mean', u'response': u'm'}, {u'word': u'calm', u'response': u'm'}, {u'word': u'emotion', u'response': u'm'}, {u'word': u'enrage', u'response': u'm'}, {u'word': u'bread', u'response': u'm'}, {u'word': u'crust', u'response': u'm'}, {u'word': u'slice', u'response': u'm'}, {u'word': u'wine', u'response': u'm'}, {u'word': u'loaf', u'response': u'm'}, {u'word': u'toast', u'response': u'm'}, {u'word': u'man', u'response': u'm'}, {u'word': u'person', u'response': u'm'}, {u'word': u'handsome', u'response': u'm'}, {u'word': u'muscle', u'response': u'm'}, {u'word': u'suit', u'response': u'm'}, {u'word': u'old', u'response': u'm'}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+    </LoopInitiator>
+    <Routine name="testRoutine"/>
+    <LoopTerminator name="testLoop"/>
+    <Routine name="preTrialPause"/>
+    <Routine name="thanks"/>
+  </Flow>
+</PsychoPy2experiment>
