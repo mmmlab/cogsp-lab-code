@@ -1,0 +1,8 @@
+######################################
+### Files that git-add should ignore
+
+*.pyc
+*.py~
+*.mat
+*.pyd
+*.exe
