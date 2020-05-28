@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.82.01), November 13, 2015, at 16:55
@@ -101,7 +101,7 @@ exttrialOrder = [x + 1 for x in trialOrder]#--the enfored test cases based on th
 [trialOrder.append(x) for x in exttrialOrder]#--this list contains all the test cases that will be used.
 shuffle(trialOrder) #this makes the order of test cases random
 
-#print trialOrder
+#print(trialOrder)
 #--The Code maintains every element as a object of type Stimulus.
 #--Each object will have a distinct combination of Shape, Color, Number and parity.
 #--Every repeat will have a different combination of objects with random and distinct property assignment.
@@ -155,20 +155,12 @@ class Stimulus:
 # Make 6 random numbers among 16
 testTypeNo = random.sample(range(1,16,1), 6 )
 shuffle(testTypeNo)
-print testTypeNo
+print(testTypeNo)
 
 shapeList      = ['square', 'triangle']
 numberList     = ['2','1']
 stcolorList    = ['black', 'white']
 inCatList      = ['0','1']
-
-
-
-
-
-
-
-
 
 
 topTitle = visual.Rect(win=win, name='topTitle',
@@ -459,7 +451,7 @@ for thisRepeat in repeat:
     #shuffle(finCat)
     
     typeNo = testTypeNo[repeat.thisN]
-    print ['typeNp', typeNo]
+    print(['typeNp', typeNo])
     
     if typeNo == 1:
         shpID   = [0, 1]
@@ -559,10 +551,10 @@ for thisRepeat in repeat:
     finCat.append( inCatList[ inCatID[0] ] )
     finCat.append( inCatList[ inCatID[1] ] )
     
-    print fshape
-    print fnumber
-    print fstcolor
-    print finCat
+    print(fshape)
+    print(fnumber)
+    print(fstcolor)
+    print(finCat)
     
     
     #--The Shape, Color and Number Properties will be randomly assigned to a, b and c.
@@ -699,25 +691,34 @@ for thisRepeat in repeat:
         stimuli.append(Stimulus(a[1], b[0], c[1], finCat[0], fparity, assignOrder))
         stimuli.append(Stimulus(a[1], b[0], c[0], finCat[0], fparity, assignOrder))
     
-    #--Here we right the stimuli element property values to 'stimuliList.xlsx'
+    #--Here we write the stimuli element property values to 'stimuliList.xlsx'
     #--This excel file will be used as input during testing.
-    r = 1
+    wb = load_workbook(filename = 'categoryStimuliList.xlsx')
+    ws = wb["Sheet1"]
+    # fill in the header row of the excel sheet
+    ws.cell(row=1,column=1).value = 'shape' #--shape value
+    ws.cell(row=1,column=2).value = 'number' #--number value
+    ws.cell(row=1,column=3).value = 'stcolor' #--color value
+    ws.cell(row=1,column=4).value = 'category' #--category assignment value
+    ws.cell(row=1,column=5).value = 'corrAns' #--correct answer key value assignment
+    ws.cell(row=1,column=6).value = 'parity' #--parity value assignment.
+
+
+    r = 2
     shuffle(stimuli)
     for stm in stimuli:
-        wb = load_workbook(filename = 'categoryStimuliList.xlsx')
-        ws = wb.get_sheet_by_name("Sheet1")
-        
-        ws.cell(row=r,column=0).value = stm.s #--shape value
-        ws.cell(row=r,column=1).value = stm.n #--number value
-        ws.cell(row=r,column=2).value = stm.c #--color value
-        ws.cell(row=r,column=3).value = stm.cat #--category assignment value
+        ws.cell(row=r,column=1).value = stm.s #--shape value
+        ws.cell(row=r,column=2).value = stm.n #--number value
+        ws.cell(row=r,column=3).value = stm.c #--color value
+        ws.cell(row=r,column=4).value = stm.cat #--category assignment value
         if stm.cat == '1':
-            ws.cell(row=r,column=4).value = 'z' #--correct answer key value assignment
+            ws.cell(row=r,column=5).value = 'z' #--correct answer key value assignment
         else:
-            ws.cell(row=r,column=4).value = 'm' #--correct answer key value assignment
-        ws.cell(row=r,column=5).value = stm.p #--parity value assignment.
-        wb.save('categoryStimuliList.xlsx')
+            ws.cell(row=r,column=5).value = 'm' #--correct answer key value assignment
+        ws.cell(row=r,column=6).value = str(stm.p) #--parity value assignment.
         r = r+1 #--incrementing r value so that next set of vaues can be written to the next line in the excel file.
+    
+    wb.save('categoryStimuliList.xlsx')
     
     #--Displaying the Stimuli as 'in category' or 'not in category'
     #--the following variables will be used in displaying the stimuli
@@ -1466,14 +1467,16 @@ for thisRepeat in repeat:
     # abbreviate parameter names if possible (e.g. rgb=thisTrial.rgb)
     if thisTrial != None:
         for paramName in thisTrial.keys():
-            exec(paramName + '= thisTrial.' + paramName)
+            #exec(paramName + '= thisTrial.' + paramName)
+            exec('%s = thisTrial["%s"]'%(paramName,paramName))
     
     for thisTrial in trials:
         currentLoop = trials
         # abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
         if thisTrial != None:
             for paramName in thisTrial.keys():
-                exec(paramName + '= thisTrial.' + paramName)
+                #exec(paramName + '= thisTrial.' + paramName)
+                exec('%s = thisTrial["%s"]'%(paramName,paramName))
         
         #------Prepare to start Routine "trialtest"-------
         t = 0
