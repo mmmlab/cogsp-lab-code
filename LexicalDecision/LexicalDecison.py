@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.82.01), November 04, 2015, at 16:20
@@ -306,14 +306,16 @@ thisTrial_2 = trials_2.trialList[0]  # so we can initialise stimuli with some va
 # abbreviate parameter names if possible (e.g. rgb=thisTrial_2.rgb)
 if thisTrial_2 != None:
     for paramName in thisTrial_2.keys():
-        exec(paramName + '= thisTrial_2.' + paramName)
+        #exec(paramName + '= thisTrial_2.' + paramName)
+        exec('%s = thisTrial_2["%s"]'%(paramName,paramName))
 
 for thisTrial_2 in trials_2:
     currentLoop = trials_2
     # abbreviate parameter names if possible (e.g. rgb = thisTrial_2.rgb)
     if thisTrial_2 != None:
         for paramName in thisTrial_2.keys():
-            exec(paramName + '= thisTrial_2.' + paramName)
+            #exec(paramName + '= thisTrial_2.' + paramName)
+            exec('%s = thisTrial_2["%s"]'%(paramName,paramName))
     
     #------Prepare to start Routine "fix"-------
     t = 0
@@ -632,14 +634,16 @@ thisTrial = trials.trialList[0]  # so we can initialise stimuli with some values
 # abbreviate parameter names if possible (e.g. rgb=thisTrial.rgb)
 if thisTrial != None:
     for paramName in thisTrial.keys():
-        exec(paramName + '= thisTrial.' + paramName)
+        #exec(paramName + '= thisTrial.' + paramName)
+        exec('%s = thisTrial["%s"]'%(paramName,paramName))
 
 for thisTrial in trials:
     currentLoop = trials
     # abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
     if thisTrial != None:
         for paramName in thisTrial.keys():
-            exec(paramName + '= thisTrial.' + paramName)
+            #exec(paramName + '= thisTrial.' + paramName)
+            exec('%s = thisTrial["%s"]'%(paramName,paramName))
     
     #------Prepare to start Routine "fix"-------
     t = 0
