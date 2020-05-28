@@ -2,7 +2,9 @@ from psychopy import visual, core, event, data
 from psychopy import gui
 #from win32api import GetSystemMetrics
 from pyglet.window import key
-import xlwt
+#import xlwt
+import os
+import openpyxl as pyxl
 import random
 import string
 import random
@@ -30,7 +32,7 @@ sides=[]
 #STEP 0: DEFINE NECESSARY FUNCTIONS
 #----------------------------------------------------------------------#
 # this function writes output to a file
-def write_file(file):
+def write_file_old(file):
     global result
     book = xlwt.Workbook(encoding="utf-8")
     sheet1 = book.add_sheet("Sheet 1")
@@ -60,6 +62,37 @@ def write_file(file):
         sheet1.write(i+4, 9, result[i])
     file+='.xls'
     book.save(file)
+
+def write_file(filename):
+    global result
+    book = pyxl.Workbook()
+    ws = book.active
+    ws.title = "Sheet 1"
+    # write experiment information
+    ws.cell(row=1,column=1).value = "ExperimentName:%s"%name
+    ws.cell(row=2,column=1).value = "SubjectID:%s"%ID
+    ws.cell(row=3,column=1).value = "SessionNumber:%s"%session
+    # write column headers
+    headers = ['Trial','Eccentricity (px)','Fontsize','LetterSpacing','Condition','LetterPair','Target','Side','Response','Result']
+    for col,header in enumerate(headers):
+        ws.cell(row=4,column=col+1).value = header
+    # write per-trial data
+    for r in range(0,len(result)):
+        ws.cell(r+5, 1).value =  r+1
+        ws.cell(r+5, 2).value = int(ecc)
+        ws.cell(r+5, 3).value = fontsize
+        ws.cell(r+5, 4).value = c[r][1]
+        ws.cell(r+5, 5).value = c[r][0]
+        ws.cell(r+5, 6).value = ' '.join(stim[r])
+        ws.cell(r+5, 7).value = targets[r]
+        ws.cell(r+5, 8).value = sides[r]
+        ws.cell(r+5, 9).value = response[r].upper()
+        ws.cell(r+5, 10).value = result[r]
+
+    # create directory and/or save file
+    if not os.path.exists('data'):
+        os.makedirs('data')
+    book.save('data/'+filename+'.xlsx')
 
 #this function draws fixation point
 def drawfixation():
@@ -147,7 +180,7 @@ def collect_response():
         allKeys=event.waitKeys()
         for thisKey in allKeys: #allow for cancellation
             if thisKey == 'escape':
-                print 'user cancelled'
+                print('user cancelled')
                 core.quit() #abort the experiment
             elif thisKey==current_target or thisKey==current_target.lower(): thisResp=1 # correct response
             else: thisResp=-1 #incorrect response
@@ -224,7 +257,7 @@ if myDlg.OK:  # then the user pressed OK
     file+='_'+ID
     file+='_'+str(session)
     file+='_'+data.getDateStr()
-    print file
+    print(file)
 #----------------------------------------------------------------------#
 #STEP 4: OPEN A WINDOW
 #----------------------------------------------------------------------#
@@ -257,7 +290,7 @@ if myDlg.OK:  # then the user pressed OK
             allKeys=event.waitKeys() #check for key press to start the trial
             for thisKey in allKeys:
                 if thisKey=='escape': # if user pressed escape, quit the experiment
-                    print 'user cancelled'
+                    print('user cancelled')
                     core.quit()
                 else:
                     core.wait(waittrial) #a brief delay before starting the actual trial
@@ -277,5 +310,5 @@ if myDlg.OK:  # then the user pressed OK
 #----------------------------------------------------------------------#
     write_file(file) #write data to a file
 else:
-    print 'user cancelled'
+    print('user cancelled')
 
