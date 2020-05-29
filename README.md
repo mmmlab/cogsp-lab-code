@@ -18,4 +18,9 @@ Exercise Name | Description
 [Categorization](Categorization/Categorization-README.md) | implements a categorization task that demonstrates the effects of category complexity.
 [Crowding](Crowding/Crowding-README.md) | implements a letter identification task that demonstrates the effects of visual "crowding" by nearby flanking letters.
 [DividedAttention](DividedAttention/DividedAttention-README.md) | implements a dual-task requiring divided attention. Two variants of the task are included.
+[LexicalDecision](LexicalDecision/LexicalDecision-README.md) | presents (English) word/non-word pairs and demonstrates how the contextual connections between words affects our processing of them.
+[LineLength](LineLength/LineLength-README.md) | a simple, straightforward implementation of the Müller-Lyer visual length illusion, using the method of adjustment.
+[MentalRotation](MentalRotation/MentalRotation-README.md) | implements a simple version of the classic Shepard & Metzler (1971) mental rotation experiment.
+[MoralCognition](MoralCognition/MoralCognition-README.md) | a survey of moral judgments using the "Trolley Problem" in its many variations.
+
 -----
