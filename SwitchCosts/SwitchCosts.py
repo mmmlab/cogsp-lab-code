@@ -12,7 +12,9 @@
 from psychopy import visual, core, gui, data, event, sound
 from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, random, string, scipy
-import xlwt
+#import xlwt
+import openpyxl as pyxl
+import os
 
 
 global mywin
@@ -35,7 +37,7 @@ myDlg.show()
 if myDlg.OK:
     sessioninfo=myDlg.data
 else:
-    print 'cancelled'
+    print('cancelled')
     
 #read values from menu and put in variables
 idn=sessioninfo[0] # Sets idn equal to initials
@@ -60,7 +62,7 @@ filename='Switchcost'
 filename+=idn
 filename+='_'+str(sessnumber)
 filename+='_'+data.getDateStr()
-print filename
+print(filename)
 datetime=data.getDateStr()
 
 #window #*******************************Question Default Screen Color
@@ -90,43 +92,66 @@ def displaysometext(texttodisplay):
     prompt.draw()
     mywin.flip()
     
-    
-    
-    
-    #write excel file with results
+
+# #write excel file with results
+# def write_file(filename):
+#     #write stuff at beginning
+#     book = xlwt.Workbook(encoding="utf-8")
+#     sheet1 = book.add_sheet("Sheet 1")
+#     sheet1.write(0, 0, "Switch Cost")
+#     sheet1.write(1, 0, "Subject:%s"%idn)     
+#     sheet1.write(2, 0, "SessionNumber:%d"%sessnumber)
+#     sheet1.write(3, 0, "Task:%s" %tasktype)
+#     sheet1.write(4, 0, ":%d" %intertrialTime)
+#     #column labels
+#     sheet1.write(11, 0, "Trial")
+#     sheet1.write(11, 1, "Task")
+#     sheet1.write(11, 2, "Actual")
+#     sheet1.write(11, 3, "Response")
+#     sheet1.write(11, 4, "Reaction Time")
+#     sheet1.write(11, 5, "Number Shown")
+#     sheet1.write(11, 6, "Letter Pressed")
+# #below is info for each trial
+#     for i in range (0, ntrials): 
+#         sheet1.write(i+12, 0, i+1)          #trial
+#         sheet1.write(i+12, 1, taskstore[i])
+#         sheet1.write(i+12, 2, actual[i])
+#         sheet1.write(i+12, 3, response[i])
+#         sheet1.write(i+12, 4, float("%8.3f"%rTime[i])) #THIS IS THE REACTION TIME
+#         sheet1.write(i+12, 5, numValue[i])
+#         sheet1.write(i+12, 6, lettPress[i])
+#     filename+='.xls'
+#     book.save(filename)
+
 def write_file(filename):
-    
-    #write stuff at beginning
-    book = xlwt.Workbook(encoding="utf-8")
-    sheet1 = book.add_sheet("Sheet 1")
-    sheet1.write(0, 0, "Switch Cost")
-    sheet1.write(1, 0, "Subject:%s"%idn)     
-    sheet1.write(2, 0, "SessionNumber:%d"%sessnumber)
-    sheet1.write(3, 0, "Task:%s" %tasktype)
-    sheet1.write(4, 0, ":%d" %intertrialTime)
-    #column labels
-    sheet1.write(11, 0, "Trial")
-    sheet1.write(11, 1, "Task")
-    sheet1.write(11, 2, "Actual")
-    sheet1.write(11, 3, "Response")
-    sheet1.write(11, 4, "Reaction Time")
-    sheet1.write(11, 5, "Number Shown")
-    sheet1.write(11, 6, "Letter Pressed")
-
-#below is info for each trial
-
-
-    for i in range (0, ntrials): 
-        sheet1.write(i+12, 0, i+1)          #trial
-        sheet1.write(i+12, 1, taskstore[i])
-        sheet1.write(i+12, 2, actual[i])
-        sheet1.write(i+12, 3, response[i])
-        sheet1.write(i+12, 4, float("%8.3f"%rTime[i])) #THIS IS THE REACTION TIME
-        sheet1.write(i+12, 5, numValue[i])
-        sheet1.write(i+12, 6, lettPress[i])
-    
-    filename+='.xls'
-    book.save(filename)
+    global result
+    book = pyxl.Workbook()
+    ws = book.active
+    ws.title = "Sheet 1"
+    # write experiment information
+    ws.cell(row=1,column=1).value = "ExperimentName: Switch Cost"
+    ws.cell(row=2,column=1).value = "SubjectID:%s"%idn
+    ws.cell(row=3,column=1).value = "SessionNumber:%s"%sessnumber
+    ws.cell(row=4,column=1).value =  "Task:%s" %tasktype
+    ws.cell(row=5,column=1).value = ":%d" %intertrialTime
+    # write column headers
+    headers = ['Trial','Task','Actual','Response','Reaction Time','Number Shown','Letter Pressed']
+    for col,header in enumerate(headers):
+        ws.cell(row=4,column=col+1).value = header
+    # write per-trial data
+    for r in range(0,len(response)):
+        irow = r+6
+        ws.cell(irow, 1).value =  r+1
+        ws.cell(irow, 2).value = taskstore[r]
+        ws.cell(irow, 3).value = actual[r]
+        ws.cell(irow, 4).value = response[r]
+        ws.cell(irow, 5).value = float("%2.3f"%rTime[r])
+        ws.cell(irow, 6).value = numValue[r]
+        ws.cell(irow, 7).value = lettPress[r]
+    # create directory and/or save file
+    if not os.path.exists('data'):
+        os.makedirs('data')
+    book.save('data/'+filename+'.xlsx')
 
 
 def getresponse():
@@ -152,7 +177,7 @@ def responseCheck(chosenColor, digitVal):#Where responses are checked and record
 
             currentTime = reactionTime.getTime()
             rTime.append(currentTime)                    
-            print reactionTime
+            print(reactionTime)
             reactionTime.reset = 0.0
             
             lettPress.append(userResponse)
@@ -186,7 +211,7 @@ def responseCheck(chosenColor, digitVal):#Where responses are checked and record
             
             currentTime = reactionTime.getTime()
             rTime.append(currentTime)                    
-            print reactionTime
+            print(reactionTime)
             reactionTime.reset = 0.0
                     
             if userResponse.lower() == 'a': # lOW 
@@ -220,7 +245,7 @@ def showdisplay(tasktype):
             digitColor = colors[1]
             digitVal = random.choice(numbers)
                 
-            print digitVal
+            print (digitVal)
              
             numValue.append(digitVal)
            
@@ -250,7 +275,7 @@ def showdisplay(tasktype):
             digitVal = random.choice(numbers)
             digitColor = colors[0]
                     
-            print digitVal
+            print(digitVal)
             
             numValue.append(digitVal)
             
@@ -278,7 +303,7 @@ def showdisplay(tasktype):
         digitVal = random.choice(numbers)
         digitColor = random.choice(colors)
         
-        print digitVal
+        print(digitVal)
         
         numValue.append(digitVal)
            
@@ -319,7 +344,7 @@ def showdisplay(tasktype):
         
 pInstructions = "If numeral is red: \nPress 'A' if odd.\nPress 'L' if even.\nIf numeral is green:\nPress 'A' if less than 5.\nPress 'L' if greater than 5.\nRespond as fast and as accurately as you can."
 
-print pInstructions
+print(pInstructions)
  
           
 texttodisplay = str(pInstructions)
@@ -346,7 +371,7 @@ for i in range(0,ntrials): #KEEPS TALLY OF CORRECT NUMBERS
 
 
 endTotal = "You got %s out of %s"%(endAnswer, ntrials)
-print endTotal
+print(endTotal)
   
 texttodisplay = str(endTotal)
 msg = visual.TextStim(win=mywin, text=texttodisplay, color = 'White')

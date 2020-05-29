@@ -23,6 +23,7 @@ Exercise Name | Description
 [MentalRotation](MentalRotation/MentalRotation-README.md) | implements a simple version of the classic Shepard & Metzler (1971) mental rotation experiment.
 [MoralCognition](MoralCognition/MoralCognition-README.md) | a survey of moral judgments using the "Trolley Problem" in its many variations.
 [Motion](Motion/Motion-README.md) | implements three simple motion tasks that require observers to make judgments about the "coherence" of 4 motion elements.
-[Schema](Schema/WordList-README.md) | a word list recognition task that demonstrates the effects of cognitive schema in memory for words.
+[Schema](Schema/Schema-README.md) | a word list recognition task that demonstrates the effects of cognitive schema in memory for words.
+[SwitchCosts](SwitchCosts/SwitchCosts-README.md) | a dual-task reaction time experiment that shows how switching between tasks affects reaction time and accuracy.
 
 -----
