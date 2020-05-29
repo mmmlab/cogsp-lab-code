@@ -2,7 +2,7 @@
 -----
 ### Overview
 
-This repo contains code to run the laboratory exercises (i.e., simplified versions of classic experiments) for the Cognition (830:306) and Sensation & Perception (830:302) at Rutgers.
+This repo contains code to run the laboratory exercises (i.e., simplified versions of classic experiments) for the undergraduate psychology labs in Cognition (830:306) and Sensation & Perception (830:302) at Rutgers.
 
 These laboratory exercises are implemented in Python and intended to run using the [Psychopy](https://www.psychopy.org/) software package. We make a reasonable effort to update the code regularly so that it is compatible with the latest version of Psychopy (which can be downloaded [here](https://github.com/psychopy/psychopy/releases)).
 
