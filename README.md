@@ -1,0 +1,21 @@
+# Code for Sensation & Perception and Cognition Labs
+-----
+### Overview
+
+This repo contains code to run the laboratory exercises (i.e., simplified versions of classic experiments) for the Cognition (830:306) and Sensation & Perception (830:302) at Rutgers.
+
+These laboratory exercises are implemented in Python and intended to run using the [Psychopy](https://www.psychopy.org/) software package. We make a reasonable effort to update the code regularly so that it is compatible with the latest version of Psychopy (which can be downloaded [here](https://github.com/psychopy/psychopy/releases)).
+
+-----
+### File Information
+
+The code for each laboratory exercise is kept in its own separate folder. Each folder contains its own `README.md` markdown file which includes a more detailed summary of the associated exercise, along with notes about the current status of the code. These files are linked in the brief descriptions below:
+
+Exercise Name | Description
+---------- | ----------------------------------------------------------------------------------------
+[AttentionalBlink](AttentionalBlink/AttentionalBlink-README.md) | implements an RSVP dual detection/identification task that illustrates the "attentional blink" phenomenon wherein an attention-grabbing visual target reduce the detectability of other targets occuring in close temporal succession.
+[AutomaticityStroop](AutomaticityStroop/Stroop-README.md) | implements a version of the Stroop task, which demonstrates the effects of automatic processing (i.e., reading color words) on responses to perceptual judgments.
+[Categorization](Categorization/Categorization-README.md) | implements a categorization task that demonstrates the effects of category complexity.
+[Crowding](Crowding/Crowding-README.md) | implements a letter identification task that demonstrates the effects of visual "crowding" by nearby flanking letters.
+[DividedAttention](DividedAttention/DividedAttention-README.md) | implements a dual-task requiring divided attention. Two variants of the task are included.
+-----
