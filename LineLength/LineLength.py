@@ -2,28 +2,39 @@ from psychopy import visual, core, event, data
 from psychopy import gui
 # from win32api import GetSystemMetrics
 from pyglet.window import key
-import xlwt
+#import xlwt
+import openpyxl as pyxl
 import random
+import os
+
 s = False
 result=[]
-def write_file(file,length,mueller):
+
+def write_file(filename,length,mueller):
     global result
-    book = xlwt.Workbook(encoding="utf-8")
-    sheet1 = book.add_sheet("Sheet 1")
-    sheet1.write(0, 0, "ExperimentName:%s"%name)
-    sheet1.write(1, 0, "SubjectID:%s"%ID)
-    sheet1.write(2, 0, "SessionNumber:%d"%session)
-    sheet1.write(3, 0, "Trial#")
-    sheet1.write(3, 1, "StandardLength")
-    sheet1.write(3, 2, "Mueller-Lyer?")
-    sheet1.write(3, 3, "ComparisionLength")
+    book = pyxl.Workbook()
+    ws = book.active
+    ws.title = "Sheet 1"
+    # write experiment information
+    ws.cell(row=1,column=1).value = "ExperimentName:%s"%name
+    ws.cell(row=2,column=1).value = "SubjectID:%s"%ID
+    ws.cell(row=3,column=1).value = "SessionNumber:%s"%session
+    # write column headers
+    headers = ['Trial','StandardLength','Mueller-Lyer?','ComparisonLength']
+    for col,header in enumerate(headers):
+        ws.cell(row=4,column=col+1).value = header
+    # write per-trial data
     for i in range(0,len(result)):
-        sheet1.write(i+4, 0, i+1)
-        sheet1.write(i+4, 1, length)
-        sheet1.write(i+4, 2, mueller)
-        sheet1.write(i+4, 3, result[i])
-    file+='.xls'
-    book.save(file)
+        ws.cell(i+5, 1).value = i+1
+        ws.cell(i+5, 2).value = length
+        ws.cell(i+5, 3).value = mueller
+        ws.cell(i+5, 4).value =result[i]
+    # create data directory and save data file
+    if not os.path.exists('data'):
+        os.makedirs('data')
+    book.save('data/'+filename+'.xlsx')
+
+
 def show_normal(length):
     jetter=random.uniform(-0.05, 0.05)
     global win
@@ -54,7 +65,7 @@ def show_normal(length):
         if 'q' in keylist:
             global result
             result.append(int(c_length*(winWidth/2)))
-            print 'insert new length to c_length list'
+            print('insert new length to c_length list')
             break 
         elif keyState[key.J]:
             if c_length<1:
@@ -105,12 +116,13 @@ def show_normal(length):
             r_line.draw()
             win.flip()
         elif 'escape'in keylist:
-            print 'set escape signal'
+            print('set escape signal')
             global s
             s=True
             break
         else:
             pass
+
 
 def show_mueller(length):
     jetter=random.uniform(-0.05, 0.05)
@@ -151,7 +163,7 @@ def show_mueller(length):
         if 'q'in keylist:
             global result
             result.append(int(c_length*(winWidth/2.0)))
-            print 'insert new length to c_length list'
+            print('insert new length to c_length list')
             break 
         elif keyState[key.J]:
             if c_length<1:
@@ -218,15 +230,18 @@ def show_mueller(length):
             r_line_2.draw()
             win.flip()
         elif 'escape'in keylist:
-            print 'set escape signal'
+            print('set escape signal')
             global s
             s=True
             break
         else:
             pass
+
+
 def show_instruction():
     global win
     global textbox
+    global x
     
     showbox=visual.TextStim(win,
                          text='PRESS ANY KEY TO START', 
@@ -278,9 +293,8 @@ if myDlg.OK:  # then the user pressed OK
     file+=str(session)
     file+='_'+data.getDateStr()
 
-    print file
+    print(file)
     keyState=key.KeyStateHandler()
-    global x
     x = 0
     win = visual.Window([800,600],monitor='Monitor',allowGUI=True,fullscr=False)
     textbox=visual.TextStim(win,
@@ -318,4 +332,4 @@ if myDlg.OK:  # then the user pressed OK
         x = x + 1
     write_file(file,length,mueller)
 else:
-    print 'user cancelled'
+    print('user cancelled')
