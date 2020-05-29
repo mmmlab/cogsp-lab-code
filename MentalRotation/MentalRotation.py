@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.78.01), Sun Jan 31 14:44:46 2016
@@ -389,17 +389,19 @@ trials = data.TrialHandler(nReps=6, method='random',
     seed=None, name='trials')
 thisExp.addLoop(trials)  # add the loop to the experiment
 thisTrial = trials.trialList[0]  # so we can initialise stimuli with some values
-# abbreviate parameter names if possible (e.g. rgb=thisTrial.rgb)
+# abbreviate parameter names if possible (e.g. rgb=thisTrial['rgb'])
 if thisTrial != None:
     for paramName in thisTrial.keys():
-        exec(paramName + '= thisTrial.' + paramName)
+        cmdString = "%s = thisTrial['%s']"%(paramName,paramName)
+        exec(cmdString)
 
 for thisTrial in trials:
     currentLoop = trials
-    # abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
+    # abbreviate parameter names if possible (e.g. rgb = thisTrial['rgb'])
     if thisTrial != None:
         for paramName in thisTrial.keys():
-            exec(paramName + '= thisTrial.' + paramName)
+            cmdString = "%s = thisTrial['%s']"%(paramName,paramName)
+            exec(cmdString)
     
     #------Prepare to start Routine "Trial"-------
     t = 0
@@ -684,7 +686,7 @@ def plotYX(yaxis, xaxis, description=''):
     pyplot.show()
 
 filename = 'mental_rotation_data.csv'
-with open(filename, 'wb') as fd:
+with open(filename, 'w') as fd:
     fd.write(data_string)
 
 data = pd.read_csv(filename)
@@ -698,15 +700,15 @@ m = dfsum.loc[:, 'rt']
 a = dfsum.loc[:, 'angle']
 
 scored_data = zip(a, m)
-print 'average time (sec) at each rotation:'
-print "  0  45  90  135 180 225 270 315"
-print "--> %s <--" % repr([round(i,3) for i in m]).strip('[]').replace(',', '  ')
-print "\n% correct        :", 100 * correct.mean()
-print "overall speed (s):", mrt.mean()
+print('average time (sec) at each rotation:')
+print("  0  45  90  135 180 225 270 315")
+print("--> %s <--" % repr([round(i,3) for i in m]).strip('[]').replace(',', '  '))
+print("\n%% correct        : %2.2f" % (100 * correct.mean()))
+print("overall speed (s): %2.3", mrt.mean())
 
 plotYX(m, a)
 
-with open(filename, 'a+b') as fd:
+with open(filename, 'a+') as fd:
     fd.write('\n\n' + repr(scored_data))
 # keep track of which components have finished
 plot_dataComponents = []

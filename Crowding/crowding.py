@@ -32,36 +32,6 @@ sides=[]
 #STEP 0: DEFINE NECESSARY FUNCTIONS
 #----------------------------------------------------------------------#
 # this function writes output to a file
-def write_file_old(file):
-    global result
-    book = xlwt.Workbook(encoding="utf-8")
-    sheet1 = book.add_sheet("Sheet 1")
-    sheet1.write(0, 0, "ExperimentName:%s"%name)
-    sheet1.write(1, 0, "SubjectID:%s"%ID)     
-    sheet1.write(2, 0, "SessionNumber:%s"%session)
-    sheet1.write(3, 0, "Trail#")
-    sheet1.write(3, 1, "Eccentricity (pixels)")
-    sheet1.write(3, 2, "FontSize")
-    sheet1.write(3, 3, "LetterSpacing")
-    sheet1.write(3, 4, "Condition")
-    sheet1.write(3, 5, "LetterPair")
-    sheet1.write(3, 6, "Target")
-    sheet1.write(3, 7, "Side")
-    sheet1.write(3, 8, "Response")
-    sheet1.write(3, 9, "Result")
-    for i in range(0,len(result)):
-        sheet1.write(i+4, 0, i+1)
-        sheet1.write(i+4, 1, int(ecc))
-        sheet1.write(i+4, 2, fontsize)
-        sheet1.write(i+4, 3, c[i][1])
-        sheet1.write(i+4, 4, c[i][0])
-        sheet1.write(i+4, 5, stim[i])
-        sheet1.write(i+4, 6, targets[i])
-        sheet1.write(i+4, 7, sides[i])
-        sheet1.write(i+4, 8, response[i])
-        sheet1.write(i+4, 9, result[i])
-    file+='.xls'
-    book.save(file)
 
 def write_file(filename):
     global result
