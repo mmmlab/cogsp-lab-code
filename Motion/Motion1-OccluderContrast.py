@@ -2,33 +2,45 @@
 from psychopy import visual, core, event, monitors,data
 from psychopy import gui
 from pyglet.window import key
-import xlwt
+#import xlwt
+import openpyxl as pyxl
+import os
 import random
 import math
 import numpy
+
+
 s = False
 global win
 result=[]
-def write_file(file,occ_contrast,square_constrast):
+
+# this function writes output to a file
+def write_file(filename,occ_contrast,square_contrast):
     global result
-    book = xlwt.Workbook(encoding="utf-8")
-    sheet1 = book.add_sheet("Sheet 1")
-    sheet1.write(0, 0, "ExperimentName:%s"%name)
-    sheet1.write(1, 0, "Student Initial:%s"%ID)
-    sheet1.write(2, 0, "SessionNumber:%d"%session)
-    sheet1.write(3, 0, "Trail#")
-    sheet1.write(3, 1, "square_contrast")
-    sheet1.write(3, 2, "occluder_contrast")
-    sheet1.write(3, 3, "contrast ratio")
-    sheet1.write(3, 4, "response")
-    for i in range(0,len(result)):
-        sheet1.write(i+4, 0, i+1)
-        sheet1.write(i+4, 1, square_contrast)
-        sheet1.write(i+4, 2, occ_contrast)
-        sheet1.write(i+4, 3, square_contrast/occ_contrast)
-        sheet1.write(i+4, 4, result[i])
-    file+='.xls'
-    book.save(file) 
+    book = pyxl.Workbook()
+    ws = book.active
+    ws.title = "Sheet 1"
+    # write experiment information
+    ws.cell(row=1,column=1).value = "ExperimentName:%s"%name
+    ws.cell(row=2,column=1).value = "SubjectID:%s"%ID
+    ws.cell(row=3,column=1).value = "SessionNumber:%s"%session
+    # write column headers
+    headers = ['Trial','SquareContrast','OccluderContrast','ContrastRatio','Response']
+    for col,header in enumerate(headers):
+        ws.cell(row=4,column=col+1).value = header
+    # write per-trial data
+    for r in range(0,len(result)):
+        ws.cell(r+5, 1).value =  r+1
+        ws.cell(r+5, 2).value = square_contrast
+        ws.cell(r+5, 3).value = occ_contrast
+        ws.cell(r+5, 4).value = square_contrast/occ_contrast
+        ws.cell(r+5, 5).value = result[r]
+    # create directory and/or save file
+    if not os.path.exists('data'):
+        os.makedirs('data')
+    book.save('data/'+filename+'.xlsx')
+
+
 def show_rec(square_contrast,occ_contrast):
     global win,result,showbox2
     # when occluder is rectangle
@@ -65,7 +77,7 @@ def show_rec(square_contrast,occ_contrast):
     while True:
         keylist=event.waitKeys()
         if 'escape' in keylist:
-            print 'exit by the users'
+            print('exit by the users')
             result.append('NULL')
             mywin.close()
             core.quit()
@@ -86,7 +98,8 @@ def show_rec(square_contrast,occ_contrast):
             showbox2.draw()
             win.update()
             continue
-    
+
+
 def show_instruction():
      global win
      instr=visual.SimpleImageStim(win, image='instruction.png', units='', pos=(0.0, 0.0), flipHoriz=False, flipVert=False, name=None, autoLog=None)
@@ -96,11 +109,16 @@ def show_instruction():
      while True:
         if len(event.getKeys())>0: break
      event.clearEvents()
+
+
+#------------------------------------------------------------------------------#
+################ This is the start of the actual script ########################
+#------------------------------------------------------------------------------#     
 # show GUI
 myDlg = gui.Dlg(title="Motion interpretation Experiment",size=(1, 1))
 myDlg.addField('ExperimentName:','Effect of occluder contrast')
 myDlg.addField('Student Initial:','xh')
-myDlg.addField('SessionNumber:',001)
+myDlg.addField('SessionNumber:', '001')
 # myDlg.addField('Square Contrast:',0,choices=list(numpy.linspace(0,1,num=21)))
 myDlg.addField('Bar Contrast(from 0 to 1):',1)
 myDlg.addField('Occluders Contrast(from 0 to 1):',1)
@@ -123,7 +141,7 @@ if myDlg.OK:
     file+='_'+ID
     file+='_Session'+str(session)
     file+='_'+data.getDateStr()
-    print file
+    print(file)
     keyState=key.KeyStateHandler()
     win = visual.Window( monitor="testMonitor", units="deg",allowGUI=True,fullscr=False)
     win.winHandle.push_handlers(keyState)
@@ -172,5 +190,5 @@ if myDlg.OK:
         
     write_file(file,occ_contrast,square_contrast)
 else:
-    print 'user cancelled'
+    print('user cancelled')
 
