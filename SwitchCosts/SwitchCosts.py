@@ -137,10 +137,10 @@ def write_file(filename):
     # write column headers
     headers = ['Trial','Task','Actual','Response','Reaction Time','Number Shown','Letter Pressed']
     for col,header in enumerate(headers):
-        ws.cell(row=4,column=col+1).value = header
+        ws.cell(row=6,column=col+1).value = header
     # write per-trial data
     for r in range(0,len(response)):
-        irow = r+6
+        irow = r+7
         ws.cell(irow, 1).value =  r+1
         ws.cell(irow, 2).value = taskstore[r]
         ws.cell(irow, 3).value = actual[r]

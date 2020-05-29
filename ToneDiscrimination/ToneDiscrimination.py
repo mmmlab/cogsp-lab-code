@@ -1,7 +1,12 @@
+import psychopy
+# set preference for audio sound engine
+psychopy.prefs.hardware['audioLib'] = ['PTB', 'pyo','pygame']
 from psychopy import core, visual, gui, data, event, sound
 from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, random, scipy
-import xlwt
+#import xlwt
+import openpyxl as pyxl
+import os
 
 # Number of comparison frequencies & Intertone interval (s)
 numFrequencies = 7
@@ -42,28 +47,62 @@ fileName='PitchDiscrimination_'+expInfo['Student']+'_'+expInfo['Session']+'_'+ex
 # Bring up experiment window
 win=visual.Window([800,600],allowGUI=True,monitor='testMonitor',units='deg')
 
-book = xlwt.Workbook(encoding="utf-8")
-sheet1 = book.add_sheet("Sheet 1")
-sheet1.write(0, 0, "Tone Discrimination")
-sheet1.write(1, 0, "Student:%s"%expInfo['Student'])     
-sheet1.write(2, 0, "SessionNumber:%s"%expInfo['Session'])
-sheet1.write(3, 0, "Loudness:%s"%expInfo['Tone Volume (0-1)'])
-sheet1.write(4, 0, "Which first %s"%expInfo['Which Tone First'])
-sheet1.write(5, 0, "Standard:%d"%expInfo['Standard Frequency (Hz)'])
-sheet1.write(6, 0, "Duration(s)%f"%expInfo['Tone Duration'])
-#sheet1.write(7, 0, expInfo['Tone Volume (0-1)'])
-
+# Set up structure for Excel workbook
+book = pyxl.Workbook()
+ws = book.active
+ws.title = "Sheet 1"
+# write experiment information
+ws.cell(row=1,column=1).value = "ExperimentName: Tone Discrimination"
+ws.cell(row=2,column=1).value = "SubjectID:%s"%expInfo['Student']
+ws.cell(row=3,column=1).value = "SessionNumber:%s"%expInfo['Session']
+ws.cell(row=4,column=1).value = "Loudness:%s"%expInfo['Tone Volume (0-1)']
+ws.cell(row=5,column=1).value = "Which first %s"%expInfo['Which Tone First']
+ws.cell(row=6,column=1).value = "Standard:%d"%expInfo['Standard Frequency (Hz)']
+ws.cell(row=7,column=1).value = "Duration(s)%f"%expInfo['Tone Duration']
+# write column headers
+headers = ['Trial','1stTone','Standard(Hz)','Comparison(Hz)','Response']
+for col,header in enumerate(headers):
+    ws.cell(row=9,column=col+1).value = header
 
 
     
-#column labels
-sheet1.write(11, 0, "Trial")
-sheet1.write(11, 1, "1stTone")
-sheet1.write(11, 2, "Standard(Hz)")
-sheet1.write(11, 3, "Comparison(Hz)")
-sheet1.write(11, 4, "Response")
+# #column labels
+# sheet1.write(11, 0, "Trial")
+# sheet1.write(11, 1, "1stTone")
+# sheet1.write(11, 2, "Standard(Hz)")
+# sheet1.write(11, 3, "Comparison(Hz)")
+# sheet1.write(11, 4, "Response")
     
 
+# def write_file(filename):
+#     global result
+#     book = pyxl.Workbook()
+#     ws = book.active
+#     ws.title = "Sheet 1"
+#     # write experiment information
+#     ws.cell(row=1,column=1).value = "ExperimentName: Switch Cost"
+#     ws.cell(row=2,column=1).value = "SubjectID:%s"%idn
+#     ws.cell(row=3,column=1).value = "SessionNumber:%s"%sessnumber
+#     ws.cell(row=4,column=1).value =  "Task:%s" %tasktype
+#     ws.cell(row=5,column=1).value = ":%d" %intertrialTime
+#     # write column headers
+#     headers = ['Trial','Task','Actual','Response','Reaction Time','Number Shown','Letter Pressed']
+#     for col,header in enumerate(headers):
+#         ws.cell(row=4,column=col+1).value = header
+#     # write per-trial data
+#     for r in range(0,len(response)):
+#         irow = r+6
+#         ws.cell(irow, 1).value =  r+1
+#         ws.cell(irow, 2).value = taskstore[r]
+#         ws.cell(irow, 3).value = actual[r]
+#         ws.cell(irow, 4).value = response[r]
+#         ws.cell(irow, 5).value = float("%2.3f"%rTime[r])
+#         ws.cell(irow, 6).value = numValue[r]
+#         ws.cell(irow, 7).value = lettPress[r]
+#     # create directory and/or save file
+#     if not os.path.exists('data'):
+#         os.makedirs('data')
+#     book.save('data/'+filename+'.xlsx')
 
 
 
@@ -198,21 +237,24 @@ for thisFreq in comparisonFreq:
             elif thisKey in ['q','escape']:
                 core.quit()
         event.clearEvents()
-    ic=currentTrial-1
-    # Write data from this trial to date file
-    sheet1.write(ic+12, 0, currentTrial)
-    sheet1.write(ic+12, 1, "%s"%expInfo['Which Tone First'])
-    sheet1.write(ic+12, 2, expInfo['Standard Frequency (Hz)'])
-    sheet1.write(ic+12, 3, thisFreq)
- #   sheet1.write(ic+12, 4, "%f"%expInfo['Tone Duration'])
- #   sheet1.write(ic+12, 5, expInfo['Tone Volume (0-1)'])
-    sheet1.write(ic+12, 4, thisResp)
+
+    # Write data from this trial to data file
+    irow = currentTrial+10
+    ws.cell(irow, 1).value =  currentTrial+1
+    ws.cell(irow, 2).value = "%s"%expInfo['Which Tone First']
+    ws.cell(irow, 3).value = expInfo['Standard Frequency (Hz)']
+    ws.cell(irow, 4).value = thisFreq
+    ws.cell(irow, 5).value = thisResp
     currentTrial = currentTrial+1
+
+    
+
    
-# Close data file
-#dataFile.close()
-fileName+='.xls'
-book.save(fileName)
+
+# create data directory and save file
+if not os.path.exists('data'):
+    os.makedirs('data')
+book.save('data/'+fileName+'.xlsx')
 
 
 # Close window and quit experiment
