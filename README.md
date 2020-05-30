@@ -26,4 +26,5 @@ Exercise Name | Description
 [Schema](Schema/Schema-README.md) | a word list recognition task that demonstrates the effects of cognitive schemata on memory for words.
 [SwitchCosts](SwitchCosts/SwitchCosts-README.md) | a dual-task reaction time experiment that shows how switching between tasks affects reaction time and accuracy.
 [ToneDiscrimination](ToneDiscrimination/ToneDiscrimination-README.md) | a simple audio frequency discrimination task that uses the method of constant stimuli.
+[VisualSTM](VisualSTM/VisualSTM-README.md) | implements two visual memory tasks: a change detection and a change discrimination task.
 -----
