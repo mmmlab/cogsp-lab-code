@@ -6,7 +6,9 @@
 from psychopy import visual, core, gui, data, event, sound
 from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, random, string, scipy
-import xlwt
+#import xlwt
+import openpyxl as pyxl
+import os
 
 global mywin
 global grating
@@ -31,7 +33,7 @@ myDlg.show()
 if myDlg.OK:
     sessioninfo=myDlg.data
 else:
-    print 'cancelled'
+    print('cancelled')
         
 
 #window
@@ -53,7 +55,7 @@ actual = []
 response = []
 nbarstostore=[]
 taskstore=[]
-print task
+print(task)
 
 #filename
 filename=''
@@ -62,7 +64,7 @@ filename+=task[0]+'_'
 filename+=idn
 filename+='_'+str(sessnumber)
 filename+='_'+data.getDateStr()
-print filename
+print(filename)
 datetime=data.getDateStr()
 
 
@@ -83,43 +85,66 @@ orientation = [0, 45, 90, 135]
 nbars = [2, 4, 6, 8]
 
 
-#write excel file with results
+# #write excel file with results
+# def write_file(filename):  
+#     #write stuff at beginning
+#     book = xlwt.Workbook(encoding="utf-8")
+#     sheet1 = book.add_sheet("Sheet 1")
+#     sheet1.write(0, 0, "Visual Short Term Memory")
+#     sheet1.write(1, 0, "Subject:%s"%idn)     
+#     sheet1.write(2, 0, "SessionNumber:%d"%sessnumber)
+#     sheet1.write(3, 0, "Task:%s" %task)
+#     sheet1.write(4, 0, "Inter-display time:%d" %pause)
+#     #column labels
+#     sheet1.write(11, 0, "Trial")
+#     sheet1.write(11, 1, "Task")
+#     sheet1.write(11, 2, "N objects")
+#     sheet1.write(11, 3, "Actual")
+#     sheet1.write(11, 4, "Response")
+# #below is info for each trial
+#     for i in range (0, ntrials): 
+#         sheet1.write(i+12, 0, i+1)          #trial
+#         sheet1.write(i+12, 1, taskstore[i])
+#         sheet1.write(i+12, 2, nbarstostore[i])
+#         sheet1.write(i+12, 3, actual[i])
+#         sheet1.write(i+12, 4, response[i])
+#         #sheet1.write(i+12, 3, d)    #same or different?       
+#     filename+='.xls'
+#     book.save(filename)
+
+# write excel file with results
 def write_file(filename):
-    
-    #write stuff at beginning
-    book = xlwt.Workbook(encoding="utf-8")
-    sheet1 = book.add_sheet("Sheet 1")
-    sheet1.write(0, 0, "Visual Short Term Memory")
-    sheet1.write(1, 0, "Subject:%s"%idn)     
-    sheet1.write(2, 0, "SessionNumber:%d"%sessnumber)
-    sheet1.write(3, 0, "Task:%s" %task)
-    sheet1.write(4, 0, "Inter-display time:%d" %pause)
-    #column labels
-    sheet1.write(11, 0, "Trial")
-    sheet1.write(11, 1, "Task")
-    sheet1.write(11, 2, "N objects")
-    sheet1.write(11, 3, "Actual")
-    sheet1.write(11, 4, "Response")
-#below is info for each trial
-
-    for i in range (0, ntrials): 
-        sheet1.write(i+12, 0, i+1)          #trial
-        sheet1.write(i+12, 1, taskstore[i])
-        sheet1.write(i+12, 2, nbarstostore[i])
-        sheet1.write(i+12, 3, actual[i])
-        sheet1.write(i+12, 4, response[i])
-        #sheet1.write(i+12, 3, d)    #same or different?
-        
-        
-    filename+='.xls'
-    book.save(filename)
-
-
+    global result
+    book = pyxl.Workbook()
+    ws = book.active
+    ws.title = "Sheet 1"
+    # write experiment information
+    ws.cell(row=1,column=1).value = "ExperimentName: Visual Short Term Memory"
+    ws.cell(row=2,column=1).value = "SubjectID:%s"%idn
+    ws.cell(row=3,column=1).value = "SessionNumber:%s"%sessnumber
+    ws.cell(row=4,column=1).value = "Task:%s"%task
+    ws.cell(row=5,column=1).value = "Inter-display time:%s"%pause
+    # write column headers
+    headers = ['Trial','Task','SetSize','Actual','Response']
+    for col,header in enumerate(headers):
+        ws.cell(row=6,column=col+1).value = header
+    # write per-trial data
+    for r in range(0,len(response)):
+        irow = r+7
+        ws.cell(irow, 1).value =  r+1
+        ws.cell(irow, 2).value = taskstore[r]
+        ws.cell(irow, 3).value = nbarstostore[r]
+        ws.cell(irow, 4).value = actual[r]
+        ws.cell(irow, 5).value = response[r]
+    # create directory and/or save file
+    if not os.path.exists('data'):
+        os.makedirs('data')
+    book.save('data/'+filename+'.xlsx')
 
 def choosebars(nbars_trial):                              #randomly select bars for display
     alreadyloc = []
     bars=[0]*nbars_trial  #initialize
-    print nbars_trial
+    print(nbars_trial)
     for b in range(nbars_trial):
    #     print b
    #     print bars
@@ -204,7 +229,7 @@ def getresponse():
    
 #run all trials
 for itrial in range (0,ntrials):
-    print "trial", itrial + 1
+    print("trial %d"%(itrial + 1))
     texttodisplay='Trial ' + repr(itrial+1) + '  Press key' 
     msg = visual.TextStim(win=mywin, text=texttodisplay)
     msg.draw()
