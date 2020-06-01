@@ -28,3 +28,18 @@ Exercise Name | Description
 [ToneDiscrimination](ToneDiscrimination/ToneDiscrimination-README.md) | a simple audio frequency discrimination task that uses the method of constant stimuli.
 [VisualSTM](VisualSTM/VisualSTM-README.md) | implements two visual memory tasks: a change detection and a change discrimination task.
 -----
+
+### General To Do
+
+- The code for all exercises has been tested and confirmed to be working (i.e., 
+running without any runtime errors, generates reasonable-looking data files) on 
+Psychopy3 on Windows systems. However, we still need to confirm that they also 
+run on MacOS.
+
+- The Synopsis part of the README files for most experiments was copied directly
+from the .rtf files included in the original folders. In many cases, these 
+synopses are inadequate. They should eventually be revised based on the
+information contained in the lab instructions and in the associated original 
+research articles. Also, pedagogical notes directing TA's on when these labs can 
+be used within the semester, with which analyses, etc. should probably be moved
+to a different "Pedagogical Notes" section, or something similar.
