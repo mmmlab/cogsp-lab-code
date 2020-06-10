@@ -26,7 +26,7 @@ Later in the semester, students can pick among the variety of menu options and s
 as original version of experiment (`dividedattention.py`) did with xlwt.
 
 
-erros on MacOS
+errors on MacOS
 1) color doesn't work
 2) tilt actually display tilt but does not run to completion
 
