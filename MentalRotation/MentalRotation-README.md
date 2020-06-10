@@ -8,3 +8,7 @@ Make sure students realize they have to download all four files in order to run 
 Students should read the power point before doing the experiment. 
 
 It is unlikely that the students will be able to do a correlation statistical test. Thus, it’s best to run this early before you are asking them to do stats every week. 
+
+
+Notes:
+seems to work ok.  The welcoming screen with the example is not displayed correctly.
