@@ -13,3 +13,4 @@ The power-point is rather spare, and spends a lot of time describing how to form
 For results, you want the students to count the number of times they missed the X, and track how that changes over the number of letters there were between the target and the X. You can either have them present just means, or have them do an ANOVA, so you have some flexibility about when to do this exercise.
 
 # To Do:
+1) wording to say: press space bar to initiate new trial
