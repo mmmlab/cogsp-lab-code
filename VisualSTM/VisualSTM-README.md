@@ -27,3 +27,7 @@ display window. This needs to be changed. A buffer should be added to limit elem
 positions.
 3. There are no introductory responses, nor any indication of the response key
 mapping. These need to be added.
+
+----notes in MacOS
+-seems to work
+-fixation point?
