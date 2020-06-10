@@ -26,3 +26,35 @@ be fixed.
 4. Ideally, the size of the standard should be randomized within a block, but
 that could make the analysis a bit more complicated for a first project.
 5. The starting position of the 
+
+In MacOS-
+does not work. Errors:
+
+## Running: /Users/mphan/Desktop/302_306/cogsp-lab-code-master/LineLength/LineLength.py ##
+LINE_xx_1_2020_Jun_10_1039
+450.7643     WARNING     Monitor specification not found. Creating a temporary one...
+451.5561     WARNING     TextStim.alignVert is deprecated. Use the anchorVert attribute instead
+451.5561     WARNING     TextStim.alignHoriz is deprecated. Use alignText and anchorHoriz attributes instead
+451.7031     WARNING     TextStim.alignVert is deprecated. Use the anchorVert attribute instead
+451.7031     WARNING     TextStim.alignHoriz is deprecated. Use alignText and anchorHoriz attributes instead
+2020-06-10 10:32:16.261 python[36231:15218990] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to (null)
+Traceback (most recent call last):
+  File "/Users/mphan/Desktop/302_306/cogsp-lab-code-master/LineLength/LineLength.py", line 325, in <module>
+    show_normal(length)
+  File "/Users/mphan/Desktop/302_306/cogsp-lab-code-master/LineLength/LineLength.py", line 57, in show_normal
+    s_line.draw()
+  File "/Applications/PsychoPy3.app/Contents/Resources/lib/python3.6/psychopy/visual/shape.py", line 594, in draw
+    GL.glVertexPointer(2, GL.GL_DOUBLE, 0, self._borderPix.ctypes)
+  File "/Applications/PsychoPy3.app/Contents/Resources/lib/python3.6/psychopy/visual/basevisual.py", line 492, in _borderPix
+    self._updateVertices()
+  File "/Applications/PsychoPy3.app/Contents/Resources/lib/python3.6/psychopy/visual/basevisual.py", line 520, in _updateVertices
+    win=self.win, units=self.units)
+  File "/Applications/PsychoPy3.app/Contents/Resources/lib/python3.6/psychopy/tools/monitorunittools.py", line 95, in convertToPix
+    return unit2pixFunc(vertices, pos, win)
+  File "/Applications/PsychoPy3.app/Contents/Resources/lib/python3.6/psychopy/tools/monitorunittools.py", line 38, in _deg2pix
+    return deg2pix(pos + vertices, win.monitor)
+  File "/Applications/PsychoPy3.app/Contents/Resources/lib/python3.6/psychopy/tools/monitorunittools.py", line 249, in deg2pix
+    raise ValueError(msg % monitor.name)
+ValueError: Monitor Monitor has no known size in pixels (SEE MONITOR CENTER)
+##### Experiment ended. #####
+
