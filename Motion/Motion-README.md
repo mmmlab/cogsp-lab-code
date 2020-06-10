@@ -23,3 +23,6 @@ to full-screen.
 run but look funny. I'm not completely convinced that the stimulus is being 
 rendered correctly. Read the relevant references and determine whether the 
 stimuli are correct.
+
+MacOS
+similar observations as above.  Aside from the initial intro window, the window viewing size seems ok
