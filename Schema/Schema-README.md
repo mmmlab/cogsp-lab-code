@@ -8,3 +8,7 @@ THIS PROGRAM IS NOT READY. DO NOT USE.
 experiment. It runs successfully and saves reasonable-looking (if verbose) data
 files, but the original message in this README (reprinted under Synopsis above) 
 suggests that something is wrong.
+
+
+In MacOS
+-display and experiment is not readable
