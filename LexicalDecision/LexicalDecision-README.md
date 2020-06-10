@@ -15,3 +15,11 @@ You can do it earlier with a simple t-test, comparing the reaction time when the
 1. Check warnings regarding PTB sound engine and screen size
 2. Perhaps insert trial start keypress and/or counter. At the moment this is a 
 very long block not to allow the student to take an optional break.
+
+on MacOS
+could not run; screen size incorrect
+
+## Running: /Users/mphan/Desktop/302_306/cogsp-lab-code-master/LexicalDecision/LexicalDecison.py ##
+8.7141     WARNING     User requested fullscreen with size [1366  768], but screen is actually [1280, 800]. Using actual size
+2020-06-10 10:28:19.253 python[36191:15213431] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to (null)
+##### Experiment ended. #####
