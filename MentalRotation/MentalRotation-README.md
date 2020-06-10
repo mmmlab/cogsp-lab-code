@@ -11,4 +11,4 @@ It is unlikely that the students will be able to do a correlation statistical te
 
 
 Notes:
-seems to work ok.  The welcoming screen with the example is not displayed correctly.
+seems to work in MacOS.  The welcoming screen with the example is not displayed correctly.
