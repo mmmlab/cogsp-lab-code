@@ -23,5 +23,5 @@ cluttered and confusing.
  ---In MacOS
  -seems to work
  -delta f range can be varied to make some discrmination easier than others.
- -indicate that the test tome (for volume) is the standard tone
+ -indicate that the test tone (during the volume test) is the standard tone
  
