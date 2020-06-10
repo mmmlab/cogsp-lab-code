@@ -18,3 +18,10 @@ small window. We should make it fullscreen.
 preferably printed in the corresponding task colors.
 5. The ITI seems unusually long. Check to determine whether this is intentional
 and/or necessary.
+
+In MacOS
+-seems to work.  Agree with point 2. 
+-ITI is initential; subject can change it.
+-no data file(s)
+-have to check if this is true:
+                    This is whether the tasks are predictable (you always have the five trials of one task before the task    switches [P]), or unpredictable (the task is randomly chosen each trial [U])
