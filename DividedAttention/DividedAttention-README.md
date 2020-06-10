@@ -24,3 +24,10 @@ Later in the semester, students can pick among the variety of menu options and s
 3. Change to use PTB sound engine as preferred audio engine (not critical).
 4. Potentially change to use openpyxl interface to output data in similar format
 as original version of experiment (`dividedattention.py`) did with xlwt.
+
+
+erros on MacOS
+1) color doesn't work
+2) tilt actually display tilt but does not run to completion
+
+message:  Use of rgb arguments to stimuli are deprecated. Please use color and colorSpace args instead
