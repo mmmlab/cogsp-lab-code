@@ -19,3 +19,9 @@ cluttered and confusing.
     - the order of standard and comparison should be randomized on each trial
     - the question should ask whether the second tone was higher or lower than
     the first.
+    
+ ---In MacOS
+ -seems to work
+ -delta f range can be varied to make some discrmination easier than others.
+ -indicate that the test tome (for volume) is the standard tone
+ 
