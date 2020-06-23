@@ -10,6 +10,8 @@ from psychopy import visual, core, gui, data, event, sound
 from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, random, string, scipy
 import csv
+import openpyxl as pyxl
+import os
 
 global mywin
 global grating
@@ -30,8 +32,8 @@ if myDlg.OK:
 else:
     print('cancelled') #Changed this from print 'cancelled' to print('cancelled')
 #****************************************************** MENU VALUES ***********************************************************************************************
-idn=sessioninfo[0] # Sets idn equal to initials
-sessnumber=sessioninfo[1] #sets equal to Session nummber
+subid=sessioninfo[0] # Sets subid equal to initials
+session=sessioninfo[1] #sets equal to Session nummber
 ntrials=sessioninfo[2] #sets n trial equal to number of trials
 
 #******************************************************* VARIABLES ************************************************************************************************
@@ -47,14 +49,12 @@ initialSet = []
 xSet = []
 noXSet = []
 # ********************************************************CSV FILE**********************************************************************
-#filename
-filename=''
-filename='Attentional Blink'
-filename+=idn
-filename+='_'+str(sessnumber)
-filename+='_'+data.getDateStr()
-print(filename) #Changed from print filename to print(filename)
-datetime=data.getDateStr()
+# construct output file name
+filename='AttentionalBlink_%s_%03d_%s'%(subid,session,data.getDateStr())
+# filename='Attentional Blink'
+# filename+=subid
+# filename+='_'+str(session)
+# filename+='_'+data.getDateStr()
 
 #window #
 mywin = visual.Window(size=(1920, 1080),fullscr=True,screen=0,\
@@ -63,21 +63,47 @@ mywin = visual.Window(size=(1920, 1080),fullscr=True,screen=0,\
 random.seed()  #initializes by reading the time
 
 
-data = [("Trial", 
-"Letters Prior to Target",
-"Loc of X after Target",
-"Target Letter", 
-"Target Letter Resp",
-"X Present", 
-"X Present Response", 
-)]
+# data = [("Trial", 
+# "Letters Prior to Target",
+# "Loc of X after Target",
+# "Target Letter", 
+# "Target Letter Resp",
+# "X Present", 
+# "X Present Response", 
+# )]
+
+# def write_file(filename):
+#     for i in range(0, ntrials):
+#         data.append((i+1, beforeWhite[i], afterWhite[i], targetLetter[i], respTarget[i], containSet[i], respX[i]))
+#     with open('%s.csv' %(filename), 'w') as fp:
+#         writer = csv.writer(fp, delimiter=',' )
+#         writer.writerows(data)
 
 def write_file(filename):
-    for i in range(0, ntrials):
-        data.append((i+1, beforeWhite[i], afterWhite[i], targetLetter[i], respTarget[i], containSet[i], respX[i]))
-    with open('%s.csv' %(filename), 'w') as fp:
-        writer = csv.writer(fp, delimiter=',' )
-        writer.writerows(data)
+    book = pyxl.Workbook()
+    ws = book.active
+    ws.title = "Sheet 1"
+    # write experiment information
+    ws.cell(row=1,column=1).value = "ExperimentName: Attentional Blink"
+    ws.cell(row=2,column=1).value = "SubjectID:%s"%subid
+    ws.cell(row=3,column=1).value = "SessionNumber:%s"%session
+    # write column headers
+    headers = ['TargetPosition','TargetLetter','TargetResponse','X_Position','X_Present','X_Response']
+    for col,header in enumerate(headers):
+        ws.cell(row=4,column=col+1).value = header
+    # write per-trial data
+    for i in range(0,ntrials):
+        ws.cell(i+5, 1).value = i+1
+        ws.cell(i+5, 2).value = beforeWhite[i]
+        ws.cell(i+5, 3).value = targetLetter[i]
+        ws.cell(i+5, 4).value = respTarget[i]
+        ws.cell(i+5, 5).value = afterWhite[i]
+        ws.cell(i+5, 6).value = containSet[i]
+        ws.cell(i+5, 7).value = respX[i]
+    # create data directory and save data file
+    if not os.path.exists('data'):
+        os.makedirs('data')
+    book.save('data/'+filename+'.xlsx')
 
 def getResponse():
     k = event.waitKeys()
@@ -146,8 +172,7 @@ def showDisplay(trialType):
     xSet[xLoc] = 'X'
     
     if trialType != 1:
-        afterWhite.append("No X Present")
-        
+        afterWhite.append('NA')
     else:
         afterWhite.append(xLoc + 1)
 
@@ -303,6 +328,7 @@ mywin.flip()
 keypress = getResponse()   
     
 write_file(filename)  
+
 mywin.close()
 core.quit()
     
