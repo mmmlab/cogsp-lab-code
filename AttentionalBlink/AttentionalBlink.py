@@ -3,7 +3,9 @@
 #The Attentional Blink Experiment was designed to present a series of stimuli and have the user find two images. The first will 
 #always come before the second, however due to the Attentional Blink that happens in memory after finding the first image, keeps
 #the user from consciously finding the 2nd image.
-
+import psychopy
+# set preference for audio sound engine
+psychopy.prefs.hardware['audioLib'] = ['PTB', 'pyo','pygame']
 from psychopy import visual, core, gui, data, event, sound
 from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, random, string, scipy
@@ -41,7 +43,7 @@ respX = []            # if they responded whether there was an x or not
 respTarget = []       #Response as to what the target letter was
 
 withXSet = []
-set = []
+initialSet = []
 xSet = []
 noXSet = []
 # ********************************************************CSV FILE**********************************************************************
@@ -55,7 +57,8 @@ print(filename) #Changed from print filename to print(filename)
 datetime=data.getDateStr()
 
 #window #
-mywin = visual.Window( size=(1366, 768), fullscr=True, screen=0, monitor="testMonitor", units="pix", color = (0,0,0))
+mywin = visual.Window(size=(1920, 1080),fullscr=True,screen=0,\
+    monitor="testMonitor",units="pix",color = (0,0,0))
 #rgb=[-1,-1,-1] makes screen black
 random.seed()  #initializes by reading the time
 
@@ -70,13 +73,12 @@ data = [("Trial",
 )]
 
 def write_file(filename):
-
     for i in range(0, ntrials):
         data.append((i+1, beforeWhite[i], afterWhite[i], targetLetter[i], respTarget[i], containSet[i], respX[i]))
-  
     with open('%s.csv' %(filename), 'w') as fp:
         writer = csv.writer(fp, delimiter=',' )
         writer.writerows(data)
+
 def getResponse():
     k = event.waitKeys()
     event.clearEvents()
@@ -85,43 +87,48 @@ def getResponse():
         mywin.close()
         core.quit()
     return b
-def blankScreen():
-    
+
+def blankScreen(): 
     mywin.flip(clearBuffer=True)
     mywin.flip()
  #   print pause/1000.0  
+
 def displaysometext(texttodisplay):
     prompt=visual.TextStim(win=mywin, text=texttodisplay,pos=[0,0],rgb=2,contrast=1)
     prompt.draw()
     mywin.flip()
-    #write excel file with results
 
-letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'Y', 'Z']
+#write excel file with results
+
+letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'G', 'H', 'I', 'J', 'K', 'L', \
+    'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'Y', 'Z']
 
 
-def chooseNumOfLett(): #chooses the random black letters that show up before white 
-    
+def chooseNumOfLett(): 
+    #chooses the number of random black letters that show up before white 
     numOfLetters = random.randint(7, 15)
     beforeWhite.append(numOfLetters)
     return numOfLetters
+
 def chooseLett():
     lett = random.choice(letters)
     return lett
-
     
+
 def showDisplay(trialType):
     x = chooseNumOfLett()   
     beforeWhite.append(x)
-    print("1") #Changed from print "1" to print("1")
+    print("1")
     if trialType == 1:
         containSet.append("1")
     else:
-        containSet.append("0") 
-    for i in range(x-1):            #appends letters to the first set
+        containSet.append("0")
+
+    for i in range(x-1):    #appends letters to the first set
         blackLett = chooseLett()
-        while blackLett in set:
+        while blackLett in initialSet:
             blackLett = chooseLett()
-        set.append(blackLett)
+        initialSet.append(blackLett)
      
     for i in range(8):
         xLett = chooseLett()
@@ -134,39 +141,27 @@ def showDisplay(trialType):
         while noXLett in noXSet:
             noXLett = chooseLett()
         noXSet.append(noXLett)
-    print("2") #Changed from print "2" to print("2")
+    print("2")
     xLoc = random.randint(0,7)
     xSet[xLoc] = 'X'
-    
-    
-    
-    
     
     if trialType != 1:
         afterWhite.append("No X Present")
         
     else:
         afterWhite.append(xLoc + 1)
-  
-    
-    
-    
-    
+
     whiteLett = chooseLett()
-    
-    
     
     while whiteLett in xSet:
         whiteLett = chooseLett()
     
     targetLetter.append(whiteLett)
     
-    
-    
     if trialType == 1: #second set has x
         
-        for  i in range(len(set)):
-            lettSett = visual.TextStim(win=mywin, text=set[i], color = 'Black', pos = (0,0), height = 100) 
+        for  i in range(len(initialSet)):
+            lettSett = visual.TextStim(win=mywin, text=initialSet[i], color = 'Black', pos = (0,0), height = 100) 
             lettSett.draw()                                                      #draw (actually, writes to a buffer)
             mywin.flip()
             core.wait(.015)
@@ -189,8 +184,8 @@ def showDisplay(trialType):
             core.wait(.085)            
     if trialType == 2:   #second set doesnt have x  
         
-        for  i in range(len(set)):
-            lettSett = visual.TextStim(win=mywin, text=set[i], color = 'Black', pos = (0,0), height = 100) 
+        for  i in range(len(initialSet)):
+            lettSett = visual.TextStim(win=mywin, text=initialSet[i], color = 'Black', pos = (0,0), height = 100) 
             lettSett.draw()                                                      #draw (actually, writes to a buffer)
             mywin.flip()
             core.wait(.015)
@@ -213,12 +208,28 @@ def showDisplay(trialType):
             core.wait(.085)
 #**********************************************EXPERIMENT BEGINS*************************************************************
 #------------------------------------------------Instructions----------------------------------------------------------------- 
-texttodisplay = "A series of letters will be shown. Within the series is a white letter. Find and locate the letter. After this letter another series of letters will be shown, and you will need to locate the letter X in the sequence. Afterwards, you will be asked about which letter was in white and if there was an X. Press any letter to start the experiment."
-msg3 = visual.TextStim(win=mywin, text=texttodisplay, color = 'White', pos = (-390, 110), height = 40) 
-msg3.draw()                                                      #draw (actually, writes to a buffer)
+block_instruction_text = """
+A series of letters will be shown. You have two tasks:\n
+(1) Within the series is a white letter. Find
+and identify the letter.\n
+(2) After this letter appears another series of letters will be shown, and you 
+will need to determine whether this second sequence contains an X. \n
+Following the complete presentation of the letter sequence will be asked to 
+report which letter was in white and whether there was an X. \n
+Press SPACEBAR to start the experiment.
+"""
+
+winWidth,winHeight = mywin.size
+
+block_instructions = visual.TextStim(win=mywin,text=block_instruction_text,\
+    color='White',pos=(0,0),alignText='left',wrapWidth=800,height=40) 
+block_instructions.draw()                   #draw (actually, writes to a buffer)
 mywin.flip()
-k = ['']
-k = event.waitKeys()
+# listen for keypress
+keypress = None
+while keypress != 'space':
+    keypress = getResponse()
+    print(keypress)
 
 blankScreen()
 #-------------------------------------------------Trial Loop-------------------------------------------------------------------
@@ -226,92 +237,70 @@ for i in range(ntrials):
     if i != 0:
         del xSet[:]
         del noXSet[:]
-        del set[:]
+        del initialSet[:]
     
     rand = random.randint(0, 1)
     if rand  <  0.5:
         trialType = 1 
     else:
-        trialType = 2
-        
-        
-#------------------------------------------------Next Trial---------------------------------------------------------    
-    #nextTrial = "Press any key to start and focus on the cross at the center of the screen."
-    #nxt = visual.TextStim(win=mywin, text=nextTrial, color = 'Black', pos = (0, 90), height = 30) 
-    #nxt.draw()                                                     
-    #mywin.flip()
-   
-    #k = ['']
-    #k = event.waitKeys()
-    #blankScreen()
-        
+        trialType = 2      
 #-----------------------------------------------Letters Shown------------------------------------------------------------------
-    pressKey = "Press any key to start the trial."
-    press = visual.TextStim(win=mywin, text= pressKey, color = 'White', pos = (0,130), height = 30)
-    press.draw() 
+    press_key_text = "Press SPACEBAR to start the trial."
+    press_key = visual.TextStim(win=mywin, text= press_key_text, color = 'White', pos = (0,130), height = 30)
+    press_key.draw() 
         
     cross = "+"
     crossImg = visual.TextStim(win=mywin, text=cross, color = 'Black', pos = (0,0), height = 80) 
     crossImg.draw()                                                      #draw (actually, writes to a buffer)
     mywin.flip()
 
-    
-    k = ['']
-    k = event.waitKeys()
+    # listen for keypress
+    keypress = None
+    while keypress != 'space':
+        keypress = getResponse()
+        print(keypress)
+    # present the next trial
     core.wait(.5)
-    
     blankScreen()
-    
     showDisplay(trialType)
     blankScreen()
         
 #-----------------------------------------------Target Letter--------------------------------------------------------------------        
-    Message = "Which letter was in white? Press the corresponding letter on the keyboard"
-    whichLett = visual.TextStim(win=mywin, text= Message, color = 'White', pos = (0,130), height = 30)
-    whichLett.draw() 
+    letter_query_text = "Which letter was white? Press the corresponding letter on the keyboard"
+    letter_query = visual.TextStim(win=mywin,text=letter_query_text,\
+        color='White',pos=(0,130),height=30)
+    letter_query.draw() 
     mywin.flip()    
-
-  
-    userResp = 0 
-    userResp = getResponse()
-    while userResp not in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'G', 'H', 'I', 'J', 'K', 'L',
-    'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W','X', 'Y', 'Z', 'a', 'b','c','d','e','f',
-    'g','h','i','j','k','l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']:
-        userResp = getResponse()
-    
-    
-    respTarget.append(userResp)
-    
+    # listen for keypress response
+    valid_responses = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    keypress = None
+    keypress = getResponse().upper()
+    while keypress not in valid_responses:
+        keypress = getResponse()
+    # save the observer's response
+    respTarget.append(keypress)
     blankScreen()    
 #-----------------------------------------------x----------------------------------------------------------------    
-    xMessage = "Was there an x in this trial? Press 'n' for no and 'y' for yes"
-    xTrial = visual.TextStim(win=mywin, text= xMessage, color = 'White', pos = (0,150), height = 30) 
-    xTrial.draw() 
+    x_query_text = "Was there an x in this trial? Press 'n' for no and 'y' for yes"
+    x_query= visual.TextStim(win=mywin, text= x_query_text,color='White',\
+        pos=(0,150),height=30) 
+    x_query.draw() 
     mywin.flip()
-  
-    answer = 0
-    answer = getResponse()
-    while answer not in ['y', 'Y', 'n', 'N']:
-        answer = getResponse()
-    
-    if answer == 'y' or 'Y':
-        respX.append("1")
-    if answer == 'n' or 'N':
-        respX.append("0")
-    
+    # listen for keypress response
+    keypress = None
+    keypress = getResponse().upper()
+    while keypress not in ['Y', 'N']:
+        keypress = getResponse()
+    # save the observer's response
+    x_response = 1 if keypress=='Y' else 0
+    respX.append(str(x_response)) 
     blankScreen()
 #--------------------------------------------------End------------------------------------------------------------------    
 nextTrial = "Press any key to exit the program"
 nxt = visual.TextStim(win=mywin, text=nextTrial, color = 'Black', pos = (0, 90), height = 30) 
 nxt.draw()                                                     
 mywin.flip()
-   
-k = ['']
-k = event.waitKeys()    
-
-    
-    
-    
+keypress = getResponse()   
     
 write_file(filename)  
 mywin.close()
