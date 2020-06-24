@@ -28,7 +28,7 @@ afterWhite = []       #how many letters after the white one the X came up
 respX = []            # if they responded whether there was an x or not
 respTarget = []       #Response as to what the target letter was
 
-
+## Functions
 def getResponse():
     k = event.waitKeys()
     event.clearEvents()
@@ -37,6 +37,13 @@ def getResponse():
         mywin.close()
         core.quit()
     return b
+
+def waitForValidKeypress(valid_keys):
+    key = None
+    key = getResponse().upper()
+    while key not in valid_keys:
+        key = getResponse().upper()
+    return key
 
 def blankScreen(): 
     mywin.flip(clearBuffer=True)
@@ -47,33 +54,6 @@ def displayText(text,vpos=130,color='White',size=30):
         pos=(0,vpos),height=size)
     rendered_text.draw() 
     mywin.flip()    
-
-# def write_file(filename):
-#     book = pyxl.Workbook()
-#     ws = book.active
-#     ws.title = "Sheet 1"
-#     # write experiment information
-#     ws.cell(row=1,column=1).value = "ExperimentName: Attentional Blink"
-#     ws.cell(row=2,column=1).value = "SubjectID:%s"%subid
-#     ws.cell(row=3,column=1).value = "SessionNumber:%s"%session
-#     # write column headers
-#     headers = ['Trial','TargetPosition','TargetLetter','TargetResponse','X_Position','X_Present','X_Response']
-#     for col,header in enumerate(headers):
-#         ws.cell(row=4,column=col+1).value = header
-#     # write per-trial data
-#     for i in range(0,ntrials):
-#         row = i+5
-#         ws.cell(row, 1).value = i+1
-#         ws.cell(row, 2).value = beforeWhite[i]
-#         ws.cell(row, 3).value = targetLetter[i]
-#         ws.cell(row, 4).value = respTarget[i]
-#         ws.cell(row, 5).value = afterWhite[i]
-#         ws.cell(row, 6).value = containSet[i]
-#         ws.cell(row, 7).value = respX[i]
-#     # create data directory and save data file
-#     if not os.path.exists('data'):
-#         os.makedirs('data')
-#     book.save('data/'+filename+'.xlsx')
 
 def write_file(filename):
     book = pyxl.Workbook()
@@ -145,10 +125,7 @@ def runTrial(trialType):
     crossImg.draw()                                                      
     mywin.flip()
     # listen for keypress
-    keypress = None
-    while keypress != 'space':
-        keypress = getResponse()
-        print(keypress)
+    keypress = waitForValidKeypress(valid_keys=['SPACE'])
     blankScreen()
     core.wait(.5)
     ############################################################################    
@@ -164,21 +141,14 @@ def runTrial(trialType):
    
     # listen for keypress response (any letter is a valid response)
     valid_responses = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    keypress = None
-    keypress = getResponse().upper()
-    while keypress not in valid_responses:
-        keypress = getResponse()
-    target_response = keypress
+    target_response = waitForValidKeypress(valid_keys=valid_responses)
     blankScreen()    
     ############################################################################
     ## X Presence Query
     x_query_text = "Was there an x in this trial? Press 'n' for no and 'y' for yes"
     displayText(x_query_text,vpos=150)
     # listen for keypress response
-    keypress = None
-    keypress = getResponse().upper()
-    while keypress not in ['Y', 'N']:
-        keypress = getResponse()
+    keypress = waitForValidKeypress(valid_keys='YN')
     x_response = 1 if keypress=='Y' else 0
     blankScreen()
     ############################################################################
@@ -208,11 +178,7 @@ def runBlock():
     block_instructions.draw()
     mywin.flip()
     # listen for keypress
-    keypress = None
-    while keypress != 'space':
-        keypress = getResponse()
-        print(keypress)
-
+    keypress = waitForValidKeypress(valid_keys=['SPACE'])
     blankScreen()
     ############################################################################
     ## Trial Loop
@@ -223,7 +189,6 @@ def runBlock():
     exit_text = "Press any key to exit the program"
     displayText(exit_text,color='Black',vpos=90)
     keypress = getResponse()    
-
 
 ################################################################################
 ##                  Experiment Script Starts Here                             ##
@@ -238,18 +203,15 @@ if myDlg.OK:
     sessioninfo=myDlg.data
 else:
     print('cancelled') #Changed this from print 'cancelled' to print('cancelled')
-
 ## Extract GUI Menu Values
 subid=sessioninfo[0] # Sets subid equal to initials
 session=sessioninfo[1] #sets equal to Session nummber
 ntrials=sessioninfo[2] #sets n trial equal to number of trials
-
 ## Create Display Window
 mywin = visual.Window(size=(1920, 1080),fullscr=True,screen=0,\
     monitor="testMonitor",units="pix",color = (0,0,0))
 # initialize random seed based on current time
 random.seed()
-
 ## Run a Block of Trials, Save Data, and Exit Program
 runBlock()
 # construct output file name
