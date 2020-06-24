@@ -17,6 +17,7 @@ import os
 global mywin
 
 LETTERS = list('ABCDEFGHIJKLMNOPQRSTUVWYZ')
+LETTER_SIZE = 100           # pixels
 STIMULUS_DURATION = 0.015   # seconds
 ISI_DURATION = 0.085        # seconds
 
@@ -40,14 +41,40 @@ def getResponse():
 def blankScreen(): 
     mywin.flip(clearBuffer=True)
     mywin.flip()
- #   print pause/1000.0  
 
-def displaysometext(texttodisplay):
-    prompt=visual.TextStim(win=mywin, text=texttodisplay,pos=[0,0],rgb=2,contrast=1)
-    prompt.draw()
-    mywin.flip()
+def displayText(text,vpos=130,color='White',size=30):
+    rendered_text = visual.TextStim(win=mywin,text=text,color=color,\
+        pos=(0,vpos),height=size)
+    rendered_text.draw() 
+    mywin.flip()    
 
-#write excel file with results
+# def write_file(filename):
+#     book = pyxl.Workbook()
+#     ws = book.active
+#     ws.title = "Sheet 1"
+#     # write experiment information
+#     ws.cell(row=1,column=1).value = "ExperimentName: Attentional Blink"
+#     ws.cell(row=2,column=1).value = "SubjectID:%s"%subid
+#     ws.cell(row=3,column=1).value = "SessionNumber:%s"%session
+#     # write column headers
+#     headers = ['Trial','TargetPosition','TargetLetter','TargetResponse','X_Position','X_Present','X_Response']
+#     for col,header in enumerate(headers):
+#         ws.cell(row=4,column=col+1).value = header
+#     # write per-trial data
+#     for i in range(0,ntrials):
+#         row = i+5
+#         ws.cell(row, 1).value = i+1
+#         ws.cell(row, 2).value = beforeWhite[i]
+#         ws.cell(row, 3).value = targetLetter[i]
+#         ws.cell(row, 4).value = respTarget[i]
+#         ws.cell(row, 5).value = afterWhite[i]
+#         ws.cell(row, 6).value = containSet[i]
+#         ws.cell(row, 7).value = respX[i]
+#     # create data directory and save data file
+#     if not os.path.exists('data'):
+#         os.makedirs('data')
+#     book.save('data/'+filename+'.xlsx')
+
 def write_file(filename):
     book = pyxl.Workbook()
     ws = book.active
@@ -57,19 +84,14 @@ def write_file(filename):
     ws.cell(row=2,column=1).value = "SubjectID:%s"%subid
     ws.cell(row=3,column=1).value = "SessionNumber:%s"%session
     # write column headers
-    headers = ['Trial','TargetPosition','TargetLetter','TargetResponse','X_Position','X_Present','X_Response']
-    for col,header in enumerate(headers):
-        ws.cell(row=4,column=col+1).value = header
+    headers = ['Trial','TargetPosition','TargetLetter','TargetResponse',\
+        'X_Position','X_Present','X_Response']
+    ws.append(headers)
     # write per-trial data
     for i in range(0,ntrials):
-        row = i+5
-        ws.cell(row, 1).value = i+1
-        ws.cell(row, 2).value = beforeWhite[i]
-        ws.cell(row, 3).value = targetLetter[i]
-        ws.cell(row, 4).value = respTarget[i]
-        ws.cell(row, 5).value = afterWhite[i]
-        ws.cell(row, 6).value = containSet[i]
-        ws.cell(row, 7).value = respX[i]
+        row_data = [i+1,beforeWhite[i],targetLetter[i],respTarget[i],\
+            afterWhite[i],containSet[i],respX[i]]
+        ws.append(row_data)
     # create data directory and save data file
     if not os.path.exists('data'):
         os.makedirs('data')
@@ -98,7 +120,7 @@ def createRSVPSequence(include_x):
 
 def drawLetter(letter,fontcolor):
     letter_stim = visual.TextStim(win=mywin, text=letter, color=fontcolor,\
-        pos=(0,0),height = 100) 
+        pos=(0,0),height = LETTER_SIZE) 
     letter_stim.draw()
 
 def displayStimulusSequence(sequence,target_index):
@@ -138,10 +160,8 @@ def runTrial(trialType):
     ############################################################################    
     ## Target Letter Identification Query       
     letter_query_text = "Which letter was white? Press the corresponding letter on the keyboard"
-    letter_query = visual.TextStim(win=mywin,text=letter_query_text,\
-        color='White',pos=(0,130),height=30)
-    letter_query.draw() 
-    mywin.flip()    
+    displayText(letter_query_text)
+   
     # listen for keypress response (any letter is a valid response)
     valid_responses = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     keypress = None
@@ -153,10 +173,7 @@ def runTrial(trialType):
     ############################################################################
     ## X Presence Query
     x_query_text = "Was there an x in this trial? Press 'n' for no and 'y' for yes"
-    x_query= visual.TextStim(win=mywin, text= x_query_text,color='White',\
-        pos=(0,150),height=30) 
-    x_query.draw() 
-    mywin.flip()
+    displayText(x_query_text,vpos=150)
     # listen for keypress response
     keypress = None
     keypress = getResponse().upper()
@@ -204,10 +221,7 @@ def runBlock():
         runTrial(trialType)
     # exit screen
     exit_text = "Press any key to exit the program"
-    exit_display = visual.TextStim(win=mywin, text=exit_text,color='Black',\
-        pos = (0, 90), height = 30) 
-    exit_display.draw()                                                     
-    mywin.flip()
+    displayText(exit_text,color='Black',vpos=90)
     keypress = getResponse()    
 
 
@@ -243,4 +257,4 @@ filename='AttentionalBlink_%s_%03d_%s'%(subid,session,data.getDateStr())
 # save experiment data
 write_file(filename)  
 mywin.close()
-core.quit()    
+core.quit()
