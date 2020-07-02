@@ -48,10 +48,10 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 # Start Code - component code to be run before the window creation
 
 # Setup the Window
-win = visual.Window(size=(1920, 1080), fullscr=True, screen=0, allowGUI=False, allowStencil=False,
-    monitor='testMonitor', color='black', colorSpace='rgb',
+win = visual.Window(size=(1920, 1080), fullscr=True, screen=0, allowGUI=False, 
+    allowStencil=False, monitor='testMonitor', color='black', colorSpace='rgb',
     blendMode='avg', useFBO=True,
-    units='norm')
+    units='norm') # IMPORTANT: this code uses normalized units
 # store frame rate of monitor if we can measure it successfully
 expInfo['frameRate']=win.getActualFrameRate()
 if expInfo['frameRate']!=None:
@@ -62,7 +62,11 @@ else:
 # Initialize components for Routine "instruct"
 instructClock = core.Clock()
 instrText = visual.TextStim(win=win, ori=0, name='instrText',
-    text='Remember, ignore the word itself; press:\n"R" or "r" for red LETTERS\n"G" or "g" for green LETTERS\n"B" or "b" for blue LETTERS\n(Esc will quit)\n\nPress any key to continue',    font='Arial',
+    text="""Remember, ignore the word itself; press:
+    'r' for red LETTERS
+    'g' for green LETTERS
+    'b' for blue LETTERS
+    (Esc will quit)\n\nPress any key to continue""",    font='Arial',
     pos=[0, 0], height=0.1, wrapWidth=None,
     color=[1, 1, 1], colorSpace='rgb', opacity=1,
     depth=0.0)

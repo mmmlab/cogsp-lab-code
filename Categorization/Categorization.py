@@ -111,42 +111,12 @@ class Stimulus:
     #--inCat gives the category of the stimuli object
     #--par gives the parity value
     def __init__(self, x, y, z, inCat, par, assign):
-        if assign <= 2: #-- x=shape y=number z=color
-            self.s = x
-            self.n = y
-            self.c = z
-            self.cat = inCat
-            self.p = par
-        elif assign <= 4: #-- x=shape y=color z=number
-            self.s = x
-            self.n = z
-            self.c = y
-            self.cat = inCat
-            self.p = par
-        elif assign <= 6: #-- x=number y=shape z=color
-            self.s = y
-            self.n = x
-            self.c = z
-            self.cat = inCat
-            self.p = par
-        elif assign <= 8: #-- x=number y=color z=shape
-            self.s = z
-            self.n = x
-            self.c = y
-            self.cat = inCat
-            self.p = par
-        elif assign <= 10: #-- x=color y=number z=shape
-            self.s = z
-            self.n = y
-            self.c = x
-            self.cat = inCat
-            self.p = par
-        else: #-- x=color y=shape z=number
-            self.s = y
-            self.n = z
-            self.c = x
-            self.cat = inCat
-            self.p = par
+        #-- x=color y=shape z=number
+        self.s = y
+        self.n = z
+        self.c = x
+        self.cat = inCat
+        self.p = par
 
 
 # random 8 "trial" numbers among 16(=2^4) possible combinations of shape, number, color, incat value
