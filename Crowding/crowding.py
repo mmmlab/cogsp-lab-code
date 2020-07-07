@@ -1,6 +1,7 @@
 from psychopy import visual, core, event, data
 from psychopy import gui
 #from win32api import GetSystemMetrics
+import pyglet
 from pyglet.window import key
 #import xlwt
 import os
@@ -175,16 +176,17 @@ def show_instruction(idx=None,trial_nr=None,trials=None):
 #this function shows introduction text to the experiment
 def show_introduction():
     global win
-    intro=visual.TextStim(win,text='On each trial a target letter will appear either alone or with one or two flanking letters.\
-                                    \nThe flanking letters will always be white.\
-                                    \nThe target letter color was already selected by you on the initial screen.\
-                                    \n\
-                                    \nKeep looking at the central dot.\
-                                    \nDO NOT look toward the letters.\
-                                    \nPress a key to start the trial.\
-                                    \nAt the end of the trial press a key to identify the target letter.\
-                                    \nThe correct answer will be shown after the trial.',
-        color='white', height=textfontsize, alignHoriz='center', alignVert='center') #draw introduction text
+    intro=visual.TextStim(win,\
+        text='On each trial a target letter will appear either alone or with one or two flanking letters.\
+            \nThe flanking letters will always be white.\
+            \nThe target letter color was already selected by you on the initial screen.\
+            \n\
+            \nKeep looking at the central dot.\
+            \nDO NOT look toward the letters.\
+            \nPress a key to start the trial.\
+            \nAt the end of the trial press a key to identify the target letter.\
+            \nThe correct answer will be shown after the trial.',
+        color='white', height=textfontsize, anchorHoriz='center', anchorVert='center') #draw introduction text
     intro.draw()
     win.flip()
     while True:
@@ -231,7 +233,7 @@ if myDlg.OK:  # then the user pressed OK
 #----------------------------------------------------------------------#
 #STEP 4: OPEN A WINDOW
 #----------------------------------------------------------------------#
-    win = visual.Window(monitor='Monitor',color='black',allowGUI=True,units='pix',fullscr=True)
+    win = visual.Window(monitor='testMonitor',color='black',allowGUI=True,units='pix',fullscr=True)
 #----------------------------------------------------------------------#
 #STEP 5: GET STIMULUS LIST FOR THE CURRENT BLOCK
 #----------------------------------------------------------------------#
