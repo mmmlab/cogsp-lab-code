@@ -1,14 +1,102 @@
 from psychopy import visual, core, event, data
 from psychopy import gui
 # from win32api import GetSystemMetrics
+import pyglet
 from pyglet.window import key
+from numpy import clip
 #import xlwt
 import openpyxl as pyxl
 import random
 import os
 
+MAX_COMP_LENGTH = 0.5       # in height-normalized units
+MIN_COMP_LENGTH = 0.0002    # in height-normalized units
+LARGE_INCREMENT = 10        # in pixels
+SMALL_INCREMENT = 1         # in pixels
+
 s = False
 result=[]
+
+
+## Class defining ML (Muller-Lyer) stimulus object
+class MLStimulus:
+    def __init__(self,stand_length,position,is_muller,color='White',width=2):
+        # length of the 'standard' portion of the stimulus
+        self.stand_length = stand_length
+        # length of the 'comparison' portion of the stimulus
+        self.comp_length = random.uniform(stand_length*0.8,stand_length*1.2)
+        # horizontal position (of stimulus center)
+        self.xpos = position[0]
+        # vertical position (of stimulus center)
+        self.ypos = position[1]
+        # is the stimulus a Muller-Lyer stimulus (with chevrons)?
+        self.is_muller = is_muller
+        self.color = color
+        self.width = width
+
+    def increment_comparison(self,increment):
+        new_length = self.comp_length+increment
+        self.comp_length = clip(new_length,MIN_COMP_LENGTH,MAX_COMP_LENGTH)
+
+    def make_line(self,startpos,endpos):
+        line = visual.ShapeStim(win,vertices=[startpos,endpos],
+                lineColor=self.color,lineWidth=self.width,fillColor=None)
+        return line
+
+    def draw_chevron(self,hpos,direction):
+        height = 0.025 # chevron height (height-normalized units)
+        if direction < 0: # chevron points left 
+            top_part = self.make_line([hpos+height,self.ypos+height],[hpos,self.ypos])
+            bottom_part = self.make_line([hpos,self.ypos],[hpos+height,self.ypos-height]) 
+        elif direction > 0: # chevron points right
+            top_part = self.make_line([hpos-height,self.ypos+height],[hpos,self.ypos])
+            bottom_part = self.make_line([hpos,self.ypos],[hpos-height,self.ypos-height]) 
+        elif direction == 0: # non-chevron (straight-line terminations)
+            top_part = self.make_line([hpos,self.ypos+height],[hpos,self.ypos])
+            bottom_part = self.make_line([hpos,self.ypos],[hpos,self.ypos-height]) 
+        top_part.draw()
+        bottom_part.draw()
+
+    def draw(self):
+        left_hpos = self.xpos-self.stand_length
+        mid_hpos = self.xpos
+        right_hpos = self.xpos+self.comp_length
+        # create and draw main line
+        main_line = self.make_line([left_hpos,self.ypos],[right_hpos,self.ypos])
+        main_line.draw()
+        # draw chevrons
+        self.draw_chevron(left_hpos,-1*self.is_muller) # leftmost chevron
+        self.draw_chevron(mid_hpos,1*self.is_muller) # middle chevron
+        self.draw_chevron(right_hpos,-1*self.is_muller)
+
+
+################################################################################
+## Utility Function to Compute Screen Resolution and Pixel Scaling
+def get_display_info():
+    """
+    gets effective fullscreen resolution from the os and creates a temporary
+    window to compute the native hardware resolution and to determine whether
+    there is any pixel scaling (i.e., as in MacOS 'Retina' displays)
+
+    returns a tuple consisting of: horizontal resolution, vertical resolution, 
+    and pixel scaling factor
+    """
+    # 1. Get full display resolution (as reported by OS)
+    # note: code below assumes either single or twin monitor configuration
+    screen = pyglet.canvas.Display().get_default_screen()
+    os_width = screen.width
+    os_height = screen.height
+    # 2. Create fullscreen Psychopy window and get actual hardware resolution
+    testwin = visual.Window(monitor='testMonitor',color='black',allowGUI=True,\
+        units='pix',size=(os_width,os_height),fullscr=True)
+    hard_width,hard_height = testwin.size
+    # 3. Compute the ratio of hard_width to os_width to determine whether we're
+    #    using a HiDPI display (i.e., one with pixel scaling).
+    pixel_scaling = hard_width/os_width
+    # 4. Exit the window
+    testwin.close()
+    return os_width,os_height,pixel_scaling
+################################################################################
 
 def write_file(filename,length,mueller):
     global result
@@ -32,89 +120,44 @@ def write_file(filename,length,mueller):
     # create data directory and save data file
     if not os.path.exists('data'):
         os.makedirs('data')
-    book.save('data/'+filename+'.xlsx')
+    book.save('data/'+filename+'.xlsx') 
 
-
-def show_normal(length):
-    jetter=random.uniform(-0.05, 0.05)
+def show_stimulus(length,is_muller):
     global win
     global textbox
-    winWidth = 1000
-    s_length=length/(winWidth/2.00)
-    c_length=random.uniform(length*0.8,length*1.2)/(winWidth/2.00)
-    s_line = visual.ShapeStim(win, vertices= [[-s_length+jetter,0], [0+jetter,0]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    c_line = visual.ShapeStim(win, vertices= [[0+jetter,0], [c_length+jetter,0]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    l_line = visual.ShapeStim(win, vertices= [[-s_length+jetter,-0.05], [-s_length+jetter,0.05]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    m_line = visual.ShapeStim(win, vertices= [[0+jetter,-0.05], [0+jetter,0.05]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    r_line = visual.ShapeStim(win, vertices= [[c_length+jetter,-0.05], [c_length+jetter,0.05]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    textbox.setText('This is trial %s\nThe left line is the standard, and the right line is the comparison.\nPress J to INCREASE the comparison by 10 pixels\nPress F to DECREASE the comparison by 10 pixels.\nPress H to INCREASE the comparison by 1 pixel\nPress G to DECREASE the comparison by 1 pixel.\nPress Q when done with this trial.\nPress Esc to end the session early'%str(x+1))
+    pos_jitter = random.uniform(-0.05, 0.05)
+    winHeight = win.size[1]
+    s_length=length/winHeight
+    stimulus = MLStimulus(s_length,[pos_jitter,0],is_muller=is_muller)
+    instruction_text = """This is trial %s
+        The left line is the standard, and the right line is the comparison.
+        Press J to INCREASE the comparison by 10 pixels
+        Press F to DECREASE the comparison by 10 pixels.
+        Press H to INCREASE the comparison by 1 pixel
+        Press G to DECREASE the comparison by 1 pixel.
+        Press SPACEBAR when done with this trial.
+        Press Esc to end the session early"""%str(trial_count+1)
+    textbox.setText(instruction_text)
     textbox.draw()
-    s_line.draw()
-    c_line.draw()
-    m_line.draw()
-    l_line.draw()
-    r_line.draw()
+    stimulus.draw()
     win.flip()
     while True:
         keylist=event.getKeys()
-        if 'q' in keylist:
+        increment = 0
+        if 'space'in keylist:
             global result
-            result.append(int(c_length*(winWidth/2)))
+            comparison_length = stimulus.comp_length*winHeight
+            result.append(int(comparison_length))
             print('insert new length to c_length list')
             break 
         elif keyState[key.J]:
-            if c_length<1:
-                c_length=c_length+1/(winWidth/2.00)
-            c_line.setVertices([[0+jetter,0],[c_length+jetter,0]])
-            r_line.setVertices([[c_length+jetter,-0.05],[c_length+jetter,0.05]])
-            textbox.draw()
-            s_line.draw()
-            m_line.draw()
-            c_line.draw()
-            l_line.draw()
-            r_line.draw()
-            win.flip()
+            increment = LARGE_INCREMENT/winHeight
         elif keyState[key.H]:
-            if c_length<1:
-                c_length=c_length+0.1/(winWidth/2.00)
-            c_line.setVertices([[0+jetter,0],[c_length+jetter,0]])
-            r_line.setVertices([[c_length+jetter,-0.05],[c_length+jetter,0.05]])
-            textbox.draw()
-            s_line.draw()
-            m_line.draw()
-            c_line.draw()
-            l_line.draw()
-            r_line.draw()
-            win.flip()
+            increment = SMALL_INCREMENT/winHeight
         elif keyState[key.F]:
-            if c_length>0.002:
-                c_length=c_length-1/(winWidth/2.00)
-            c_line.setVertices([[0+jetter,0],[c_length+jetter,0]])
-            r_line.setVertices([[c_length+jetter,-0.05],[c_length+jetter,0.05]])
-            textbox.draw()
-            s_line.draw()
-            m_line.draw()
-            c_line.draw()
-            l_line.draw()
-            r_line.draw()
-            win.flip()
+            increment = -LARGE_INCREMENT/winHeight
         elif keyState[key.G]:
-            if c_length>0.0002:
-                c_length=c_length-0.1/(winWidth/2.00)
-            c_line.setVertices([[0+jetter,0],[c_length+jetter,0]])
-            r_line.setVertices([[c_length+jetter,-0.05],[c_length+jetter,0.05]])
-            textbox.draw()
-            s_line.draw()
-            m_line.draw()
-            c_line.draw()
-            l_line.draw()
-            r_line.draw()
-            win.flip()
+            increment = -SMALL_INCREMENT/winHeight
         elif 'escape'in keylist:
             print('set escape signal')
             global s
@@ -122,150 +165,40 @@ def show_normal(length):
             break
         else:
             pass
-
-
-def show_mueller(length):
-    jetter=random.uniform(-0.05, 0.05)
-    global win
-    global textbox
-    winWidth = 1000
-    s_length=length/(winWidth/2.0)
-    c_length=random.uniform(length*0.8,length*1.2)/(winWidth/2.0)
-    s_line = visual.ShapeStim(win, vertices= [[-s_length+jetter,0], [0+jetter,0]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    c_line = visual.ShapeStim(win, vertices= [[0+jetter,0], [c_length+jetter,0]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    l_line_1 = visual.ShapeStim(win, vertices= [[-s_length+jetter-0.05,0.05], [-s_length+jetter,0]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    l_line_2 = visual.ShapeStim(win, vertices= [[-s_length+jetter,0], [-s_length+jetter-0.05,-0.05]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    m_line_1 = visual.ShapeStim(win, vertices= [[0+jetter+0.05,0.05], [0+jetter,0]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    m_line_2 = visual.ShapeStim(win, vertices= [[0+jetter,0], [0+jetter+0.05,-0.05]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    r_line_1 = visual.ShapeStim(win, vertices= [[c_length+jetter-0.05,-0.05], [c_length+jetter,0]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    r_line_2 = visual.ShapeStim(win, vertices= [[c_length+jetter,0], [c_length+jetter-0.05,0.05]],
-    lineColor=[-1,-1,-1],fillColor=None, lineWidth=2, autoLog=False)
-    textbox.setText('This is trial %s\nThe left line is the standard, and the right line is the comparison.\nPress J to INCREASE the comparison by 10 pixels\nPress F to DECREASE the comparison by 10 pixels.\nPress H to INCREASE the comparison by 1 pixel\nPress G to DECREASE the comparison by 1 pixel.\nPress Q when done with this trial.\nPress Esc to end the session early'%str(x+1))
-    textbox.draw()
-    s_line.draw()
-    c_line.draw()
-    m_line_1.draw()
-    l_line_1.draw()
-    r_line_1.draw()
-    m_line_2.draw()
-    l_line_2.draw()
-    r_line_2.draw()
-    win.flip()
-    while True:
-        keylist=event.getKeys()
-        if 'q'in keylist:
-            global result
-            result.append(int(c_length*(winWidth/2.0)))
-            print('insert new length to c_length list')
-            break 
-        elif keyState[key.J]:
-            if c_length<1:
-                c_length=c_length+1/(winWidth/2.0)
-            c_line.setVertices([[0+jetter,0],[c_length+jetter,0]])
-            r_line_1.setVertices([[c_length+jetter-0.05,-0.05], [c_length+jetter,0]])
-            r_line_2.setVertices([[c_length+jetter,0], [c_length+jetter-0.05,0.05]])
-            textbox.draw()
-            s_line.draw()
-            c_line.draw()
-            m_line_1.draw()
-            l_line_1.draw()
-            r_line_1.draw()
-            m_line_2.draw()
-            l_line_2.draw()
-            r_line_2.draw()
-            win.flip()
-        elif keyState[key.H]:
-            if c_length<1:
-                c_length=c_length+0.1/(winWidth/2.0)
-            c_line.setVertices([[0+jetter,0],[c_length+jetter,0]])
-            r_line_1.setVertices([[c_length+jetter-0.05,-0.05], [c_length+jetter,0]])
-            r_line_2.setVertices([[c_length+jetter,0], [c_length+jetter-0.05,0.05]])
-            textbox.draw()
-            s_line.draw()
-            c_line.draw()
-            m_line_1.draw()
-            l_line_1.draw()
-            r_line_1.draw()
-            m_line_2.draw()
-            l_line_2.draw()
-            r_line_2.draw()
-            win.flip()
-        elif keyState[key.F]:
-            if c_length>0.002:
-                c_length=c_length-1/(winWidth/2.0)
-            c_line.setVertices([[0+jetter,0],[c_length+jetter,0]])
-            r_line_1.setVertices([[c_length+jetter-0.05,-0.05], [c_length+jetter,0]])
-            r_line_2.setVertices([[c_length+jetter,0], [c_length+jetter-0.05,0.05]])
-            textbox.draw()
-            s_line.draw()
-            c_line.draw()
-            m_line_1.draw()
-            l_line_1.draw()
-            r_line_1.draw()
-            m_line_2.draw()
-            l_line_2.draw()
-            r_line_2.draw()
-            win.flip()
-        elif keyState[key.G]:
-            if c_length>0.0002:
-                c_length=c_length-0.1/(winWidth/2.0)
-            c_line.setVertices([[0+jetter,0],[c_length+jetter,0]])
-            r_line_1.setVertices([[c_length+jetter-0.05,-0.05], [c_length+jetter,0]])
-            r_line_2.setVertices([[c_length+jetter,0], [c_length+jetter-0.05,0.05]])
-            textbox.draw()
-            s_line.draw()
-            c_line.draw()
-            m_line_1.draw()
-            l_line_1.draw()
-            r_line_1.draw()
-            m_line_2.draw()
-            l_line_2.draw()
-            r_line_2.draw()
-            win.flip()
-        elif 'escape'in keylist:
-            print('set escape signal')
-            global s
-            s=True
-            break
-        else:
-            pass
-
+        stimulus.increment_comparison(increment)
+        textbox.draw()
+        stimulus.draw()
+        win.flip()
 
 def show_instruction():
     global win
     global textbox
-    global x
-    
+    global trial_count
     showbox=visual.TextStim(win,
                          text='PRESS ANY KEY TO START', 
-                         font='Courier New',
+                         font='ARIAL',
                          #font_size=50,
                          color=[0,0,0],
                          #dpi=72,
                          #size=(1.8,0.6),
-                         pos=(0.0,-0.4), 
-                         units='norm',
+                         pos=(0.0,-0.25), 
+                         units='height',
                          #grid_horz_justification='center',
                          #grid_vert_justification='center',
                          alignHoriz='center', 
                          alignVert='center',
                          colorSpace='rgb255'
                          )
-    showbox.height = 0.15
-    showbox.wrapWidth = 2
+    showbox.height = 0.7
+    showbox.wrapWidth = 1
     showbox.draw()
     textbox.draw()
     win.flip()
     while True:
         if len(event.getKeys())>0: break
     event.clearEvents()
+ 
+    
 myDlg = gui.Dlg(title="Line Length",size=(1, 1))
 myDlg.addField('ExperimentName:','LINE')
 myDlg.addField('SubjectID:','xx')
@@ -295,41 +228,40 @@ if myDlg.OK:  # then the user pressed OK
 
     print(file)
     keyState=key.KeyStateHandler()
-    x = 0
-    win = visual.Window([800,600],monitor='Monitor',allowGUI=True,fullscr=False)
+    wwidth,wheight,px_scale = get_display_info()
+    win = visual.Window([wwidth,wheight],monitor='Monitor',allowGUI=True,units='height',fullscr=True)
+    instruction_text = """The left line is the standard, and the right line is the comparison.
+        Press J to INCREASE the comparison by 10 pixels
+        Press F to DECREASE the comparison by 10 pixels.\nPress H to INCREASE the comparison by 1 pixel
+        Press G to DECREASE the comparison by 1 pixel.
+        Press SPACEBAR when done with this trial.
+        Press Esc to end the session early"""
     textbox=visual.TextStim(win,
-                         text='The left line is the standard, and the right line is the comparison.\nPress J to INCREASE the comparison by 10 pixels\nPress F to DECREASE the comparison by 10 pixels.\nPress H to INCREASE the comparison by 1 pixel\nPress G to DECREASE the comparison by 1 pixel.\nPress Q when done with this trial.\nPress Esc to end the session early', 
-                         font='Courier New',
+                         text=instruction_text, 
+                         font='Arial',
                          #font_size=15,
                          color=[0,0,0],
                          #dpi=72,
                          #size=(1.8,0.4),
-                         pos=(0.0,0.4), 
-                         units='norm',
-                         #grid_horz_justification='center',
-                         #grid_vert_justification='center',
-                         alignHoriz='center', 
-                         alignVert='center',
+                         pos=(0.0,0.25), 
+                         units='height',
+                         #alignHoriz='center', 
+                         #alignVert='center',
                          colorSpace='rgb255'
                          )
-    textbox.height = (0.05)
-    textbox.wrapWidth = 2
+    textbox.height = (0.025)
+    textbox.wrapWidth = 1
     win.winHandle.push_handlers(keyState)
     show_instruction()
-    while x < trials :
+    trial_count = 0
+    while trial_count < trials :
         if s==True:
             break;
-        if mueller=='N':
-            show_normal(length)
-        elif mueller=='n':
-            show_normal(length)
-        elif mueller=='Y':
-            show_mueller(length)
-        elif mueller=='y':
-            show_mueller(length)
+        if mueller in 'Yy':
+            show_stimulus(length,True)
         else:
-            show_normal(length)
-        x = x + 1
+            show_stimulus(length,False)
+        trial_count += 1
     write_file(file,length,mueller)
 else:
     print('user cancelled')
