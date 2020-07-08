@@ -1,27 +1,50 @@
-from psychopy import visual, core, event, data
-from psychopy import gui
-#from win32api import GetSystemMetrics
+from psychopy import visual, core, event, data, gui
 import pyglet
-from pyglet.window import key
-#import xlwt
 import os
 import openpyxl as pyxl
 import random
 import string
-import random
+from numpy import array
 
-s = False
- 
 #----------------------------------------------------------------------#
-#STEP 000: DEFINE PARAMS
+#STEP 0000: DEFINE UTILITY FUNCTION (needed to compute params)
 #----------------------------------------------------------------------#
-unscaled_distance = [15,45,80]  #letter spacing in pixels
-d_scaler = 0.05                 #distance scaler to be multiplied by fontsize and unscaled distance
-type = ['a','xa','ax','xax']    #alone,foveal,peripheral,middle
-textfontsize = 20               #for instructions
-flankercolor = 'white'          #color for the flankers
-waittrial = 0.2                 #berief delay before each trial after subject's keypress
-waitstim =  1.0                 #duration for the second presentation of the stimulus
+def get_display_info():
+    """
+    gets effective fullscreen resolution from the os and creates a temporary
+    window to compute the native hardware resolution and to determine whether
+    there is any pixel scaling (i.e., as in MacOS 'Retina' displays)
+
+    returns a tuple consisting of: horizontal resolution, vertical resolution, 
+    and pixel scaling factor
+    """
+    # 1. Get full display resolution (as reported by OS)
+    # note: code below assumes either single or twin monitor configuration
+    screen = pyglet.canvas.Display().get_default_screen()
+    os_width = screen.width
+    os_height = screen.height
+    # 2. Create fullscreen Psychopy window and get actual hardware resolution
+    testwin = visual.Window(monitor='testMonitor',color='black',allowGUI=True,\
+        units='pix',size=(os_width,os_height),fullscr=True)
+    hard_width,hard_height = testwin.size
+    # 3. Compute the ratio of hard_width to os_width to determine whether we're
+    #    using a HiDPI display (i.e., one with pixel scaling).
+    pixel_scaling = hard_width/os_width
+    # 4. Exit the window
+    testwin.close()
+    return os_width,os_height,pixel_scaling
+#----------------------------------------------------------------------#
+#STEP 000: DEFINE PARAMS (CONSTANTS)
+#----------------------------------------------------------------------#
+WWIDTH,WHEIGHT,PX_SCALE = get_display_info()
+UNSCALED_DISTANCES = array([15,45,80])*PX_SCALE  #letter spacing in pixels
+D_SCALE = 0.05                      #distance scalar to be multiplied by fontsize and unscaled distance
+FIXATION_RADIUS = 3*PX_SCALE        #radius of fixation marker (pixels)
+STIM_TYPES = ['a','xa','ax','xax']  #alone,foveal,peripheral,middle
+TEXT_FONTSIZE = 30*PX_SCALE         #for instructions (pixels)
+FLANK_COLOR = 'white'               #color for the flankers
+ITI_DURATION = 0.2                  #brief delay before each trial after subject's keypress
+STIM_DURATION =  1.0                #duration for the second presentation of the stimulus
 #----------------------------------------------------------------------#
 #STEP 00:INITIALIZE EMPTY LISTS TO STORE SOME DATA
 #----------------------------------------------------------------------#
@@ -68,8 +91,8 @@ def write_file(filename):
 #this function draws fixation point
 def drawfixation():
     global win
-    fix=visual.Circle(win, fillColor='white',lineColor='white',radius=5, edges=32,pos=(0,0))
-    #fix=visual.Circle(win, fillColor='black',lineColor='black',radius=5, edges=32,pos=(0,0))
+    fix=visual.Circle(win, fillColor='gray',lineColor='gray',\
+        radius=FIXATION_RADIUS, edges=32,pos=(0,0))
     return fix
 
 #this function generates random stimulus (letters) for a given trial
@@ -79,8 +102,8 @@ def generate_id(current_cond,lettercase):
 
 #this function generates a random order of the conditions, with a given repetition:type=condition type (a,ax,xa,xax), 
 #distance=distance between target and flankers,nr_rep=number of repetitions for each condition X distance (4X3=12), e.g. if nr_rep=2, then total # of trials=2*12=24
-def generate_cond(type,distance,nr_rep):
-    cond = [[config,int(dist)] for config in type for dist in distance]*nr_rep
+def generate_cond(types,distance,nr_rep):
+    cond = [[config,int(dist)] for config in types for dist in distance]*nr_rep
     rand_cond = random.sample(cond,len(cond))
     return rand_cond
 
@@ -114,25 +137,25 @@ def get_side():
 #ecc=eccentricity of the target,side=side of the presentation(left or right)
 def draw_stim(c,stim,dist,ecc,side):
     global win
-    global fontsize,targetcolor,flankercolor
+    global fontsize,targetcolor,FLANK_COLOR
     #draw stim
     if c[0] == 'a': # check the condition type and draw accordingly
         t=visual.TextStim(win,text=stim[0],color=targetcolor, height=fontsize, pos=(ecc*side,0)) #draw target
         t.draw()
     elif c[0] == 'ax':
         t=visual.TextStim(win,text=stim[0],color=targetcolor, height=fontsize, pos=(ecc*side,0)) #draw target
-        f=visual.TextStim(win,text=stim[1],color=flankercolor, height=fontsize, pos=((ecc+dist)*side,0)) #draw flanker
+        f=visual.TextStim(win,text=stim[1],color=FLANK_COLOR, height=fontsize, pos=((ecc+dist)*side,0)) #draw flanker
         t.draw()
         f.draw()
     elif c[0] == 'xa':
         t=visual.TextStim(win,text=stim[1],color=targetcolor, height=fontsize, pos=(ecc*side,0)) #draw target
-        f=visual.TextStim(win,text=stim[0],color=flankercolor, height=fontsize, pos=((ecc-dist)*side,0)) #draw flanker
+        f=visual.TextStim(win,text=stim[0],color=FLANK_COLOR, height=fontsize, pos=((ecc-dist)*side,0)) #draw flanker
         t.draw()
         f.draw()
     elif c[0] == 'xax':
         t=visual.TextStim(win,text=stim[1],color=targetcolor, height=fontsize, pos=(ecc*side,0)) #draw target
-        f=visual.TextStim(win,text=stim[0],color=flankercolor, height=fontsize, pos=((ecc-dist)*side,0)) #draw flanker
-        f2=visual.TextStim(win,text=stim[2],color=flankercolor, height=fontsize, pos=((ecc+dist)*side,0)) #draw flanker
+        f=visual.TextStim(win,text=stim[0],color=FLANK_COLOR, height=fontsize, pos=((ecc-dist)*side,0)) #draw inner flanker
+        f2=visual.TextStim(win,text=stim[2],color=FLANK_COLOR, height=fontsize, pos=((ecc+dist)*side,0)) #draw outer flanker
         t.draw()
         f.draw()
         f2.draw()
@@ -166,11 +189,11 @@ def show_instruction(idx=None,trial_nr=None,trials=None):
     global win
     drawfixation().draw()
     if idx==None:
-        inst=visual.TextStim(win,text='Press key of the target letter.',color='white', height=textfontsize, pos=(0,100)) #draw instruction text
+        inst=visual.TextStim(win,text='Press key of the target letter.',color='white', height=TEXT_FONTSIZE, pos=(0,100)) #draw instruction text
     elif idx==1:
-        inst=visual.TextStim(win,text='The previous display was:',color='white', height=textfontsize, pos=(0,100)) #draw instruction text
+        inst=visual.TextStim(win,text='The previous display was:',color='white', height=TEXT_FONTSIZE, pos=(0,100)) #draw instruction text
     elif idx==2:
-        inst=visual.TextStim(win,text='Trial %d out of %d trials. Press any key to start.'%(trial_nr,trials),color='white', height=textfontsize, pos=(0,100)) #draw instruction text
+        inst=visual.TextStim(win,text='Trial %d out of %d trials. Press any key to start.'%(trial_nr,trials),color='white', height=TEXT_FONTSIZE, pos=(0,100)) #draw instruction text
     inst.draw()
 
 #this function shows introduction text to the experiment
@@ -186,7 +209,7 @@ def show_introduction():
             \nPress a key to start the trial.\
             \nAt the end of the trial press a key to identify the target letter.\
             \nThe correct answer will be shown after the trial.',
-        color='white', height=textfontsize, anchorHoriz='center', anchorVert='center') #draw introduction text
+        color='white', height=TEXT_FONTSIZE, anchorHoriz='center', anchorVert='center') #draw introduction text
     intro.draw()
     win.flip()
     while True:
@@ -215,8 +238,8 @@ if myDlg.OK:  # then the user pressed OK
     name=thisInfo[0]
     ID=thisInfo[1]
     session=thisInfo[2]
-    ecc=int(thisInfo[3])
-    fontsize=int(thisInfo[4])
+    ecc=int(thisInfo[3])*PX_SCALE
+    fontsize=int(thisInfo[4])*PX_SCALE
     lettercase=thisInfo[5]
     nr_rep=thisInfo[6]
     duration=int(thisInfo[7])/1000 #get duration in miliseconds
@@ -233,12 +256,13 @@ if myDlg.OK:  # then the user pressed OK
 #----------------------------------------------------------------------#
 #STEP 4: OPEN A WINDOW
 #----------------------------------------------------------------------#
-    win = visual.Window(monitor='testMonitor',color='black',allowGUI=True,units='pix',fullscr=True)
+    win = visual.Window(monitor='testMonitor',color='black',allowGUI=True,\
+        units='pix',fullscr=True,size=(WWIDTH,WHEIGHT))
 #----------------------------------------------------------------------#
 #STEP 5: GET STIMULUS LIST FOR THE CURRENT BLOCK
 #----------------------------------------------------------------------#
-    distance = [d*fontsize*d_scaler for d in unscaled_distance] # scale the distance between target and flankers depending on the current fontsize
-    c=generate_cond(type,distance,nr_rep) #create a random order condition list using the number of repetitions
+    distance = [d*fontsize*D_SCALE for d in UNSCALED_DISTANCES] # scale the distance between target and flankers depending on the current fontsize
+    c=generate_cond(STIM_TYPES,distance,nr_rep) #create a random order condition list using the number of repetitions
     stim=generate_stim(c,lettercase) #generate stimulus list
     trials=len(c) #get the number of trials
 #----------------------------------------------------------------------#
@@ -254,29 +278,26 @@ if myDlg.OK:  # then the user pressed OK
 #----------------------------------------------------------------------#
     show_introduction()
     for i in range(0,trials):
-        if s==True:
-            break;
-        else:
-            show_instruction(2,i+1,trials) # show start trial instruction
-            win.flip()
-            allKeys=event.waitKeys() #check for key press to start the trial
-            for thisKey in allKeys:
-                if thisKey=='escape': # if user pressed escape, quit the experiment
-                    print('user cancelled')
-                    core.quit()
-                else:
-                    core.wait(waittrial) #a brief delay before starting the actual trial
-                    side=get_side() #determine the side of presentation
-                    drawfixation().draw() #draw fixation
-                    current_target,current_dist=get_currents(c[i],stim[i]) #current target and the spacing between target and the flankers
-                    draw_stim(c[i],stim[i],current_dist,ecc,side) #draw stimulus
-                    core.wait(duration) #wait for stimulus presentation
-                    collect_response() #show response screen and collect response
-                    show_instruction(1) #draw stimulus one more time for a longer duration
-                    drawfixation().draw() #draw fixation
-                    draw_stim(c[i],stim[i],current_dist,ecc,side) #draw stimulus for longer time
-                    core.wait(waitstim)
-            event.clearEvents()
+        show_instruction(2,i+1,trials) # show start trial instruction
+        win.flip()
+        allKeys=event.waitKeys() #check for key press to start the trial
+        for thisKey in allKeys:
+            if thisKey=='escape': # if user pressed escape, quit the experiment
+                print('user cancelled')
+                core.quit()
+            else:
+                core.wait(ITI_DURATION) #a brief delay before starting the actual trial
+                side=get_side() #determine the side of presentation
+                drawfixation().draw() #draw fixation
+                current_target,current_dist=get_currents(c[i],stim[i]) #current target and the spacing between target and the flankers
+                draw_stim(c[i],stim[i],current_dist,ecc,side) #draw stimulus
+                core.wait(duration) #wait for stimulus presentation
+                collect_response() #show response screen and collect response
+                show_instruction(1) #draw stimulus one more time for a longer duration
+                drawfixation().draw() #draw fixation
+                draw_stim(c[i],stim[i],current_dist,ecc,side) #draw stimulus for longer time
+                core.wait(STIM_DURATION)
+        event.clearEvents()
 #----------------------------------------------------------------------#
 #STEP 7: WRITE DATA TO A FILE
 #----------------------------------------------------------------------#

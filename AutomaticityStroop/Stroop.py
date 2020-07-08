@@ -7,6 +7,8 @@ If you publish work using this script please cite the relevant PsychoPy publicat
   Peirce, JW (2009) Generating stimuli for neuroscience using PsychoPy. Frontiers in Neuroinformatics, 2:10. doi: 10.3389/neuro.11.010.2008
 """
 
+# Note: uses normalized coordinates, so no pixel scaling needed.
+
 from __future__ import division  # so that 1/3=0.333 instead of 1/3=0
 import psychopy
 # set preference for audio sound engine
@@ -16,8 +18,8 @@ from psychopy.constants import *  # things like STARTED, FINISHED
 import numpy as np  # whole numpy lib is available, prepend 'np.'
 from numpy import sin, cos, tan, log, log10, pi, average, sqrt, std, deg2rad, rad2deg, linspace, asarray
 from numpy.random import random, randint, normal, shuffle
+import pyglet
 import os  # handy system and path functions
-import wx
 
 # Ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__))
@@ -47,11 +49,13 @@ logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a f
 endExpNow = False  # flag for 'escape' or other condition => quit the exp
 
 # Start Code - component code to be run before the window creation
+# compute screen resolution using pyglet
+os_screen = pyglet.canvas.Display().get_default_screen()
 
 # Setup the Window
-win = visual.Window(size=(1920, 1080), fullscr=True, screen=0, allowGUI=False, 
-    allowStencil=False, monitor='testMonitor', color='black', colorSpace='rgb',
-    blendMode='avg', useFBO=True,
+win = visual.Window(size=(os_screen.width,os_screen.height), fullscr=True,
+    screen=0, allowGUI=False, allowStencil=False, monitor='testMonitor',
+    color='black', colorSpace='rgb', blendMode='avg', useFBO=True,
     units='norm') # IMPORTANT: this code uses normalized units
 # store frame rate of monitor if we can measure it successfully
 expInfo['frameRate']=win.getActualFrameRate()

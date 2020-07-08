@@ -11,13 +11,46 @@ from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, string, scipy
 from numpy import random
 import openpyxl as pyxl
+import pyglet
 import os
+
+################################################################################
+## Utility Function to Compute Screen Resolution and Pixel Scaling
+def get_display_info():
+    """
+    gets effective fullscreen resolution from the os and creates a temporary
+    window to compute the native hardware resolution and to determine whether
+    there is any pixel scaling (i.e., as in MacOS 'Retina' displays)
+
+    returns a tuple consisting of: horizontal resolution, vertical resolution, 
+    and pixel scaling factor
+    """
+    # 1. Get full display resolution (as reported by OS)
+    # note: code below assumes either single or twin monitor configuration
+    screen = pyglet.canvas.Display().get_default_screen()
+    os_width = screen.width
+    os_height = screen.height
+    # 2. Create fullscreen Psychopy window and get actual hardware resolution
+    testwin = visual.Window(monitor='testMonitor',color='black',allowGUI=True,\
+        units='pix',size=(os_width,os_height),fullscr=True)
+    hard_width,hard_height = testwin.size
+    # 3. Compute the ratio of hard_width to os_width to determine whether we're
+    #    using a HiDPI display (i.e., one with pixel scaling).
+    pixel_scaling = hard_width/os_width
+    # 4. Exit the window
+    testwin.close()
+    return os_width,os_height,pixel_scaling
+################################################################################
 
 ## Global Constants and Variables
 global mywin
 
+WWIDTH,WHEIGHT,PX_SCALE = get_display_info()
 LETTERS = list('ABCDEFGHIJKLMNOPQRSTUVWYZ')
-LETTER_SIZE = 100           # pixels
+FIXATION_SIZE = 80*PX_SCALE # pixels
+LETTER_SIZE = 100*PX_SCALE  # for stimuli (pixels)
+TEXT_SIZE = 30*PX_SCALE     # for instructions (pixels)
+TEXT_VPOS = 130*PX_SCALE    # vertical text position (pixels)
 STIMULUS_DURATION = 0.015   # seconds
 ISI_DURATION = 0.085        # seconds
 
@@ -49,7 +82,7 @@ def blankScreen():
     mywin.flip(clearBuffer=True)
     mywin.flip()
 
-def displayText(text,vpos=130,color='White',size=30):
+def displayText(text,vpos=TEXT_VPOS,color='White',size=TEXT_SIZE):
     rendered_text = visual.TextStim(win=mywin,text=text,color=color,\
         pos=(0,vpos),height=size)
     rendered_text.draw() 
@@ -117,10 +150,10 @@ def displayStimulusSequence(sequence,target_index):
 def runTrial(trialType):
     # Present fixation/trial start screen
     press_key_text = "Press SPACEBAR to start the trial."
-    press_key = visual.TextStim(win=mywin, text= press_key_text,color='White',\
-        pos = (0,130), height = 30)  
-    crossImg = visual.TextStim(win=mywin, text='+', color = 'Black',\
-        pos = (0,0), height = 80) 
+    press_key = visual.TextStim(win=mywin, text=press_key_text, color = 'Black',
+        pos = (0,TEXT_VPOS),height=TEXT_SIZE)  
+    crossImg = visual.TextStim(win=mywin, text='+', color = 'Black',
+        pos = (0,0),height=FIXATION_SIZE) 
     press_key.draw() 
     crossImg.draw()                                                      
     mywin.flip()
@@ -174,7 +207,7 @@ def runBlock():
     #winWidth,winHeight = mywin.size
 
     block_instructions = visual.TextStim(win=mywin,text=block_instruction_text,\
-        color='White',pos=(0,0),alignText='left',wrapWidth=800,height=40) 
+        color='White',pos=(0,0),alignText='left',wrapWidth=800,height=TEXT_SIZE) 
     block_instructions.draw()
     mywin.flip()
     # listen for keypress
@@ -208,7 +241,7 @@ subid=sessioninfo[0] # Sets subid equal to initials
 session=sessioninfo[1] #sets equal to Session nummber
 ntrials=sessioninfo[2] #sets n trial equal to number of trials
 ## Create Display Window
-mywin = visual.Window(size=(1920, 1080),fullscr=True,screen=0,\
+mywin = visual.Window(size=(WWIDTH,WHEIGHT),fullscr=True,screen=0,\
     monitor="testMonitor",units="pix",color = (0,0,0))
 # initialize random seed based on current time
 random.seed()
