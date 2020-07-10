@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on May 28, 2020, at 23:36
+    on July 08, 2020, at 19:12
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -63,10 +63,11 @@ frameTolerance = 0.001  # how close to onset before 'same' frame
 
 # Setup the Window
 win = visual.Window(
-    size=[1280, 800], fullscr=True, screen=0, 
+    size=[1920, 1080], fullscr=True, screen=0, 
     winType='pyglet', allowGUI=True, allowStencil=False,
     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
-    blendMode='avg', useFBO=True)
+    blendMode='avg', useFBO=True, 
+    units='norm')
 # store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
 if expInfo['frameRate'] != None:
@@ -400,7 +401,7 @@ for thisTrial in trials:
     routineTimer.add(10.000000)
     # update component parameters for each repeat
     deonticjudgment.setText(djquestion)
-    YESORNO.setText('YES (Y)\t\t\tNO (N)')
+    YESORNO.setText('YES (Y)   NO (N)')
     djresp.keys = []
     djresp.rt = []
     _djresp_allKeys = []
@@ -530,7 +531,7 @@ for thisTrial in trials:
     continueRoutine = True
     routineTimer.add(10.000000)
     # update component parameters for each repeat
-    LikertScaleText.setText('To what extent is this action morally acceptable?\r\n1 being completely acceptable to 7 being completely unacceptable.\r\n\r\nClick the number to rate acceptability, then click the number below to confirm your response.\r\n')
+    LikertScaleText.setText('To what extent is this action morally acceptable? \n1 being completely acceptable to 7 being completely unacceptable. \n \nClick the number to rate acceptability, then click the number below to confirm your response. \n')
     rating.reset()
     # keep track of which components have finished
     Likert_ScaleComponents = [LikertScaleText, rating]

@@ -174,21 +174,8 @@ def show_instruction():
     global win
     global textbox
     global trial_count
-    showbox=visual.TextStim(win,
-                         text='PRESS ANY KEY TO START', 
-                         font='ARIAL',
-                         #font_size=50,
-                         color=[0,0,0],
-                         #dpi=72,
-                         #size=(1.8,0.6),
-                         pos=(0.0,-0.25), 
-                         units='height',
-                         #grid_horz_justification='center',
-                         #grid_vert_justification='center',
-                         alignHoriz='center', 
-                         alignVert='center',
-                         colorSpace='rgb255'
-                         )
+    showbox=visual.TextStim(win,text='PRESS ANY KEY TO START', font='ARIAL',
+        color=[0,0,0],pos=(0.0,-0.25),units='height',colorSpace='rgb255')
     showbox.height = 0.7
     showbox.wrapWidth = 1
     showbox.draw()
@@ -236,19 +223,8 @@ if myDlg.OK:  # then the user pressed OK
         Press G to DECREASE the comparison by 1 pixel.
         Press SPACEBAR when done with this trial.
         Press Esc to end the session early"""
-    textbox=visual.TextStim(win,
-                         text=instruction_text, 
-                         font='Arial',
-                         #font_size=15,
-                         color=[0,0,0],
-                         #dpi=72,
-                         #size=(1.8,0.4),
-                         pos=(0.0,0.25), 
-                         units='height',
-                         #alignHoriz='center', 
-                         #alignVert='center',
-                         colorSpace='rgb255'
-                         )
+    textbox=visual.TextStim(win,text=instruction_text, font='Arial',
+        color=[0,0,0],pos=(0.0,0.25),units='height',colorSpace='rgb255')
     textbox.height = (0.025)
     textbox.wrapWidth = 1
     win.winHandle.push_handlers(keyState)
