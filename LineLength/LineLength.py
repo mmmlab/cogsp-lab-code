@@ -13,6 +13,7 @@ MAX_COMP_LENGTH = 0.5       # in height-normalized units
 MIN_COMP_LENGTH = 0.0002    # in height-normalized units
 LARGE_INCREMENT = 10        # in pixels
 SMALL_INCREMENT = 1         # in pixels
+LINEWIDTH       = 2         # in pixels
 
 s = False
 result=[]
@@ -122,13 +123,13 @@ def write_file(filename,length,mueller):
         os.makedirs('data')
     book.save('data/'+filename+'.xlsx') 
 
-def show_stimulus(length,is_muller):
+def show_stimulus(length,is_muller,width=LINEWIDTH):
     global win
     global textbox
     pos_jitter = random.uniform(-0.05, 0.05)
     winHeight = win.size[1]
     s_length=length/winHeight
-    stimulus = MLStimulus(s_length,[pos_jitter,0],is_muller=is_muller)
+    stimulus = MLStimulus(s_length,[pos_jitter,0],is_muller=is_muller,width=width)
     instruction_text = """This is trial %s
         The left line is the standard, and the right line is the comparison.
         Press J to INCREASE the comparison by 10 pixels
@@ -176,7 +177,7 @@ def show_instruction():
     global trial_count
     showbox=visual.TextStim(win,text='PRESS ANY KEY TO START', font='ARIAL',
         color=[0,0,0],pos=(0.0,-0.25),units='height',colorSpace='rgb255')
-    showbox.height = 0.7
+    showbox.height = 0.07
     showbox.wrapWidth = 1
     showbox.draw()
     textbox.draw()
@@ -234,9 +235,9 @@ if myDlg.OK:  # then the user pressed OK
         if s==True:
             break;
         if mueller in 'Yy':
-            show_stimulus(length,True)
+            show_stimulus(length,True,width=LINEWIDTH*px_scale)
         else:
-            show_stimulus(length,False)
+            show_stimulus(length,False,width=LINEWIDTH*px_scale)
         trial_count += 1
     write_file(file,length,mueller)
 else:
