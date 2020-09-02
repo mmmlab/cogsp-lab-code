@@ -41,7 +41,7 @@ UNSCALED_DISTANCES = array([15,45,80])*PX_SCALE  #letter spacing in pixels
 D_SCALE = 0.05                      #distance scalar to be multiplied by fontsize and unscaled distance
 FIXATION_RADIUS = 3*PX_SCALE        #radius of fixation marker (pixels)
 STIM_TYPES = ['a','xa','ax','xax']  #alone,foveal,peripheral,middle
-TEXT_FONTSIZE = 30*PX_SCALE         #for instructions (pixels)
+TEXT_FONTSIZE = 20*PX_SCALE         #for instructions (pixels)
 FLANK_COLOR = 'white'               #color for the flankers
 ITI_DURATION = 0.2                  #brief delay before each trial after subject's keypress
 STIM_DURATION =  1.0                #duration for the second presentation of the stimulus
@@ -189,11 +189,11 @@ def show_instruction(idx=None,trial_nr=None,trials=None):
     global win
     drawfixation().draw()
     if idx==None:
-        inst=visual.TextStim(win,text='Press key of the target letter.',color='white', height=TEXT_FONTSIZE, pos=(0,100)) #draw instruction text
+        inst=visual.TextStim(win,text='Press key of the target letter.',color='white', height=TEXT_FONTSIZE, pos=(0,200)) #draw instruction text
     elif idx==1:
-        inst=visual.TextStim(win,text='The previous display was:',color='white', height=TEXT_FONTSIZE, pos=(0,100)) #draw instruction text
+        inst=visual.TextStim(win,text='The previous display was:',color='white', height=TEXT_FONTSIZE, pos=(0,200)) #draw instruction text
     elif idx==2:
-        inst=visual.TextStim(win,text='Trial %d out of %d trials. Press any key to start.'%(trial_nr,trials),color='white', height=TEXT_FONTSIZE, pos=(0,100)) #draw instruction text
+        inst=visual.TextStim(win,text='Trial %d out of %d trials. Press any key to start.'%(trial_nr,trials),color='white', height=TEXT_FONTSIZE, pos=(0,200)) #draw instruction text
     inst.draw()
 
 #this function shows introduction text to the experiment
@@ -209,7 +209,7 @@ def show_introduction():
             \nPress a key to start the trial.\
             \nAt the end of the trial press a key to identify the target letter.\
             \nThe correct answer will be shown after the trial.',
-        color='white', height=TEXT_FONTSIZE, anchorHoriz='center', anchorVert='center') #draw introduction text
+        color='white', height=TEXT_FONTSIZE, anchorHoriz='center', anchorVert='center',wrapWidth=800*PX_SCALE) #draw introduction text
     intro.draw()
     win.flip()
     while True:

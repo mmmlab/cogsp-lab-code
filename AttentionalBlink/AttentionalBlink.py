@@ -207,7 +207,7 @@ def runBlock():
     #winWidth,winHeight = mywin.size
 
     block_instructions = visual.TextStim(win=mywin,text=block_instruction_text,\
-        color='White',pos=(0,0),alignText='left',wrapWidth=800,height=TEXT_SIZE) 
+        color='White',pos=(0,0),alignText='left',wrapWidth=800*PX_SCALE,height=TEXT_SIZE) 
     block_instructions.draw()
     mywin.flip()
     # listen for keypress
