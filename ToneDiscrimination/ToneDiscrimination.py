@@ -1,6 +1,6 @@
 import psychopy
 # set preference for audio sound engine
-psychopy.prefs.hardware['audioLib'] = ['PTB', 'pyo','pygame']
+psychopy.prefs.hardware['audioLib'] = ['PTB', 'sounddevice','pygame']
 from psychopy import core, visual, gui, data, event, sound
 from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, random, scipy
@@ -28,8 +28,8 @@ testRange=numpy.linspace(0.1,1.0,10)
 testTone = sound.Sound(1000,expInfo['Tone Duration'])
 
 # Find maximum and minimum comparison frequencies, given the Standard and Comparison Interval
-maxComparison = expInfo['Standard Frequency (Hz)']+expInfo['Comparison Interval']*(numFrequencies/2)
-minComparison = expInfo['Standard Frequency (Hz)']-expInfo['Comparison Interval']*(numFrequencies/2)
+maxComparison = expInfo['Standard Frequency (Hz)']+expInfo['Comparison Interval']*(numFrequencies//2)
+minComparison = expInfo['Standard Frequency (Hz)']-expInfo['Comparison Interval']*(numFrequencies//2)
 # Create array of comparison frequencies to be used for experiment
 comparisonFreqs = numpy.linspace(minComparison,maxComparison,numFrequencies)
 # Build array of all comparison tones to be tested (size = numFrequencies*N trials/comparison). Then randomize the tone order in the array
@@ -240,7 +240,7 @@ for thisFreq in comparisonFreq:
 
     # Write data from this trial to data file
     irow = currentTrial+10
-    ws.cell(irow, 1).value =  currentTrial+1
+    ws.cell(irow, 1).value =  currentTrial
     ws.cell(irow, 2).value = "%s"%expInfo['Which Tone First']
     ws.cell(irow, 3).value = expInfo['Standard Frequency (Hz)']
     ws.cell(irow, 4).value = thisFreq
