@@ -47,10 +47,10 @@ global mywin
 
 WWIDTH,WHEIGHT,PX_SCALE = get_display_info()
 LETTERS = list('ABCDEFGHIJKLMNOPQRSTUVWYZ')
-FIXATION_SIZE = 80*PX_SCALE # pixels
-LETTER_SIZE = 100*PX_SCALE  # for stimuli (pixels)
-TEXT_SIZE = 30*PX_SCALE     # for instructions (pixels)
-TEXT_VPOS = 130*PX_SCALE    # vertical text position (pixels)
+FIXATION_SIZE = (WHEIGHT//13)*PX_SCALE  # pixels
+LETTER_SIZE = (WHEIGHT//10)*PX_SCALE    # for stimuli (pixels)
+TEXT_SIZE = (WHEIGHT//36)*PX_SCALE      # for instructions (pixels)
+TEXT_VPOS = (WHEIGHT//130)*PX_SCALE     # vertical text position (pixels)
 STIMULUS_DURATION = 0.015   # seconds
 ISI_DURATION = 0.085        # seconds
 
@@ -207,7 +207,7 @@ def runBlock():
     #winWidth,winHeight = mywin.size
 
     block_instructions = visual.TextStim(win=mywin,text=block_instruction_text,\
-        color='White',pos=(0,0),alignText='left',wrapWidth=800*PX_SCALE,height=TEXT_SIZE) 
+        color='White',pos=(0,0),alignText='left',wrapWidth=0.45*WWIDTH*PX_SCALE,height=TEXT_SIZE) 
     block_instructions.draw()
     mywin.flip()
     # listen for keypress
