@@ -4,6 +4,7 @@ psychopy.prefs.hardware['audioLib'] = ['PTB', 'sounddevice','pygame']
 from psychopy import core, visual, gui, data, event, sound
 from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, random, scipy
+from collections import OrderedDict
 #import xlwt
 import openpyxl as pyxl
 import os
@@ -14,22 +15,25 @@ intertoneInterval = 1
 
 # Try loading last parameter file, or bring up dialogue box (with default params) and prompt for changes
 
-expInfo = {'Student':'','Standard Frequency (Hz)':1000,'Comparison Interval':2,'Tone Duration':1,'N trials/comparison':10,
+expInfo = {'Student':'','Standard Frequency (Hz)':1000,'Comparison Increment (Hz)':2,
+            'Tone Duration':1,'N trials/comparison':10,
             'Which Tone First':'Standard','Tone Volume (0-1)':0.5,'Session':''}
+
 # Add todays date to the experiment info
 expInfo['dateStr']=data.getDateStr()
 
 # Save parameter file (or quit if subject presses cancel)
-dlg = gui.DlgFromDict(expInfo,title='Pitch Discrimination - MCS',fixed=['dateStr'])
+dlg = gui.DlgFromDict(expInfo,title='Pitch Discrimination - MCS',fixed=['dateStr','Which Tone First'],
+        order=['Student','Session'])
 
 # Volume (arbitrary units) range for test
 testRange=numpy.linspace(0.1,1.0,10)
 # Test tone (1000 Hz, 1 s)
 testTone = sound.Sound(1000,expInfo['Tone Duration'])
 
-# Find maximum and minimum comparison frequencies, given the Standard and Comparison Interval
-maxComparison = expInfo['Standard Frequency (Hz)']+expInfo['Comparison Interval']*(numFrequencies//2)
-minComparison = expInfo['Standard Frequency (Hz)']-expInfo['Comparison Interval']*(numFrequencies//2)
+# Find maximum and minimum comparison frequencies, given the Standard and the Comparison Increment
+maxComparison = expInfo['Standard Frequency (Hz)']+expInfo['Comparison Increment (Hz)']*(numFrequencies//2)
+minComparison = expInfo['Standard Frequency (Hz)']-expInfo['Comparison Increment (Hz)']*(numFrequencies//2)
 # Create array of comparison frequencies to be used for experiment
 comparisonFreqs = numpy.linspace(minComparison,maxComparison,numFrequencies)
 # Build array of all comparison tones to be tested (size = numFrequencies*N trials/comparison). Then randomize the tone order in the array
@@ -47,6 +51,15 @@ fileName='PitchDiscrimination_'+expInfo['Student']+'_'+expInfo['Session']+'_'+ex
 # Bring up experiment window
 win=visual.Window([800,600],allowGUI=True,monitor='testMonitor',units='deg')
 
+# define function getKeysWithExit to allow exiting at any keypress
+def waitKeysWithExit(keyList=None):
+    keys = event.waitKeys(keyList=keyList)
+    for current_key in keys:
+        if current_key in ['q','escape']:
+            win.close()
+            core.quit()
+    return keys
+
 # Set up structure for Excel workbook
 book = pyxl.Workbook()
 ws = book.active
@@ -63,48 +76,6 @@ ws.cell(row=7,column=1).value = "Duration(s)%f"%expInfo['Tone Duration']
 headers = ['Trial','1stTone','Standard(Hz)','Comparison(Hz)','Response']
 for col,header in enumerate(headers):
     ws.cell(row=9,column=col+1).value = header
-
-
-    
-# #column labels
-# sheet1.write(11, 0, "Trial")
-# sheet1.write(11, 1, "1stTone")
-# sheet1.write(11, 2, "Standard(Hz)")
-# sheet1.write(11, 3, "Comparison(Hz)")
-# sheet1.write(11, 4, "Response")
-    
-
-# def write_file(filename):
-#     global result
-#     book = pyxl.Workbook()
-#     ws = book.active
-#     ws.title = "Sheet 1"
-#     # write experiment information
-#     ws.cell(row=1,column=1).value = "ExperimentName: Switch Cost"
-#     ws.cell(row=2,column=1).value = "SubjectID:%s"%idn
-#     ws.cell(row=3,column=1).value = "SessionNumber:%s"%sessnumber
-#     ws.cell(row=4,column=1).value =  "Task:%s" %tasktype
-#     ws.cell(row=5,column=1).value = ":%d" %intertrialTime
-#     # write column headers
-#     headers = ['Trial','Task','Actual','Response','Reaction Time','Number Shown','Letter Pressed']
-#     for col,header in enumerate(headers):
-#         ws.cell(row=4,column=col+1).value = header
-#     # write per-trial data
-#     for r in range(0,len(response)):
-#         irow = r+6
-#         ws.cell(irow, 1).value =  r+1
-#         ws.cell(irow, 2).value = taskstore[r]
-#         ws.cell(irow, 3).value = actual[r]
-#         ws.cell(irow, 4).value = response[r]
-#         ws.cell(irow, 5).value = float("%2.3f"%rTime[r])
-#         ws.cell(irow, 6).value = numValue[r]
-#         ws.cell(irow, 7).value = lettPress[r]
-#     # create directory and/or save file
-#     if not os.path.exists('data'):
-#         os.makedirs('data')
-#     book.save('data/'+filename+'.xlsx')
-
-
 
 # Initialize clock
 globalClock=core.Clock()
@@ -175,6 +146,7 @@ allKeys = event.waitKeys()
 # Quit experiment if subject presses q or esc
 for thisKey in allKeys:
     if thisKey in ['q','escape']:
+        win.close()
         core.quit()
 
 # Show introductory message and wait for key press
@@ -235,6 +207,7 @@ for thisFreq in comparisonFreq:
                 thisResp='H'
             # If subject press Q or ESC, end experiment
             elif thisKey in ['q','escape']:
+                win.close()
                 core.quit()
         event.clearEvents()
 
