@@ -24,7 +24,8 @@ expInfo['dateStr']=data.getDateStr()
 
 # Save parameter file (or quit if subject presses cancel)
 dlg = gui.DlgFromDict(expInfo,title='Pitch Discrimination - MCS',fixed=['dateStr','Which Tone First'],
-        order=['Student','Session'])
+            order=['Student','Session','Standard Frequency (Hz)','Comparison Increment (Hz)',
+            'Tone Volume (0-1)','Tone Duration','N trials/comparison'])
 
 # Volume (arbitrary units) range for test
 testRange=numpy.linspace(0.1,1.0,10)
@@ -53,7 +54,14 @@ win=visual.Window([800,600],allowGUI=True,monitor='testMonitor',units='deg')
 
 # define function getKeysWithExit to allow exiting at any keypress
 def waitKeysWithExit(keyList=None):
-    keys = event.waitKeys(keyList=keyList)
+    """
+    waits for a keypress and returns a list of pressed keys.
+
+    works just like event.waitKeys, but automates the process of exiting the 
+    program when either of the 'ESC' or 'q' keys are pressed.
+    """
+    keylist = list(keyList)+['q','escape']
+    keys = event.waitKeys(keyList=keylist)
     for current_key in keys:
         if current_key in ['q','escape']:
             win.close()
@@ -126,12 +134,12 @@ standardTone.setVolume(expInfo['Tone Volume (0-1)'])
 # Show volume adjustment message and wait for user to type 'v'
 messageVolumeAdjust.draw()
 win.flip()
-event.waitKeys(keyList='v')
+waitKeysWithExit(keyList='v')
 
 # Show confirmation message and wait for user to type 'v'
 messageConfirmation.draw()
 win.flip()
-event.waitKeys(keyList='v')
+waitKeysWithExit(keyList='v')
 
 # Show volume test message
 messageTest.draw()
@@ -142,22 +150,22 @@ for thisVolume in testRange:
     testTone.play()
     core.wait(expInfo['Tone Duration'])
     core.wait(intertoneInterval)
-allKeys = event.waitKeys()
-# Quit experiment if subject presses q or esc
-for thisKey in allKeys:
-    if thisKey in ['q','escape']:
-        win.close()
-        core.quit()
+    allKeys = event.getKeys()
+    # Quit experiment if subject presses q or esc
+    for thisKey in allKeys:
+        if thisKey in ['q','escape']:
+            win.close()
+            core.quit()
 
 # Show introductory message and wait for key press
 messageIntro.draw()
 win.flip()
-event.waitKeys()
+waitKeysWithExit()
 
 # Show instructions and wait for key press
 messageInstructions.draw()
 win.flip()
-event.waitKeys()
+waitKeysWithExit()
 
 # Set current trial to 1
 currentTrial = 1
@@ -170,7 +178,7 @@ for thisFreq in comparisonFreq:
     messageTrial=visual.TextStim(win,pos=[0,+3],text="Trial %i (press any key to continue)" %currentTrial)
     messageTrial.draw()
     win.flip()
-    event.waitKeys()
+    waitKeysWithExit()
     # Flip to grey screen after key press so subject knows trial is initiated
     win.flip()
     
@@ -197,7 +205,7 @@ for thisFreq in comparisonFreq:
     # Wait for response
     thisResp=None
     while thisResp==None:
-        allKeys=event.waitKeys()
+        allKeys=waitKeysWithExit()
         for thisKey in allKeys:
             # if subject presses down key, response is L (lower)
             if thisKey=='down':
@@ -205,10 +213,10 @@ for thisFreq in comparisonFreq:
             # If subject presses up key, response is H (higher)
             elif thisKey=='up':
                 thisResp='H'
-            # If subject press Q or ESC, end experiment
-            elif thisKey in ['q','escape']:
-                win.close()
-                core.quit()
+            # # If subject press Q or ESC, end experiment
+            # elif thisKey in ['q','escape']:
+            #     win.close()
+            #     core.quit()
         event.clearEvents()
 
     # Write data from this trial to data file
