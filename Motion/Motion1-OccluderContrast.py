@@ -143,7 +143,7 @@ if myDlg.OK:
     file+='_'+data.getDateStr()
     print(file)
     keyState=key.KeyStateHandler()
-    win = visual.Window( monitor="testMonitor", units="deg",allowGUI=True,fullscr=False)
+    win = visual.Window( monitor="testMonitor", units="deg",allowGUI=True,fullscr=True)
     win.winHandle.push_handlers(keyState)
     show_instruction()
     # instruction between trials
