@@ -13,7 +13,34 @@ from psychopy.constants import *  # things like STARTED, FINISHED
 import numpy as np  # whole numpy lib is available, prepend 'np.'
 from numpy import sin, cos, tan, log, log10, pi, average, sqrt, std, deg2rad, rad2deg, linspace, asarray
 from numpy.random import random, randint, normal, shuffle
+import pyglet
 import os  # handy system and path functions
+
+def get_display_info():
+    """
+    gets effective fullscreen resolution from the os and creates a temporary
+    window to compute the native hardware resolution and to determine whether
+    there is any pixel scaling (i.e., as in MacOS 'Retina' displays)
+
+    returns a tuple consisting of: horizontal resolution, vertical resolution, 
+    and pixel scaling factor
+    """
+    # 1. Get full display resolution (as reported by OS)
+    # note: code below assumes either single or twin monitor configuration
+    screen = pyglet.canvas.Display().get_default_screen()
+    os_width = screen.width
+    os_height = screen.height
+    # 2. Create fullscreen Psychopy window and get actual hardware resolution
+    testwin = visual.Window(monitor='testMonitor',color='black',allowGUI=True,\
+        units='pix',size=(os_width,os_height),fullscr=True)
+    hard_width,hard_height = testwin.size
+    # 3. Compute the ratio of hard_width to os_width to determine whether we're
+    #    using a HiDPI display (i.e., one with pixel scaling).
+    pixel_scaling = hard_width/os_width
+    # 4. Exit the window
+    testwin.close()
+    return os_width,os_height,pixel_scaling
+
 
 # Ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__))
@@ -28,7 +55,7 @@ expInfo['date'] = data.getDateStr()  # add a simple timestamp
 expInfo['expName'] = expName
 
 # Data file name stem = absolute path + name; later add .psyexp, .csv, .log, etc
-filename = _thisDir + os.sep + u'data' + os.sep + '%s_%s' %(expInfo['participant'], expInfo['date'])
+filename = _thisDir + os.sep + u'data' + os.sep + '%s_%s_%s' %(expInfo['participant'],expInfo['session'],expInfo['date'])
 
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
@@ -45,10 +72,15 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 # Start Code - component code to be run before the window creation
 
 # Setup the Window
-win = visual.Window(size=[1040, 800], fullscr=False, screen=0, allowGUI=True, allowStencil=False,
+win = visual.Window(size=[1040, 800], fullscr=True, screen=0, allowGUI=True, allowStencil=False,
     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True,
     units='height')
+# WWIDTH,WHEIGHT,PX_SCALE = get_display_info()
+# win = visual.Window(monitor='testMonitor',color='black',allowGUI=True,
+#         colorSpace='rgb',blendMode='avg', useFBO=True,units='height',
+#         fullscr=True,size=(WWIDTH,WHEIGHT))
+
 # store frame rate of monitor if we can measure it successfully
 expInfo['frameRate']=win.getActualFrameRate()
 if expInfo['frameRate']!=None:
@@ -81,7 +113,7 @@ image_R_3 = visual.ImageStim(win=win, name='image_R_3',
     texRes=128, interpolate=True, depth=-2.0)
 text_5 = visual.TextStim(win=win, ori=0, name='text_5',
     text="Here, the letter on the right is a mirror image of the letter on the left. They would still be different after mentally rotating them to line up. So press 'm' (different). If they are the same, you would press 'n'.\r\n\r\nTry to respond as accurately as you can. Also try to be fast, but emphasize being accurate. Press 'n' to start.",    font='Arial',
-    pos=[0, -.2], height=0.05, wrapWidth=.8,
+    pos=[0, -.2], height=0.04, wrapWidth=1,
     color='black', colorSpace='rgb', opacity=1,
     depth=-3.0)
 
@@ -685,11 +717,11 @@ def plotYX(yaxis, xaxis, description=''):
     pyplot.draw()
     pyplot.show()
 
-filename = 'mental_rotation_data.csv'
-with open(filename, 'w') as fd:
+temp_filename = 'data/mental_rotation_data.csv'
+with open(temp_filename, 'w') as fd:
     fd.write(data_string)
 
-data = pd.read_csv(filename)
+data = pd.read_csv(temp_filename)
 data = data[data['rt'] < 4]  # trim RT at 4 sec
 mrt = data.loc[:,'rt']
 correct = data.loc[:, 'corr']
@@ -708,7 +740,7 @@ print("overall speed (s): %2.3", mrt.mean())
 
 plotYX(m, a)
 
-with open(filename, 'a+') as fd:
+with open(temp_filename, 'a+') as fd:
     fd.write('\n\n' + repr(scored_data))
 # keep track of which components have finished
 plot_dataComponents = []
