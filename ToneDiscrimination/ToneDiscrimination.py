@@ -60,7 +60,10 @@ def waitKeysWithExit(keyList=None):
     works just like event.waitKeys, but automates the process of exiting the 
     program when either of the 'ESC' or 'q' keys are pressed.
     """
-    keylist = list(keyList)+['q','escape']
+    if keyList is None:
+        keylist = None
+    else:
+        keylist = list(keyList)+['q','escape']
     keys = event.waitKeys(keyList=keylist)
     for current_key in keys:
         if current_key in ['q','escape']:

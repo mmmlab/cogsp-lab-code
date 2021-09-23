@@ -19,6 +19,26 @@ s = False
 result=[]
 
 
+# define function getKeysWithExit to allow exiting at any keypress
+def getKeysWithExit(keyList=None):
+    """
+    gets the current list of pressed keys.
+
+    works just like event.getKeys, but automates the process of exiting the 
+    program when either of the 'ESC' or 'q' keys are pressed.
+    """
+    if keyList is None:
+        keylist = None
+    else:
+        keylist = list(keyList)+['q','escape']
+    keys = event.getKeys(keyList=keylist)
+    for current_key in keys:
+        if current_key in ['q','escape']:
+            win.close()
+            core.quit()
+    return keys
+
+
 ## Class defining ML (Muller-Lyer) stimulus object
 class MLStimulus:
     def __init__(self,stand_length,position,is_muller,color='White',width=2):
@@ -143,7 +163,7 @@ def show_stimulus(length,is_muller,width=LINEWIDTH):
     stimulus.draw()
     win.flip()
     while True:
-        keylist=event.getKeys()
+        keylist=getKeysWithExit()
         increment = 0
         if 'space'in keylist:
             global result
@@ -183,7 +203,7 @@ def show_instruction():
     textbox.draw()
     win.flip()
     while True:
-        if len(event.getKeys())>0: break
+        if len(getKeysWithExit())>0: break
     event.clearEvents()
  
     
@@ -242,3 +262,7 @@ if myDlg.OK:  # then the user pressed OK
     write_file(file,length,mueller)
 else:
     print('user cancelled')
+
+# Close window and quit experiment
+win.close()
+core.quit()
