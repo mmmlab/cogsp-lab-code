@@ -208,33 +208,28 @@ def show_instruction():
  
     
 myDlg = gui.Dlg(title="Line Length",size=(1, 1))
-myDlg.addField('ExperimentName:','LINE')
-myDlg.addField('SubjectID:','xx')
-myDlg.addField('SessionNumber:',1)
-myDlg.addField('StandardLineLength(in pixels):',200)
-myDlg.addField('NumberofTrials',30)
-myDlg.addField('Mueller-Lyer(N;Y)')
-myDlg.show()
-if myDlg.OK:  # then the user pressed OK
-    thisInfo = myDlg.data
-    name=thisInfo[0]
-    ID=thisInfo[1]
-    session=thisInfo[2]
-    length=thisInfo[3]
-    trials=thisInfo[4]
-    mueller=thisInfo[5]
-    
-    
-    
-    file=''
-    file+=name
-    file+='_'
-    file+=ID
-    file+='_'
-    file+=str(session)
-    file+='_'+data.getDateStr()
 
+expInfo = {'ExperimentName':'LINE','SubjectID':'xx','SessionNumber':1,
+            'StandardLineLength (in pixels)':200,'NumberofTrials':30,
+            'Mueller-Lyer (Y/N)':'Y'}
+
+dlg = gui.DlgFromDict(expInfo,title='Line Length Experiment',fixed=['ExperimentName'],
+                        order=['ExperimentName','SubjectID','SessionNumber',
+                        'StandardLineLength (in pixels)','NumberofTrials',
+                        'Mueller-Lyer (Y/N)'])
+
+
+if dlg.OK:  # then the user pressed OK
+    name = expInfo['ExperimentName']
+    ID = expInfo['SubjectID']
+    session = expInfo['SessionNumber']
+    length = expInfo['StandardLineLength (in pixels)']
+    trials = expInfo['NumberofTrials']
+    mueller = expInfo['Mueller-Lyer (Y/N)']
+    
+    file = '%s_%s_%d_%s'%(name,ID,session,data.getDateStr())
     print(file)
+
     keyState=key.KeyStateHandler()
     wwidth,wheight,px_scale = get_display_info()
     win = visual.Window([wwidth,wheight],monitor='Monitor',allowGUI=True,units='height',fullscr=True)
