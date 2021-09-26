@@ -18,8 +18,9 @@
 from psychopy import visual, core, gui, data, event, sound
 from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, random, string, scipy
-#import xlwt
 import csv
+import os
+import pyglet
 
 global mywin
 global grating
@@ -28,6 +29,31 @@ global blankletter
 global centraltext
 global xecc,yecc
 global savetilt
+
+def get_display_info():
+    """
+    gets effective fullscreen resolution from the os and creates a temporary
+    window to compute the native hardware resolution and to determine whether
+    there is any pixel scaling (i.e., as in MacOS 'Retina' displays)
+
+    returns a tuple consisting of: horizontal resolution, vertical resolution, 
+    and pixel scaling factor
+    """
+    # 1. Get full display resolution (as reported by OS)
+    # note: code below assumes either single or twin monitor configuration
+    screen = pyglet.canvas.Display().get_default_screen()
+    os_width = screen.width
+    os_height = screen.height
+    # 2. Create fullscreen Psychopy window and get actual hardware resolution
+    testwin = visual.Window(monitor='testMonitor',color='black',allowGUI=True,\
+        units='pix',size=(os_width,os_height),fullscr=True)
+    hard_width,hard_height = testwin.size
+    # 3. Compute the ratio of hard_width to os_width to determine whether we're
+    #    using a HiDPI display (i.e., one with pixel scaling).
+    pixel_scaling = hard_width/os_width
+    # 4. Exit the window
+    testwin.close()
+    return os_width,os_height,pixel_scaling
 
 
 # set up the menu for choice of conditions
@@ -50,7 +76,10 @@ else:
         
 
 #window
-mywin = visual.Window(  [800,600], monitor="testMonitor", units="pix")
+WWIDTH,WHEIGHT,PX_SCALE = get_display_info()
+mywin = visual.Window(size=[WWIDTH,WHEIGHT], monitor="testMonitor", units="pix",fullscr=True,
+        screen=0, allowGUI=True, allowStencil=False, 
+        color=[0,0,0], colorSpace='rgb',blendMode='avg', useFBO=True)
 #rgb=[-1,-1,-1] makes screen black
 random.seed()  #initiali4zes by reading the time
 
@@ -101,7 +130,7 @@ userResponse=[]             #List of user Responses on the Location of the diffe
 
 
 timebetweenframes = .083 #.083 gives about 12 letters/s.Same as JosephChunNakayama.since we're not counting frames,won't be exact  
-timebetweenframes = .04
+#timebetweenframes = .04
 noisecontrast=.7
 nletterstoshow=len(letters)
 
@@ -242,12 +271,10 @@ def showcriticaldisplay(letterstoshow,targetletter,letterindex,whichCircle,lette
             circle.contrast= .5  
         else:
             circle.contrast=0
-        for nframes in range(5):   #was 10
-        #    if letterindex==letterwithgrating+1:
-        #        noisepatch.draw()       #what is this???????????
-        #    else:
-            circle.draw()
-        mywin.flip()
+        circle.draw()
+    mywin.flip()
+    core.wait(.02)
+
         #core.wait(.5)  #uncomment to slow down for debugging
     
 #this is for taking a response that includes a display of 8 numerals at each grating location
@@ -261,7 +288,7 @@ def displaysometextandlocations(texttodisplay):
     mywin.flip()
 #displays any text.  Use for response
 def displaysometext(texttodisplay):
-    prompt=visual.TextStim(win=mywin, text=texttodisplay,pos=[0,0],rgb=1,contrast=1,height=letterheight)
+    prompt=visual.TextStim(win=mywin, text=texttodisplay,pos=[0,0],rgb=1,contrast=1,height=letterheight,wrapWidth=800)
     prompt.draw()
     mywin.flip()
 #get response
@@ -273,12 +300,43 @@ def getresponse():
         mywin.close()
         core.quit()
     return b
+
+if instruction[0] == 'G' or 'g':
+    print("firstloop ", instruction[0])
+    instructions = """
+    For this version of the experiment, please watch the circles presented and 
+    try to detect and remember the location of the target circle whose color
+    differs from the rest.
+    """
+elif instruction[0] == 'N' or 'n':
+    print(instruction[0])
+    instructions = """
+    For this version of the experiment, please pay attention to the alphanumeric 
+    characters shown at the center of the array. Your task will be to detect and
+    report the unique number presented among the set of letters.
+    """
+else:
+    print(instruction[0])
+    instructions = """
+    For this version of the experiment, you will need to carry out two simultaneous tasks:
+
+    First, you will need to pay attention to the alphanumeric characters shown at 
+    the center of the array and remember theunique number presented among the set of letters.
+
+    Second, you will need to watch the circles presented and try to detect and 
+    remember the location of the target circle whose color differs from the rest.
+    """
+msg = visual.TextStim(win=mywin, text=instructions,wrapWidth=800)
+msg.draw()
+mywin.flip()
+#k = ['']
+k = event.waitKeys()
    
    
 #run all trials
 for itrial in range (0,ntrials):
     print("trial", itrial + 1) #Changed from print "trial", itrial + 1 to print("trial", itrial + 1)
-    texttodisplay='Trial ' + repr(itrial+1) + '  Press key' 
+    texttodisplay= 'Press any key to start Trial %d' % (itrial+1) 
     msg = visual.TextStim(win=mywin, text=texttodisplay)
     msg.draw()
     mywin.flip()
@@ -354,13 +412,13 @@ for itrial in range (0,ntrials):
         #while gratingtiltresponse not in ['l', 'r', 'L', 'R']:
         #    gratingtiltresponse=getresponse()
         #    ugratingtiltresponse=gratingtiltresponse.upper()
-        displaysometextandlocations("location(0-7)")
+        displaysometextandlocations("Target location? (0-7)")
         locs=['0','1','2','3','4','5','6','7']
         while gratinglocationresponse not in locs:
             gratinglocationresponse=getresponse()
       #  gloc=repr(whichgrating)            
        # feedback = 'tilt response ' + ugratingtiltresponse + '    Tilt=' + tilt + '\n' \
-        feedback = 'Location response =  ' + gratinglocationresponse + '  Location=' + gloc
+        feedback = 'Location response =  ' + gratinglocationresponse + '  Actual location=' + gloc
       
         displaysometext(feedback)
         core.wait(3)
