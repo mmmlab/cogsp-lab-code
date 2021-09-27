@@ -88,12 +88,12 @@ random.seed()  #initiali4zes by reading the time
 idn=sessioninfo[0]
 sessnumber=sessioninfo[1]
 ntrials=sessioninfo[2]
-eccent=sessioninfo[3]
+eccent=sessioninfo[3]*PX_SCALE
 #gratingcontrast=sessioninfo[4]
 #gratingfreq=sessioninfo[5]
-circleSize=sessioninfo[4]
+circleSize=sessioninfo[4]*PX_SCALE
 lettercontrast=sessioninfo[5]
-letterheight=sessioninfo[6]
+letterheight=sessioninfo[6]*PX_SCALE
 instruction=sessioninfo[7]
 
 print(instruction) #Changed from print instruction to print(instruction)
@@ -301,14 +301,14 @@ def getresponse():
         core.quit()
     return b
 
-if instruction[0] == 'G' or 'g':
+if instruction[0] in ('G','g'):
     print("firstloop ", instruction[0])
     instructions = """
     For this version of the experiment, please watch the circles presented and 
     try to detect and remember the location of the target circle whose color
     differs from the rest.
     """
-elif instruction[0] == 'N' or 'n':
+elif instruction[0] in ('N','n'):
     print(instruction[0])
     instructions = """
     For this version of the experiment, please pay attention to the alphanumeric 
