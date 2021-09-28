@@ -59,21 +59,37 @@ def get_display_info():
     return os_width,os_height,pixel_scaling
 
 
+# # set up the menu for choice of conditions
+# myDlg = gui.Dlg(title="Divided Attention",size=(1, 1))
+# myDlg.addField('StudentID:','xx')
+# myDlg.addField('SessionNumber:',1)
+# myDlg.addField('NumberofTrials',3)
+# myDlg.addField('Eccentricity (pix)',200)
+# myDlg.addField('Grating contrast (0-1)',.5)
+# myDlg.addField('Grating frequency',.06)
+# myDlg.addField('Grating diameter(pix)',50)
+# myDlg.addField('Letter contrast (0-1)', -.5)
+# myDlg.addField('Letter height (pix)',30)
+# myDlg.addField('Task(G,N,or B)', 'G')
+# myDlg.show()
+
 # set up the menu for choice of conditions
-myDlg = gui.Dlg(title="Divided Attention",size=(1, 1))
-myDlg.addField('StudentID:','xx')
-myDlg.addField('SessionNumber:',1)
-myDlg.addField('NumberofTrials',3)
-myDlg.addField('Eccentricity (pix)',200)
-myDlg.addField('Grating contrast (0-1)',.5)
-myDlg.addField('Grating frequency',.06)
-myDlg.addField('Grating diameter(pix)',50)
-myDlg.addField('Letter contrast (0-1)', -.5)
-myDlg.addField('Letter height (pix)',30)
-myDlg.addField('Task(G,N,or B)', 'G')
-myDlg.show()
+sessioninfo = {}
+sessioninfo['StudentID'] = 'xx'
+sessioninfo['SessionNumber'] = 1
+sessioninfo['NumberofTrials'] = 3
+sessioninfo['Eccentricity (pix)'] = 200
+sessioninfo['Grating contrast (0-1)'] = 0.5
+sessioninfo['Grating frequency'] = .06
+sessioninfo['Grating diameter(pix)'] = 50
+sessioninfo['Letter contrast (0-1)'] =  -0.5
+sessioninfo['Letter height (pix)'] = 30
+sessioninfo['Task(G,N,or B)'] =  'G'
+
+myDlg = gui.DlgFromDict(sessioninfo)
 if myDlg.OK:
-    sessioninfo=myDlg.data
+    pass
+    #sessioninfo=myDlg.data
 else:
     print('cancelled') #Changed from print 'cancelled' to print(cancelled)
         
@@ -86,18 +102,30 @@ mywin = visual.Window(size=[WWIDTH,WHEIGHT], monitor="testMonitor", units="pix",
 #rgb=[-1,-1,-1] makes screen black
 random.seed()  #initializes by reading the time
 
-
 #read values from menu and put in variables
-idn=sessioninfo[0]
-sessnumber=sessioninfo[1]
-ntrials=sessioninfo[2]
-eccent=sessioninfo[3]*PX_SCALE
-gratingcontrast=sessioninfo[4]
-gratingfreq=sessioninfo[5]
-gratingdiam=sessioninfo[6]*PX_SCALE
-lettercontrast=sessioninfo[7]
-letterheight=sessioninfo[8]*PX_SCALE
-instruction=sessioninfo[9]
+idn=sessioninfo['StudentID']
+sessnumber=sessioninfo['SessionNumber']
+ntrials=sessioninfo['NumberofTrials']
+eccent=sessioninfo['Eccentricity (pix)']
+gratingcontrast=sessioninfo['Grating contrast (0-1)']
+gratingfreq=sessioninfo['Grating frequency']
+gratingdiam=sessioninfo['Grating diameter(pix)']
+lettercontrast=sessioninfo['Letter contrast (0-1)']
+letterheight=sessioninfo['Letter height (pix)']
+instruction=sessioninfo['Task(G,N,or B)']
+
+
+# #read values from menu and put in variables
+# idn=sessioninfo[0]
+# sessnumber=sessioninfo[1]
+# ntrials=sessioninfo[2]
+# eccent=sessioninfo[3]*PX_SCALE
+# gratingcontrast=sessioninfo[4]
+# gratingfreq=sessioninfo[5]
+# gratingdiam=sessioninfo[6]*PX_SCALE
+# lettercontrast=sessioninfo[7]
+# letterheight=sessioninfo[8]*PX_SCALE
+# instruction=sessioninfo[9]
 
 print(instruction) #Changed from print instruction to print(instruction)
 
@@ -137,6 +165,8 @@ corrLocation=[]
 
 
 timebetweenframes = .083 #.083 gives about 12 letters/s.Same as JosephChunNakayama.since we're not counting frames,won't be exact  
+letter_duration = 0.033
+letter_blank = 0.050
 #timebetweenframes = .04
 noisecontrast=.7
 nletterstoshow=len(letters)
