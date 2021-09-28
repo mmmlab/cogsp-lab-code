@@ -82,7 +82,7 @@ sessioninfo['Eccentricity (pix)'] = 200
 sessioninfo['Grating contrast (0-1)'] = 0.5
 sessioninfo['Grating frequency'] = .06
 sessioninfo['Grating diameter(pix)'] = 50
-sessioninfo['Letter contrast (0-1)'] =  -0.5
+sessioninfo['Letter contrast'] =  -1
 sessioninfo['Letter height (pix)'] = 30
 sessioninfo['Task(G,N,or B)'] =  'G'
 
@@ -110,7 +110,7 @@ eccent=sessioninfo['Eccentricity (pix)']
 gratingcontrast=sessioninfo['Grating contrast (0-1)']
 gratingfreq=sessioninfo['Grating frequency']
 gratingdiam=sessioninfo['Grating diameter(pix)']
-lettercontrast=sessioninfo['Letter contrast (0-1)']
+lettercontrast=sessioninfo['Letter contrast']
 letterheight=sessioninfo['Letter height (pix)']
 instruction=sessioninfo['Task(G,N,or B)']
 
@@ -165,14 +165,15 @@ corrLocation=[]
 
 
 timebetweenframes = .083 #.083 gives about 12 letters/s.Same as JosephChunNakayama.since we're not counting frames,won't be exact  
-letter_duration = 0.033
-letter_blank = 0.050
+LETTER_DURATION = 0.033
+BLANK_DURATION = 0.050
 #timebetweenframes = .04
 noisecontrast=.7
 nletterstoshow=len(letters)
 
 grating= visual.GratingStim(win=mywin, mask="gauss", units="pix", size=gratingdiam, pos=[xecc[0],yecc[0]], sf=[gratingfreq,0],contrast=gratingcontrast)
-fixation = visual.GratingStim(win=mywin, size=15, pos=[0,0], sf=0, rgb= 1,contrast=.5)
+#fixation = visual.GratingStim(win=mywin, size=15, pos=[0,0], sf=0, rgb= 1,contrast=.5)
+fixation = visual.Circle(win=mywin,radius=6,units='pix', pos=[0,0],fillColor='black',lineColor='black',interpolate=True)
 blankletter=visual.GratingStim(win=mywin, size=30, pos=[0,0],sf=0, rgb=1, contrast=0)
 trialClock = core.Clock()
 centraltext=visual.TextStim(win=mywin, text='B',pos=[0,0],rgb=1,contrast=lettercontrast,height=letterheight)
@@ -233,43 +234,46 @@ def blankScreen():
     mywin.flip()
 
 
-
-
-#the routine below is showing the critical displays, the stream of central letters and the single display of a 8 gabors
-def showcriticaldisplay(letterstoshow,targetletter,letterindex,whichgrating,letterwithgrating,tiltdirection):
-    
-    centraltext.text=letterstoshow[letterindex]                 #see set up of centraltext above
-    if letterindex == targetletter:
-        centraltext.contrast= lettercontrast   #ek took out * (-1) so all have same contrast now
-    else:
-        centraltext.contrast = lettercontrast
-    centraltext.draw()   #draw central letter
-    
-    #this is where the gratings appear
-    
+def drawGabors(letterindex,whichgrating,letterwithgrating,tiltdirection):
     for n in range(len(xecc)):     #yes, do all of them
         grating.pos=(xecc[n],yecc[n])       #location
         noisepatch.pos=(xecc[n],yecc[n])       #location
         grating.ori=0
+        # decide grating tilt direction
         if n == whichgrating:                #tilted grating  
             grating.ori=15 * tiltdirection
         else:
             grating.ori=0
-        if letterindex==letterwithgrating:  #show gratings?
+        # decide whether to show gratings
+        if letterindex in (letterwithgrating,letterwithgrating+1):  #show gratings?
             grating.contrast=gratingcontrast
-            
-        else:
-            grating.contrast=0
-        #for nframes in range(5):   #was 10
-        if letterindex==letterwithgrating+1:
+            grating.draw()
+        elif letterindex in (letterwithgrating+2,letterwithgrating+3):
             noisepatch.draw()
         else:
+            grating.contrast=0
             grating.draw()
-    mywin.flip()
-    core.wait(.02)
 
-    #blankScreen()
-        #core.wait(.5)  #uncomment to slow down for debugging
+#the routine below is showing the critical displays, the stream of central letters and the single display of a 8 gabors
+def showcriticaldisplay(letterstoshow,targetletter,letterindex,whichgrating,letterwithgrating,tiltdirection):
+
+    if letterindex == targetletter:
+        centraltext.contrast= lettercontrast*(-1)   #ek took out * (-1) so all have same contrast now
+    else:
+        centraltext.contrast = lettercontrast
+    
+    centraltext.text=letterstoshow[letterindex]                 #see set up of centraltext above
+    mywin.clearBuffer()
+    centraltext.draw()   #draw central letter
+    #this is where the gratings appear
+    drawGabors(letterindex,whichgrating,letterwithgrating,tiltdirection)
+    mywin.flip()
+    core.wait(LETTER_DURATION)
+    mywin.clearBuffer()
+    drawGabors(letterindex,whichgrating,letterwithgrating,tiltdirection)
+    mywin.flip()
+    core.wait(BLANK_DURATION)
+
     
 #this is for taking a response that includes a display of 8 numerals at each grating location
 def displaysometextandlocations(texttodisplay):
@@ -361,15 +365,22 @@ for itrial in range (0,ntrials):
     if tiltdirection == 2:
         tiltdirection = -1  #left
     
-    
+    # show fixation
+    mywin.clearBuffer()
+    fixation.draw()
+    mywin.flip()
+    core.wait(0.5)
+    mywin.clearBuffer()
+    mywin.flip()
+    core.wait(0.5)
+
     for letterindex in range (len(letterstoshow)):  #display all the letters
         #wait a bit
         
-        while lettertimer.getTime() < timebetweenframes:  
-            showblank()                         
+        # while lettertimer.getTime() < timebetweenframes:  
+        #     showblank()                         
         #show stuff here
         showcriticaldisplay(letterstoshow,targetletter,letterindex,whichgrating,letterwithgrating,tiltdirection)
-        lettertimer.reset()  #reset timer for next wait
        
         if event.getKeys(keyList=['escape','q']):  #option to get out
             mywin.close()
@@ -391,7 +402,7 @@ for itrial in range (0,ntrials):
         
         
         displaysometext(feedback)
-        core.wait(3)
+        core.wait(2)
         gloc=repr(whichgrating)
         uTargetNums.append(targetletterresponse)
         cTargetNums.append(targetnumeral) #appends the correct target numeral             
