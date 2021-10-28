@@ -8,6 +8,7 @@ from psychopy.tools.filetools import fromFile, toFile
 import time, numpy, random, string, scipy
 #import xlwt
 import openpyxl as pyxl
+import pyglet
 import os
 
 global mywin
@@ -35,9 +36,35 @@ if myDlg.OK:
 else:
     print('cancelled')
         
+def get_display_info():
+    """
+    gets effective fullscreen resolution from the os and creates a temporary
+    window to compute the native hardware resolution and to determine whether
+    there is any pixel scaling (i.e., as in MacOS 'Retina' displays)
+
+    returns a tuple consisting of: horizontal resolution, vertical resolution, 
+    and pixel scaling factor
+    """
+    # 1. Get full display resolution (as reported by OS)
+    # note: code below assumes either single or twin monitor configuration
+    screen = pyglet.canvas.Display().get_default_screen()
+    os_width = screen.width
+    os_height = screen.height
+    # 2. Create fullscreen Psychopy window and get actual hardware resolution
+    testwin = visual.Window(monitor='testMonitor',color='black',allowGUI=True,\
+        units='pix',size=(os_width,os_height),fullscr=True)
+    hard_width,hard_height = testwin.size
+    # 3. Compute the ratio of hard_width to os_width to determine whether we're
+    #    using a HiDPI display (i.e., one with pixel scaling).
+    pixel_scaling = hard_width/os_width
+    # 4. Exit the window
+    testwin.close()
+    return os_width,os_height,pixel_scaling
+
+WWIDTH,WHEIGHT,PX_SCALE = get_display_info()
 
 #window
-mywin = visual.Window([800,600], monitor="testMonitor", units="pix")
+mywin = visual.Window([WWIDTH,WHEIGHT], monitor="testMonitor", units="pix",fullscr=True)
 #rgb=[-1,-1,-1] makes screen black
 random.seed()  #initializes by reading the time
 
@@ -47,8 +74,8 @@ idn=sessioninfo[0]
 sessnumber=sessioninfo[1]
 ntrials=sessioninfo[2] 
 pause=sessioninfo[3]
-barlength=sessioninfo[4]
-barwidth=sessioninfo[5]
+barlength=sessioninfo[4]*PX_SCALE
+barwidth=sessioninfo[5]*PX_SCALE
 task=sessioninfo[6]
 
 actual = []
@@ -179,14 +206,16 @@ def showdisplay(display, bars, diff):
         if diff:
             #this display will be different
             d = random.randint(0, len(bars)-1)
+            #[print('bar %d color = %s'%(i,el.fillColor)) for i,el in enumerate(bars)]
             if task.lower() == 'e':
                 #either...randomly choose color or orientation
                 thistask = random.choice(['c','o'])
             else:
                 thistask = task.lower()
             if thistask == 'c':
+                # Note: the bar colors are stored as numpy arrays (e.g., [1,1,1])
                 prevcolor = bars[d].fillColor
-                while prevcolor == bars[d].fillColor: #won't be the same color
+                while numpy.all(prevcolor == bars[d].fillColor): #won't be the same color
                     newcolor = random.choice(colors)
                     bars[d].fillColor = newcolor
                     bars[d].lineColor = newcolor
