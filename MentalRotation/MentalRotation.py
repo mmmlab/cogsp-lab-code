@@ -164,7 +164,7 @@ mini_pause = visual.TextStim(win=win, ori=0, name='mini_pause',
 # Initialize components for Routine "the_end"
 the_endClock = core.Clock()
 text_3 = visual.TextStim(win=win, ori=0, name='text_3',
-    text='The end.\r\n\r\nPress space to see your data.',    font='Arial',
+    text='The end.\r\n\r\nPress space to continue',    font='Arial',
     pos=[0, 0], height=0.05, wrapWidth=None,
     color='black', colorSpace='rgb', opacity=1,
     depth=0.0)
@@ -701,86 +701,86 @@ for thisComponent in the_endComponents:
 # the Routine "the_end" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
-#------Prepare to start Routine "plot_data"-------
-t = 0
-plot_dataClock.reset()  # clock 
-frameN = -1
-# update component parameters for each repeat
-def plotYX(yaxis, xaxis, description=''):
-    pyplot.grid(True)
-    pyplot.title(description)
-    pyplot.xlabel('Angle')
-    pyplot.ylabel('Response time (s)')
-    pyplot.xlim([0, 315])
-    #slope,inter = np.polyfit(xaxis[:5],yaxis[:5],1)
-    pyplot.plot(xaxis, yaxis) #, xaxis[:5], np.array(xaxis[:5]) * slope + inter)
-    pyplot.draw()
-    pyplot.show()
+# #------Prepare to start Routine "plot_data"-------
+# t = 0
+# plot_dataClock.reset()  # clock 
+# frameN = -1
+# # update component parameters for each repeat
+# def plotYX(yaxis, xaxis, description=''):
+#     pyplot.grid(True)
+#     pyplot.title(description)
+#     pyplot.xlabel('Angle')
+#     pyplot.ylabel('Response time (s)')
+#     pyplot.xlim([0, 315])
+#     #slope,inter = np.polyfit(xaxis[:5],yaxis[:5],1)
+#     pyplot.plot(xaxis, yaxis) #, xaxis[:5], np.array(xaxis[:5]) * slope + inter)
+#     pyplot.draw()
+#     pyplot.show()
 
-temp_filename = 'data/mental_rotation_data.csv'
-with open(temp_filename, 'w') as fd:
-    fd.write(data_string)
+# temp_filename = 'data/mental_rotation_data.csv'
+# with open(temp_filename, 'w') as fd:
+#     fd.write(data_string)
 
-data = pd.read_csv(temp_filename)
-data = data[data['rt'] < 4]  # trim RT at 4 sec
-mrt = data.loc[:,'rt']
-correct = data.loc[:, 'corr']
-angle = data.loc[:, 'angle']
+# data = pd.read_csv(temp_filename)
+# data = data[data['rt'] < 4]  # trim RT at 4 sec
+# mrt = data.loc[:,'rt']
+# correct = data.loc[:, 'corr']
+# angle = data.loc[:, 'angle']
 
-dfsum = data.groupby('angle', as_index=False).mean()
-m = dfsum.loc[:, 'rt']
-a = dfsum.loc[:, 'angle']
+# dfsum = data.groupby('angle', as_index=False).mean()
+# m = dfsum.loc[:, 'rt']
+# a = dfsum.loc[:, 'angle']
 
-scored_data = zip(a, m)
-print('average time (sec) at each rotation:')
-print("  0  45  90  135 180 225 270 315")
-print("--> %s <--" % repr([round(i,3) for i in m]).strip('[]').replace(',', '  '))
-print("\n%% correct        : %2.2f" % (100 * correct.mean()))
-print("overall speed (s): %2.3", mrt.mean())
+# scored_data = zip(a, m)
+# print('average time (sec) at each rotation:')
+# print("  0  45  90  135 180 225 270 315")
+# print("--> %s <--" % repr([round(i,3) for i in m]).strip('[]').replace(',', '  '))
+# print("\n%% correct        : %2.2f" % (100 * correct.mean()))
+# print("overall speed (s): %2.3", mrt.mean())
 
-plotYX(m, a)
+# plotYX(m, a)
 
-with open(temp_filename, 'a+') as fd:
-    fd.write('\n\n' + repr(scored_data))
-# keep track of which components have finished
-plot_dataComponents = []
-for thisComponent in plot_dataComponents:
-    if hasattr(thisComponent, 'status'):
-        thisComponent.status = NOT_STARTED
+# with open(temp_filename, 'a+') as fd:
+#     fd.write('\n\n' + repr(scored_data))
+# # keep track of which components have finished
+# plot_dataComponents = []
+# for thisComponent in plot_dataComponents:
+#     if hasattr(thisComponent, 'status'):
+#         thisComponent.status = NOT_STARTED
 
-#-------Start Routine "plot_data"-------
-continueRoutine = True
-while continueRoutine:
-    # get current time
-    t = plot_dataClock.getTime()
-    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-    # update/draw components on each frame
+# #-------Start Routine "plot_data"-------
+# continueRoutine = True
+# while continueRoutine:
+#     # get current time
+#     t = plot_dataClock.getTime()
+#     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+#     # update/draw components on each frame
     
     
-    # check if all components have finished
-    if not continueRoutine:  # a component has requested a forced-end of Routine
-        break
-    continueRoutine = False  # will revert to True if at least one component still running
-    for thisComponent in plot_dataComponents:
-        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-            continueRoutine = True
-            break  # at least one component has not yet finished
+#     # check if all components have finished
+#     if not continueRoutine:  # a component has requested a forced-end of Routine
+#         break
+#     continueRoutine = False  # will revert to True if at least one component still running
+#     for thisComponent in plot_dataComponents:
+#         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+#             continueRoutine = True
+#             break  # at least one component has not yet finished
     
-    # check for quit (the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
+#     # check for quit (the Esc key)
+#     if endExpNow or event.getKeys(keyList=["escape"]):
+#         core.quit()
     
-    # refresh the screen
-    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-        win.flip()
+#     # refresh the screen
+#     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+#         win.flip()
 
-#-------Ending Routine "plot_data"-------
-for thisComponent in plot_dataComponents:
-    if hasattr(thisComponent, "setAutoDraw"):
-        thisComponent.setAutoDraw(False)
+# #-------Ending Routine "plot_data"-------
+# for thisComponent in plot_dataComponents:
+#     if hasattr(thisComponent, "setAutoDraw"):
+#         thisComponent.setAutoDraw(False)
 
-# the Routine "plot_data" was not non-slip safe, so reset the non-slip timer
-routineTimer.reset()
+# # the Routine "plot_data" was not non-slip safe, so reset the non-slip timer
+# routineTimer.reset()
 
 
 
