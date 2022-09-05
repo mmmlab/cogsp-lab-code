@@ -50,9 +50,12 @@ LETTERS = list('ABCDEFGHIJKLMNOPQRSTUVWYZ')
 FIXATION_SIZE = (WHEIGHT//13)*PX_SCALE  # pixels
 LETTER_SIZE = (WHEIGHT//10)*PX_SCALE    # for stimuli (pixels)
 TEXT_SIZE = (WHEIGHT//36)*PX_SCALE      # for instructions (pixels)
-TEXT_VPOS = (WHEIGHT//130)*PX_SCALE     # vertical text position (pixels)
+TEXT_VPOS = 130*PX_SCALE                # vertical text position (pixels)
 STIMULUS_DURATION = 0.015   # seconds
 ISI_DURATION = 0.085        # seconds
+
+print('WHEIGHT = %d'%WHEIGHT)
+print('TEXT_VPOS = %d'%TEXT_VPOS)
 
 beforeWhite = []      #number of letters prior to white letter
 targetLetter = []     #letter that is in white
