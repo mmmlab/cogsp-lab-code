@@ -60,8 +60,11 @@ def get_display_info():
     # 4. Exit the window
     testwin.close()
     return os_width,os_height,pixel_scaling
+    
 
 WWIDTH,WHEIGHT,PX_SCALE = get_display_info()
+TEXT_SIZE = (WHEIGHT//36)*PX_SCALE      # for instructions (pixels)
+TEXT_VPOS = 130*PX_SCALE                # vertical text position (pixels)
 
 #window
 mywin = visual.Window([WWIDTH,WHEIGHT], monitor="testMonitor", units="pix",fullscr=True)
@@ -138,6 +141,12 @@ nbars = [2, 4, 6, 8]
 #         #sheet1.write(i+12, 3, d)    #same or different?       
 #     filename+='.xls'
 #     book.save(filename)
+
+def displayText(text,vpos=TEXT_VPOS,color='White',size=TEXT_SIZE):
+    rendered_text = visual.TextStim(win=mywin,text=text,color=color,\
+        pos=(0,vpos),height=size)
+    rendered_text.draw() 
+    mywin.flip()    
 
 # write excel file with results
 def write_file(filename):
@@ -235,7 +244,6 @@ def showdisplay(display, bars, diff):
 #displays any text.  Use for response
 
 def blankscreen():
-    
     mywin.flip(clearBuffer=True)
     mywin.flip()
  #   print pause/1000.0
@@ -254,8 +262,35 @@ def getresponse():
         mywin.close()
         core.quit()
     return b
-   
-   
+
+def waitForValidKeypress(valid_keys):
+    key = None
+    key = getresponse().upper()
+    while key not in valid_keys:
+        key = getresponse().upper()
+    return key
+
+def showBlockInstructions():
+    block_instruction_text = """
+    On each trial you’ll see two displays in succession. Each display contains 2, 4, 6, or 8 tilted bars of different colors.
+    
+    The second display is either the SAME as the first, or it’s DIFFERENT from the first in that one of the items has changed.
+    
+    After each trial, type S if you think the displays were the same, and type D if you think they were different.
+    
+    Press SPACEBAR to begin the experiment.
+    """
+    #winWidth,winHeight = mywin.size
+
+    block_instructions = visual.TextStim(win=mywin,text=block_instruction_text,\
+        color='White',pos=(0,0),alignText='center',wrapWidth=0.45*WWIDTH*PX_SCALE,height=TEXT_SIZE) 
+    block_instructions.draw()
+    mywin.flip()
+    # listen for keypress
+    keypress = waitForValidKeypress(valid_keys=['SPACE'])
+    blankscreen()
+
+showBlockInstructions()
 #run all trials
 for itrial in range (0,ntrials):
     print("trial %d"%(itrial + 1))
