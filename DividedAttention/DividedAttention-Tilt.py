@@ -177,7 +177,7 @@ fixation = visual.Circle(win=mywin,radius=6,units='pix', pos=[0,0],fillColor='bl
 blankletter=visual.GratingStim(win=mywin, size=30, pos=[0,0],sf=0, rgb=1, contrast=0)
 trialClock = core.Clock()
 centraltext=visual.TextStim(win=mywin, text='B',pos=[0,0],rgb=1,contrast=lettercontrast,height=letterheight)
-noiseTexture = scipy.random.rand(128,128)*2.0-1 #from demo visual_noise.py
+noiseTexture = numpy.random.rand(128,128)*2.0-1 #from demo visual_noise.py
 noisepatch=visual.GratingStim(win=mywin, tex=noiseTexture, mask="gauss", units="pix", size=gratingdiam, pos=[xecc[0],yecc[0]], contrast=noisecontrast)
 
 data = [("Trial", "User Response Location","Correct Location", "Numeral Response", "Correct Number")]
