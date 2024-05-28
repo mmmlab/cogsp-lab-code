@@ -165,19 +165,19 @@ def show_stimulus(length,is_muller,width=LINEWIDTH):
     while True:
         keylist=getKeysWithExit()
         increment = 0
-        if 'space'in keylist:
+        if 'space'in keylist or ' ' in keylist:
             global result
             comparison_length = stimulus.comp_length*winHeight
             result.append(int(comparison_length))
             print('insert new length to c_length list')
             break 
-        elif keyState[key.J]:
+        elif 'j' in keylist:
             increment = LARGE_INCREMENT/winHeight
-        elif keyState[key.H]:
+        elif 'h' in keylist:
             increment = SMALL_INCREMENT/winHeight
-        elif keyState[key.F]:
+        elif 'f' in keylist:
             increment = -LARGE_INCREMENT/winHeight
-        elif keyState[key.G]:
+        elif 'g' in keylist:
             increment = -SMALL_INCREMENT/winHeight
         elif 'escape'in keylist:
             print('set escape signal')
