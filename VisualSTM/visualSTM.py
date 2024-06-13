@@ -287,7 +287,7 @@ def showBlockInstructions():
     block_instructions.draw()
     mywin.flip()
     # listen for keypress
-    keypress = waitForValidKeypress(valid_keys=['SPACE'])
+    keypress = waitForValidKeypress(valid_keys=['SPACE',' ','escape'])
     blankscreen()
 
 showBlockInstructions()
