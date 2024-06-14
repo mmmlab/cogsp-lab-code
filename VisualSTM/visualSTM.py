@@ -23,20 +23,27 @@ global savetilt
 
 # set up the menu for choice of conditions
 myDlg = gui.Dlg(title="Visual Short Term Memory",size=(1, 1))
-# myDlg.addField('Initials:','xx')
-# myDlg.addField('SessionNumber:',1)
-# myDlg.addField('NumberofTrials',40)
-# myDlg.addField('Time between Display 1 and 2', 1000)
-# myDlg.addField('Bar length', 100)
-# myDlg.addField('Bar width', 15)
-# myDlg.addField('Task (C,O,or E)')
-myDlg.addField(key=0,label='Initials:',initial='xx')
-myDlg.addField(key=1,label='SessionNumber:',initial=1)
-myDlg.addField(key=2,label='NumberofTrials',initial=40)
-myDlg.addField(key=3,label='Time between Display 1 and 2',initial=1000)
-myDlg.addField(key=4,label='Bar length',initial=100)
-myDlg.addField(key=5,label='Bar width',initial=15)
-myDlg.addField(key=6,label='Task (C,O,or E)')
+# deal with broken function signature in v2024.1.4
+dlg_args = myDlg.addField.__code__.co_varnames
+if 'key' in dlg_args:
+    # use arguments compatible with v2024.1.4
+    myDlg.addField(key=0,label='Initials:',initial='xx')
+    myDlg.addField(key=1,label='SessionNumber:',initial=1)
+    myDlg.addField(key=2,label='NumberofTrials',initial=40)
+    myDlg.addField(key=3,label='Time between Display 1 and 2',initial=1000)
+    myDlg.addField(key=4,label='Bar length',initial=100)
+    myDlg.addField(key=5,label='Bar width',initial=15)
+    myDlg.addField(key=6,label='Task (C,O,or E)')
+else:
+    # use arguments compatible with earlier versions
+    myDlg.addField('Initials:','xx')
+    myDlg.addField('SessionNumber:',1)
+    myDlg.addField('NumberofTrials',40)
+    myDlg.addField('Time between Display 1 and 2', 1000)
+    myDlg.addField('Bar length', 100)
+    myDlg.addField('Bar width', 15)
+    myDlg.addField('Task (C,O,or E)')
+
 myDlg.show()
 if myDlg.OK:
     sessioninfo=myDlg.data
