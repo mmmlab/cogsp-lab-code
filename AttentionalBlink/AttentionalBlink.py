@@ -161,7 +161,7 @@ def runTrial(trialType):
     crossImg.draw()                                                      
     mywin.flip()
     # listen for keypress
-    keypress = waitForValidKeypress(valid_keys=['SPACE'])
+    keypress = waitForValidKeypress(valid_keys=['SPACE',' '])
     blankScreen()
     core.wait(.5)
     ############################################################################    
@@ -214,7 +214,7 @@ def runBlock():
     block_instructions.draw()
     mywin.flip()
     # listen for keypress
-    keypress = waitForValidKeypress(valid_keys=['SPACE'])
+    keypress = waitForValidKeypress(valid_keys=['SPACE',' '])
     blankScreen()
     ############################################################################
     ## Trial Loop
