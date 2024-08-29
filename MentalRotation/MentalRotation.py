@@ -263,10 +263,10 @@ for thisComponent in Intructions_1Components:
 if key_resp_4.keys in ['', [], None]:  # No response was made
    key_resp_4.keys=None
 # store data for thisExp (ExperimentHandler)
-thisExp.addData('key_resp_4.keys',key_resp_4.keys)
-if key_resp_4.keys != None:  # we had a response
-    thisExp.addData('key_resp_4.rt', key_resp_4.rt)
-thisExp.nextEntry()
+# thisExp.addData('key_resp_4.keys',key_resp_4.keys)
+# if key_resp_4.keys != None:  # we had a response
+#     thisExp.addData('key_resp_4.rt', key_resp_4.rt)
+# thisExp.nextEntry()
 # the Routine "Intructions_1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
