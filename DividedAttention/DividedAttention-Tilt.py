@@ -112,7 +112,7 @@ gratingfreq=sessioninfo['Grating frequency']
 gratingdiam=sessioninfo['Grating diameter(pix)']
 lettercontrast=sessioninfo['Letter contrast']
 letterheight=sessioninfo['Letter height (pix)']
-instruction=sessioninfo['Task(G,N,or B)']
+instruction=sessioninfo['Task(G,N,or B)'].upper()
 
 
 # #read values from menu and put in variables
@@ -158,15 +158,18 @@ gratingtilt=[]
 gratingseq=[]
 
 
-cTargetNums = [] #Correct Response to the target numeral
-uTargetNums=[] #response to the target numeral
-userResponse=[]
-corrLocation=[]
+numPresented = [] #Correct Response to the target numeral
+numResponse=[] #response to the target numeral
+numCorrect=[]
+locResponse=[]
+locPresented=[]
+locCorrect=[]
 
 
 timebetweenframes = .083 #.083 gives about 12 letters/s.Same as JosephChunNakayama.since we're not counting frames,won't be exact  
 LETTER_DURATION = 0.033
 BLANK_DURATION = 0.050
+FEEDBACK_DURATION = 2.0
 #timebetweenframes = .04
 noisecontrast=.7
 nletterstoshow=len(letters)
@@ -174,23 +177,25 @@ nletterstoshow=len(letters)
 grating= visual.GratingStim(win=mywin, mask="gauss", units="pix", size=gratingdiam, pos=[xecc[0],yecc[0]], sf=[gratingfreq,0],contrast=gratingcontrast)
 #fixation = visual.GratingStim(win=mywin, size=15, pos=[0,0], sf=0, rgb= 1,contrast=.5)
 fixation = visual.Circle(win=mywin,radius=6,units='pix', pos=[0,0],fillColor='black',lineColor='black',interpolate=True)
-blankletter=visual.GratingStim(win=mywin, size=30, pos=[0,0],sf=0, rgb=1, contrast=0)
+blankletter=visual.GratingStim(win=mywin, size=30, pos=[0,0],sf=0, color=(1,1,1), colorSpace='rgb', contrast=0)
 trialClock = core.Clock()
-centraltext=visual.TextStim(win=mywin, text='B',pos=[0,0],rgb=1,contrast=lettercontrast,height=letterheight)
+centraltext=visual.TextStim(win=mywin, text='B',pos=[0,0],color=(1,1,1), colorSpace='rgb',contrast=lettercontrast,height=letterheight)
 noiseTexture = numpy.random.rand(128,128)*2.0-1 #from demo visual_noise.py
 noisepatch=visual.GratingStim(win=mywin, tex=noiseTexture, mask="gauss", units="pix", size=gratingdiam, pos=[xecc[0],yecc[0]], contrast=noisecontrast)
 
-data = [("Trial", "User Response Location","Correct Location", "Numeral Response", "Correct Number")]
+data = [("Trial", "Location Response","Actual Location","Location Correct?", \
+         "Numeral Response", "Actual Numeral","Numeral Correct?","Condition")]
 
 def write_file(filename):
 
     for i in range(0, ntrials):
-        data.append((i+1, userResponse[i], corrLocation[i], uTargetNums[i], cTargetNums[i]))
+        data.append((i+1, locResponse[i], locPresented[i], locCorrect[i],\
+                      numResponse[i], numPresented[i], numCorrect[i],instruction))
     # create data directory
     if not os.path.exists('data'):
         os.makedirs('data')
     # write data
-    with open('data/%s.csv' %(filename), 'w') as fp:
+    with open('data/%s.csv' %(filename), 'w',newline='',encoding='utf-8') as fp:
         writer = csv.writer(fp, delimiter=',' )
         writer.writerows(data)
 
@@ -277,16 +282,16 @@ def showcriticaldisplay(letterstoshow,targetletter,letterindex,whichgrating,lett
     
 #this is for taking a response that includes a display of 8 numerals at each grating location
 def displaysometextandlocations(texttodisplay):
-    prompt=visual.TextStim(win=mywin, text=texttodisplay,pos=[0,0],rgb=1,contrast=1,height=letterheight)
+    prompt=visual.TextStim(win=mywin, text=texttodisplay,pos=[0,0],color=(1,1,1), colorSpace='rgb',contrast=1,height=letterheight)
     for n in range(len(xecc)):
         ttd=repr(n)  #convert to string
-        numberprompt=visual.TextStim(win=mywin,text=ttd,pos=[xecc[n],yecc[n]],rgb=1,contrast=1,height=letterheight)
+        numberprompt=visual.TextStim(win=mywin,text=ttd,pos=[xecc[n],yecc[n]],color=(1,1,1), colorSpace='rgb',contrast=1,height=letterheight)
         numberprompt.draw()
     prompt.draw()
     mywin.flip()
 #displays any text.  Use for response
 def displaysometext(texttodisplay):
-    prompt=visual.TextStim(win=mywin, text=texttodisplay,pos=[0,0],rgb=1,contrast=1,height=letterheight,wrapWidth=800)
+    prompt=visual.TextStim(win=mywin, text=texttodisplay,pos=[0,0],color=(1,1,1), colorSpace='rgb',contrast=1,height=letterheight,wrapWidth=800)
     prompt.draw()
     mywin.flip()
 #get response
@@ -352,9 +357,6 @@ for itrial in range (0,ntrials):
     targetletter=picktargetletter(len(letterstoshow))           #pick which is the target (different contrast)
     targetnumeral=picktargetnumeral(numerals)                   #pick target numeral
     
-
-    
-    
     letterstoshow[targetletter]=targetnumeral                   #replace the letter with the numeral
     letterwithgrating=pickletterwithgrating(targetletter,len(letterstoshow))  #decide when the gratings will appear
     whichgrating=picktiltedgrating()                                            #decide which grating is tilted
@@ -390,7 +392,7 @@ for itrial in range (0,ntrials):
     utargetletterresponse='0'
     if instruction[0] not in ('G', 'g'): #if B or N
         displaysometext("target numeral")
-        
+        # wait for numeral response
         while targetletterresponse not in numerals:
             targetletterresponse=getresponse()
      #   print targetletterresponse    
@@ -402,38 +404,37 @@ for itrial in range (0,ntrials):
         
         
         displaysometext(feedback)
-        core.wait(2)
+        core.wait(FEEDBACK_DURATION)
         gloc=repr(whichgrating)
-        uTargetNums.append(targetletterresponse)
-        cTargetNums.append(targetnumeral) #appends the correct target numeral             
+        numResponse.append(targetletterresponse)
+        numPresented.append(targetnumeral) #appends the correct target numeral
+        numCorrect.append(int(targetnumeral==targetletterresponse))             
         
         
         if instruction in ('N', 'n'):
-            userResponse.append("N/A")
-            corrLocation.append("N/A")
+            locResponse.append("N/A")
+            locPresented.append("N/A")
+            locCorrect.append("N/A")
     
     gratinglocationresponse=9
     gloc = repr(whichgrating)
     
-    if instruction[0] not in ('N', 'n'): #if B or G ask the location of the grating 
-        
+    if instruction[0] not in ('N', 'n'): #if B or G ask the location of the grating   
         displaysometextandlocations("Target location? (0-7)")
-        
         locs=['0','1','2','3','4','5','6','7']
         while gratinglocationresponse not in locs:
             gratinglocationresponse=getresponse()
-      #  gloc=repr(whichgrating)            
+
         feedback= 'Location response: ' + gratinglocationresponse + '  Actual location: ' + gloc
-      
         displaysometext(feedback)
-        core.wait(3)
-        corrLocation.append(int(gloc))
-        userResponse.append(gratinglocationresponse)
-        
-        
+        core.wait(FEEDBACK_DURATION)
+        locPresented.append(int(gloc))
+        locResponse.append(gratinglocationresponse)
+        locCorrect.append(int(int(gloc)==int(gratinglocationresponse)))
         if instruction in ('G', 'g'):
-            uTargetNums.append("N/A")
-            cTargetNums.append("N/A")
+            numResponse.append("N/A")
+            numPresented.append("N/A")
+            numCorrect.append("N/A")
             
 
     
