@@ -63,6 +63,8 @@ containSet = []       #whether there was an X or not
 afterWhite = []       #how many letters after the white one the X came up
 respX = []            # if they responded whether there was an x or not
 respTarget = []       #Response as to what the target letter was
+correctX = []
+correctTarget = []
 
 ## Functions
 def getResponse():
@@ -100,13 +102,13 @@ def write_file(filename):
     ws.cell(row=2,column=1).value = "SubjectID:%s"%subid
     ws.cell(row=3,column=1).value = "SessionNumber:%s"%session
     # write column headers
-    headers = ['Trial','TargetPosition','TargetLetter','TargetResponse',\
-        'X_Position','X_Present','X_Response']
+    headers = ['Trial','TargetPosition','TargetLetter','TargetResponse','TargetCorrect?',\
+        'X_Position','X_Present','X_Response','X_Correct?']
     ws.append(headers)
     # write per-trial data
     for i in range(0,ntrials):
-        row_data = [i+1,beforeWhite[i],targetLetter[i],respTarget[i],\
-            afterWhite[i],containSet[i],respX[i]]
+        row_data = [i+1,beforeWhite[i],targetLetter[i],respTarget[i],correctTarget[i],\
+            afterWhite[i],containSet[i],respX[i],correctX[i]]
         ws.append(row_data)
     # create data directory and save data file
     if not os.path.exists('data'):
@@ -189,13 +191,15 @@ def runTrial(trialType):
     blankScreen()
     ############################################################################
     ## Store trial parameters and responses
-    afterWhite.append(x_offset)
+    afterWhite.append("N/A" if x_offset is None else x_offset)
     targetLetter.append(target)
     beforeWhite.append(target_idx)
-    containSet.append(trialType)
+    containSet.append("yes" if trialType else "no")
     # save the observer's responses
-    respX.append(str(x_response)) 
+    respX.append("yes" if x_response else "no") 
+    correctX.append(int(x_response==trialType))
     respTarget.append(target_response)
+    correctTarget.append(int(target_response==target))
 
 def runBlock():
     block_instruction_text = (
@@ -219,7 +223,7 @@ def runBlock():
     ############################################################################
     ## Trial Loop
     for i in range(ntrials):
-        trialType = random.randint(0,2)
+        trialType = random.randint(0,2) # 0: x absent, 1: x present
         runTrial(trialType)
     # exit screen
     exit_text = "Press any key to exit the program"
