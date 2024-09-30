@@ -408,7 +408,7 @@ for itrial in range (0,ntrials):
         gloc=repr(whichgrating)
         numResponse.append(targetletterresponse)
         numPresented.append(targetnumeral) #appends the correct target numeral
-        numCorrect.append(int(targetnumeral==targetletterresponse))             
+        numCorrect.append(targetnumeral==int(targetletterresponse))             
         
         
         if instruction in ('N', 'n'):
