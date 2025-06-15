@@ -668,7 +668,7 @@ while continueRoutine:
         # keyboard checking is just starting
         event.clearEvents(eventType='keyboard')
     if key_resp_2.status == STARTED:
-        theseKeys = event.getKeys(keyList=['space'])
+        theseKeys = event.getKeys(keyList=['space',' '])
         
         # check for quit:
         if "escape" in theseKeys:
